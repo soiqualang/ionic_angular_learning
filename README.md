@@ -340,3 +340,7 @@ https://ionicframework.com/docs/theming/color-generator
 * https://ionicframework.com/docs/v1/guide/publishing.html
 * https://ionicframework.com/docs/v3/intro/deploying/
 * https://forum.ionicframework.com/t/how-to-solve-the-app-not-installed-error-on-android-devices/139401/7
+
+> IONIC API
+* https://ionicframework.com/docs/api/
+* https://ionicframework.com/docs/components
