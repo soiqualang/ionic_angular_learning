@@ -265,16 +265,11 @@ const routes: Routes = [
 
 #### Build app
 
-`cordova build android`
-
-```bash
-Built the following apk(s):
-        D:\sync\websvr\xampp\ionic_angular_learning\photo-gallery\platforms\android\app\build\outputs\apk\debug\app-debug.apk
-```
-
-`ionic cordova build --release android`
+> Tạo bản release, muốn cài phải sign
 
 `ionic cordova build android --prod --release`
+
+> Tạo bản debug, có thể cài không cần sign
 
 `ionic cordova build android --prod`
 
@@ -289,6 +284,7 @@ Built the following apk(s):
 So, if I use the command ionic cordova build android --prod I have a file “app-debug.apk” that I can eecute on my phone.
 If I run the command ionic cordova build android --prod --release I have to sign the file “app-release-unsigned.apk” using this procedure `https://ionicframework.com/docs/building/running`
 
+https://forum.ionicframework.com/t/how-to-solve-the-app-not-installed-error-on-android-devices/139401/7
 
 
 #### Sign app
@@ -343,3 +339,4 @@ https://ionicframework.com/docs/theming/color-generator
 * https://ionicframework.com/docs/v3/cli/cordova/build/
 * https://ionicframework.com/docs/v1/guide/publishing.html
 * https://ionicframework.com/docs/v3/intro/deploying/
+* https://forum.ionicframework.com/t/how-to-solve-the-app-not-installed-error-on-android-devices/139401/7
