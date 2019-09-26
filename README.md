@@ -116,6 +116,11 @@ export class Tab2Page {
 }
 ```
 
+## Save photo to device
+
+### Make photo service
+`ionic g service services/Photo`
+
 
 
 ## Build App Android
