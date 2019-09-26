@@ -46,6 +46,9 @@ ionic cordova platform add android
        ionic cordova resources android --force
 ```
 
+### Start Services (again)
+`ionic serve --devapp`
+
 ## Build App Android
 
 `cordova build android`
