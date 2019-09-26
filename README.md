@@ -31,6 +31,8 @@ https://ionicframework.com/docs/angular/your-first-app/ios-android-camera
 
 Muốn sử dụng được các thành phần phần cứng của thiết bị thì phải add platform tương ứng vào.
 
+### Android
+
 ```bash
 ionic cordova platform add android
 .........
@@ -44,6 +46,8 @@ ionic cordova platform add android
 
        ionic cordova resources android --force
 ```
+
+### IOS
 
 ```bash
 ionic cordova platform add ios
