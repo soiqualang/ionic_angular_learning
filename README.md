@@ -62,6 +62,61 @@ Truy cập để test các chức năng native của thiết bị như camera, g
 
 `ionic cordova plugin add cordova-plugin-camera`
 
+### Các nước add camera vô app
+
+* Add Camera plugin to Angular App Module `src/app/app.module.ts`
+
+```ts
+import { Camera } from '@ionic-native/camera/ngx';
+providers: [
+    StatusBar,
+    SplashScreen,
+    Camera,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
+  ],
+```
+
+* Add the Camera to the Gallery page
+
+```html
+<!--tab2.page.html-->
+
+<img [src]="currentImage" *ngIf="currentImage">
+
+<ion-fab vertical="bottom" horizontal="center" slot="fixed">
+  <ion-fab-button (click)="takePicture()">
+    <ion-icon name="camera"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+```
+
+```ts
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+export class Tab2Page {
+  currentImage: any;
+  constructor(private camera: Camera) {}
+
+  takePicture() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    };
+
+    this.camera.getPicture(options).then((imageData) => {
+      this.currentImage = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      // Handle error
+      console.log("Camera issue:" + err);
+    });
+  }
+
+}
+```
+
+
+
 ## Build App Android
 
 `cordova build android`
