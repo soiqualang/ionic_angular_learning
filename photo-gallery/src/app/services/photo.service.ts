@@ -4,6 +4,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PhotoService {
+  public photos: Photo[] = [];
+
 
   constructor() { }
+}
+
+
+class Photo {
+  data: any;
 }
