@@ -64,7 +64,7 @@ Truy cập để test các chức năng native của thiết bị như camera, g
 
 ### Các nước add camera vô app
 
-* Add Camera plugin to Angular App Module `src/app/app.module.ts`
+#### Add Camera plugin to Angular App Module `src/app/app.module.ts`
 
 ```ts
 import { Camera } from '@ionic-native/camera/ngx';
@@ -76,7 +76,7 @@ providers: [
   ],
 ```
 
-* Add the Camera to the Gallery page
+#### Add the Camera to the Gallery page `tab2.page.html`
 
 ```html
 <!--tab2.page.html-->
@@ -89,6 +89,7 @@ providers: [
   </ion-fab-button>
 </ion-fab>
 ```
+#### Add function take photo `tab2.page.ts`
 
 ```ts
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
