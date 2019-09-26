@@ -121,6 +121,61 @@ export class Tab2Page {
 ### Make photo service
 `ionic g service services/Photo`
 
+Khi khai báo hàm trong services thì để gọi ra, chúng ta cần khai báo service đó, rồi gọi `[tên services].[tên hàm]`. Ví dụ:
+
+**Khai báo services:**
+```ts
+export class Tab2Page {
+  constructor(public photoService: PhotoService) {}  
+
+}
+```
+**Gọi hàm trong services**
+
+`<ion-col size="6" *ngFor="let photo of photoService.photos">`
+
+
+### Use SQLite
+
+#### Add sqlite storage
+
+**Install**
+
+`ionic cordova plugin add cordova-sqlite-storage`
+
+**Add to js core**
+
+`npm install --save @ionic/storage`
+
+**Add lib to `app.module.ts`**
+
+```ts
+import { IonicStorageModule } from '@ionic/storage';
+
+@NgModule({
+  declarations: [AppComponent],
+  entryComponents: [],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    IonicStorageModule.forRoot()
+  ],
+  providers: [
+    StatusBar,
+    SplashScreen,
+    Camera,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
+
+**Add to service `photo.service.ts`**
+`import { Storage } from '@ionic/storage';`
+
+
 
 
 ## Build App Android
@@ -146,4 +201,7 @@ https://ionicframework.com/docs/v3/ionicons/
 
 > Các kiểu button (icon)
 https://ionicframework.com/docs/api/fab
+
+> SQLite plugin
+https://ionicframework.com/docs/building/storage
 
