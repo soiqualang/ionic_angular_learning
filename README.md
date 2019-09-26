@@ -349,3 +349,5 @@ https://ionicframework.com/docs/theming/color-generator
 * https://edupala.com/how-to-add-leaflet-map-in-ionic-4/
 * https://tphangout.com/ionic-3-leaflet-maps-geolocation-markers/
 * https://www.javascripttuts.com/using-leaflet-open-street-map-in-an-ionic-application-in-one-go/
+* https://developer.here.com/blog/display-an-interactive-here-map-in-an-ionic-framework-application
+* https://developer.here.com/blog/interacting-with-a-leaflet-map-in-an-ionic-framework-pwa
