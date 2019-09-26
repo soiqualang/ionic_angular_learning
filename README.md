@@ -344,3 +344,8 @@ https://ionicframework.com/docs/theming/color-generator
 > IONIC API
 * https://ionicframework.com/docs/api/
 * https://ionicframework.com/docs/components
+
+> VS Leaflet
+* https://edupala.com/how-to-add-leaflet-map-in-ionic-4/
+* https://tphangout.com/ionic-3-leaflet-maps-geolocation-markers/
+* https://www.javascripttuts.com/using-leaflet-open-street-map-in-an-ionic-application-in-one-go/
