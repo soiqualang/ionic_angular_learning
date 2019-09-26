@@ -259,7 +259,11 @@ const routes: Routes = [
 ];
 ```
 
-## Build App Android
+## Build App
+
+### Android
+
+#### Build app
 
 `cordova build android`
 
@@ -267,6 +271,51 @@ const routes: Routes = [
 Built the following apk(s):
         D:\sync\websvr\xampp\ionic_angular_learning\photo-gallery\platforms\android\app\build\outputs\apk\debug\app-debug.apk
 ```
+
+`ionic cordova build --release android`
+
+`ionic cordova build android --prod --release`
+
+`ionic cordova build android --prod`
+
+```bash
+BUILD SUCCESSFUL in 58s
+42 actionable tasks: 40 executed, 2 up-to-date
+Built the following apk(s):
+        D:\sync\websvr\xampp\ionic_angular_learning\photo-gallery\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk
+```
+
+>Ok, I have signed the app following `https://ionicframework.com/docs/building/running` and now I can install the release version.
+So, if I use the command ionic cordova build android --prod I have a file “app-debug.apk” that I can eecute on my phone.
+If I run the command ionic cordova build android --prod --release I have to sign the file “app-release-unsigned.apk” using this procedure `https://ionicframework.com/docs/building/running`
+
+
+
+#### Sign app
+
+**Get key**
+
+> Let’s generate our private key using the keytool command that comes with the JDK
+
+https://ionicframework.com/docs/v1/guide/installation.html
+
+`keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000`
+
+**Sign app**
+
+`jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore HelloWorld-release-unsigned.apk alias_name`
+
+**Package to APK**
+
+`zipalign -v 4 HelloWorld-release-unsigned.apk HelloWorld.apk`
+
+>  The zipalign tool can be found in /path/to/Android/sdk/build-tools/VERSION/zipalign. For example, on OS X with Android Studio installed, zipalign is in ~/Library/Android/sdk/build-tools/VERSION/zipalign
+
+### IOS
+
+`cordova build ios`
+
+**Cần máy IOS**
 
 ## Preferences
 
@@ -289,3 +338,8 @@ https://ionicframework.com/docs/building/storage
 > Color Generator
 https://ionicframework.com/docs/theming/color-generator
 
+> Build
+* https://ionicframework.com/docs/cli/commands/build
+* https://ionicframework.com/docs/v3/cli/cordova/build/
+* https://ionicframework.com/docs/v1/guide/publishing.html
+* https://ionicframework.com/docs/v3/intro/deploying/
