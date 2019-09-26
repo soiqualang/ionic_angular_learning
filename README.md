@@ -32,11 +32,8 @@ https://ionicframework.com/docs/angular/your-first-app/ios-android-camera
 Muốn sử dụng được các thành phần phần cứng của thiết bị thì phải add platform tương ứng vào.
 
 ```bash
-ionic cordova platform add ios
 ionic cordova platform add android
-```
-
-```bash
+.........
 [WARN] cordova-res was not found on your PATH. Please install it globally:
 
        npm i -g cordova-res
@@ -48,6 +45,13 @@ ionic cordova platform add android
        ionic cordova resources android --force
 ```
 
+```bash
+ionic cordova platform add ios
+......
+> ionic cordova resources ios --force
+> cordova-res.cmd ios
+```
+
 ### Start Services (again)
 `ionic serve --devapp`
 
@@ -56,11 +60,21 @@ Cài đặt App `Ionic DevApp` trên điện thoại
 Truy cập để test các chức năng native của thiết bị như camera, gps, file,...
 
 ## Add the Camera Dependencies via the CLI
+
 `npm install @ionic-native/camera`
 
 **add the native iOS and Android code**
 
 `ionic cordova plugin add cordova-plugin-camera`
+
+The next step is only required for iOS users. As of iOS 10, developers must provide a reason for why the app wishes to access the device camera. Add this to the bottom of config.xml:
+
+```xml
+<!-- Required for iOS 10: Camera permission prompt -->
+<edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
+    <string>Used to take pictures</string>
+</edit-config>
+```
 
 ### Các nước add camera vô app
 
