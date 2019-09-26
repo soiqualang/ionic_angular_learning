@@ -46,7 +46,14 @@ ionic cordova platform add android
        ionic cordova resources android --force
 ```
 
+## Build App Android
 
+`cordova build android`
+
+```bash
+Built the following apk(s):
+        D:\sync\websvr\xampp\ionic_angular_learning\photo-gallery\platforms\android\app\build\outputs\apk\debug\app-debug.apk
+```
 
 ## Preferences
 
