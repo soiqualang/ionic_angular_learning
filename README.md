@@ -173,6 +173,7 @@ export class AppModule {}
 ```
 
 **Add to service `photo.service.ts`**
+
 `import { Storage } from '@ionic/storage';`
 
 ```ts
@@ -185,6 +186,13 @@ this.storage.get('photos').then((photos) => {
 });
 ```
 
+## Theme
+
+**Color Generator**
+
+https://ionicframework.com/docs/theming/color-generator
+
+> You can find these colors defined in src/theme/variables.scss
 
 ## Build App Android
 
@@ -212,4 +220,7 @@ https://ionicframework.com/docs/api/fab
 
 > SQLite plugin
 https://ionicframework.com/docs/building/storage
+
+> Color Generator
+https://ionicframework.com/docs/theming/color-generator
 
