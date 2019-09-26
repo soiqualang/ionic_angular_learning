@@ -37,3 +37,5 @@ https://github.com/soiqualang/Learn_AngularJS
 * https://ionicframework.com/docs/intro
 * https://ionicframework.com/docs/angular/your-first-app
 
+> Icon Ionic
+https://ionicframework.com/docs/v3/ionicons/
