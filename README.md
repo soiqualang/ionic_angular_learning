@@ -25,6 +25,26 @@ https://ionicframework.com/docs/v3/cli/starters.html
 ## Run app
 `ionic serve`
 
+## Add platform (Android/IOS)
+
+Muốn sử dụng được các thành phần phần cứng của thiết bị thì phải add platform tương ứng vào.
+
+```bash
+ionic cordova platform add ios
+ionic cordova platform add android
+```
+
+```bash
+[WARN] cordova-res was not found on your PATH. Please install it globally:
+
+       npm i -g cordova-res
+
+[WARN] Cannot generate resources without cordova-res installed.
+
+       Once installed, you can generate resources with the following command:
+
+       ionic cordova resources android --force
+```
 
 
 
