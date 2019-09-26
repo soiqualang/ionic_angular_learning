@@ -209,6 +209,38 @@ imports: [
   ],
 ```
 
+## Routing `app-routing.module.ts`
+
+```ts
+const routes: Routes = [
+  {
+    path: 'tabs',
+    component: TabsPage,
+    children: [
+      {
+        path: 'tab1',
+        children: [
+          {
+            path: '',
+            loadChildren: '../tab1/tab1.module#Tab1PageModule'
+          }
+        ]
+      },
+      {
+        path: '',
+        redirectTo: '/tabs/tab1',
+        pathMatch: 'full'
+      }
+    ]
+  },
+  {
+    path: '',
+    redirectTo: '/tabs/tab1',
+    pathMatch: 'full'
+  }
+];
+```
+
 ## Build App Android
 
 `cordova build android`
