@@ -175,7 +175,15 @@ export class AppModule {}
 **Add to service `photo.service.ts`**
 `import { Storage } from '@ionic/storage';`
 
+```ts
+//Save
+this.storage.set('photos', this.photos);
 
+//Select
+this.storage.get('photos').then((photos) => {
+  this.photos = photos || [];
+});
+```
 
 
 ## Build App Android

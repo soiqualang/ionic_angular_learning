@@ -37,6 +37,12 @@ export class PhotoService {
     });
   }
 
+  loadSaved() {
+    this.storage.get('photos').then((photos) => {
+      this.photos = photos || [];
+    });
+  }
+
 }
 
 
