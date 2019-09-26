@@ -27,6 +27,8 @@ https://ionicframework.com/docs/v3/cli/starters.html
 
 ## Add platform (Android/IOS)
 
+https://ionicframework.com/docs/angular/your-first-app/ios-android-camera
+
 Muốn sử dụng được các thành phần phần cứng của thiết bị thì phải add platform tương ứng vào.
 
 ```bash
@@ -49,6 +51,17 @@ ionic cordova platform add android
 ### Start Services (again)
 `ionic serve --devapp`
 
+Cài đặt App `Ionic DevApp` trên điện thoại
+
+Truy cập để test các chức năng native của thiết bị như camera, gps, file,...
+
+## Add the Camera Dependencies via the CLI
+`npm install @ionic-native/camera`
+
+**add the native iOS and Android code**
+
+`ionic cordova plugin add cordova-plugin-camera`
+
 ## Build App Android
 
 `cordova build android`
@@ -69,3 +82,7 @@ https://github.com/soiqualang/Learn_AngularJS
 
 > Icon Ionic
 https://ionicframework.com/docs/v3/ionicons/
+
+> Các kiểu button (icon)
+https://ionicframework.com/docs/api/fab
+
