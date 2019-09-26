@@ -194,6 +194,21 @@ https://ionicframework.com/docs/theming/color-generator
 
 > You can find these colors defined in src/theme/variables.scss
 
+
+**Automatically style base on platform**
+
+>Ionic automatically provides platform specific styles based on the device the application is running on, giving that native look and feel your users are used to
+
+```ts
+imports: [
+    BrowserModule,
+    IonicModule.forRoot({
+      mode: "md"
+    }),
+    IonicStorageModule.forRoot()
+  ],
+```
+
 ## Build App Android
 
 `cordova build android`
