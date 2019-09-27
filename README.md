@@ -11,7 +11,7 @@ Let's start!
 
 Test with local storage, access camera,...
 
-<img src="img/h1.jpg">
+<img src="img/h1.jpg" width="50%">
 
 ## Install
 
