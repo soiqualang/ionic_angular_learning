@@ -326,6 +326,9 @@ https://ionicframework.com/docs/v1/guide/installation.html
 > My repo when I learning Angular
 https://github.com/soiqualang/Learn_AngularJS
 
+> Learn NodeJS
+https://github.com/soiqualang/hoc_nodejs
+
 > Ionic Docs
 * https://ionicframework.com/docs/intro
 * https://ionicframework.com/docs/angular/your-first-app
