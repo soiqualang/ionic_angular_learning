@@ -33,6 +33,10 @@ https://ionicframework.com/docs/v3/cli/starters.html
 ## Run app
 `ionic serve`
 
+**Cài thêm angular-devkit nếu máy yêu cầu**
+
+`npm install --save-dev @angular-devkit/build-angular`
+
 ## Add platform (Android/IOS)
 
 https://ionicframework.com/docs/angular/your-first-app/ios-android-camera
