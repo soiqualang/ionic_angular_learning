@@ -5,6 +5,14 @@ Just what I learn when doing with angular and ionic, hope this repo can help som
 
 Let's start!
 
+***
+
+## photo-gallery
+
+Test with local storage, access camera,...
+
+<img src="img/h1.jpg">
+
 ## Install
 
 `npm install -g ionic cordova`
