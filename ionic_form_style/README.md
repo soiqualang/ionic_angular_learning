@@ -79,6 +79,43 @@ export class HomePage {
 
 * Các đối tượng trong form phải có thuộc tính name
 
+## Tạo thêm page mới
+
+`ionic generate page form_sql`
+
+```bash
+ionic generate
+ionic generate page
+ionic generate page contact
+ionic generate component contact/form
+ionic generate component login-form --change-detection=OnPush
+ionic generate directive ripple --skip-import
+ionic generate service api/user
+```
+
+Sau khi tạo page mới thì Ionic sẽ tự động update routing, tuy nhiên ta phải chèn link vào menu
+
+Update mảng `appPages` trong file `app.component.ts`
+
+```ts
+public appPages = [
+    {
+      title: 'Home',
+      url: '/home',
+      icon: 'home'
+    },
+    {
+      title: 'List',
+      url: '/list',
+      icon: 'list'
+    },
+    {
+      title: 'Form - SQL',
+      url: '/form-sql',
+      icon: 'bookmark'
+    }
+  ];
+```
 
 ## Components
 
@@ -88,3 +125,4 @@ https://ionicframework.com/docs/api/label
 
 https://ionicframework.com/docs/v3/developer-resources/forms/
 
+https://ionicframework.com/docs/cli/commands/generate
