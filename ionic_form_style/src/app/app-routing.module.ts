@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   { path: 'form-sql', loadChildren: './form-sql/form-sql.module#FormSqlPageModule' },
   { path: 'developers', loadChildren: './pages/developers/developers.module#DevelopersPageModule' },
-  { path: 'developer', loadChildren: './pages/developer/developer.module#DeveloperPageModule' }
+  { path: 'developer/:id', loadChildren: './pages/developer/developer.module#DeveloperPageModule' }
 ];
 
 @NgModule({

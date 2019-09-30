@@ -125,6 +125,8 @@ Muốn dùng được SQLite thì phải add platform
 
 `ionic cordova plugin add cordova-sqlite-storage`
 
+`npm install @ionic-native/sqlite`
+
 Bên cạnh `sqlite`, chúng ta còn dùng thêm `SQLite Porter`
 
 >This Cordova/Phonegap plugin can be used to import/export to/from a SQLite database using either SQL or JSON.
@@ -132,6 +134,8 @@ Bên cạnh `sqlite`, chúng ta còn dùng thêm `SQLite Porter`
 https://ionicframework.com/docs/native/sqlite-porter
 
 `ionic cordova plugin add uk.co.workingedge.cordova.plugin.sqliteporter`
+
+`npm install @ionic-native/sqlite-porter`
 
 ### Tạo service làm việc với Database
 
@@ -144,6 +148,46 @@ ionic g page pages/developers
 ionic g page pages/developer
 ```
 
+### Load sqlite module trong `app.module.ts`
+
+Lưu ý: Để load được module SQlite thì phải chạy lại app dưới dạng:
+
+`ionic serve --devapp`
+
+```ts
+//app.module.ts
+/*load sqlite module*/
+import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
+import { SQLite } from '@ionic-native/sqlite/ngx';
+
+/*HttpClientModule dùng để load local sqlfile ban đầu*/
+import { HttpClientModule } from '@angular/common/http';
+
+@NgModule({
+  declarations: [AppComponent],
+  entryComponents: [],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    HttpClientModule
+  ],
+  providers: [
+    StatusBar,
+    SplashScreen,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    SQLite,
+    SQLitePorter
+  ],
+  bootstrap: [AppComponent]
+}
+```
+
+### Sửa routing trỏ đến 2 page mới thêm `developers` và `developer` trong file `app-routing.module.ts`
+
+`{ path: 'developer/:id', loadChildren: './pages/developer/developer.module#DeveloperPageModule' }`
+
+Page developer sẽ có tham số `id` được truyền vào
 
 
 
