@@ -41,3 +41,6 @@ https://ionicframework.com/docs/v3/cli/starters.html
 https://ionicframework.com/docs/components
 
 https://ionicframework.com/docs/api/label
+
+https://ionicframework.com/docs/v3/developer-resources/forms/
+

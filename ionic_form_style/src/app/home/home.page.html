@@ -14,12 +14,12 @@
     <ion-list lines="full" class="ion-no-margin ion-padding">
       <ion-item>
         <ion-label position="stacked">Chiều dài <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+        <ion-input required type="number" [(ngModel)]="chunhat.chieudai" name="chieudai"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Chiều rộng <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+        <ion-input required type="number" [(ngModel)]="chunhat.chieurong" name="chieurong"></ion-input>
       </ion-item>
 
       <div class="ion-padding">
@@ -29,11 +29,10 @@
 
       <ion-item-divider>
         <ion-label>
-          Kết quả
+          <h1>{{chunhat.chuvi}}</h1>
         </ion-label>
       </ion-item-divider>
       
-      <ion-input disabled value="hahahaha"></ion-input>
     </ion-list>
   </form>
 </ion-content>
