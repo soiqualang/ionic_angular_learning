@@ -125,6 +125,28 @@ Muốn dùng được SQLite thì phải add platform
 
 `ionic cordova plugin add cordova-sqlite-storage`
 
+Bên cạnh `sqlite`, chúng ta còn dùng thêm `SQLite Porter`
+
+>This Cordova/Phonegap plugin can be used to import/export to/from a SQLite database using either SQL or JSON.
+
+https://ionicframework.com/docs/native/sqlite-porter
+
+`ionic cordova plugin add uk.co.workingedge.cordova.plugin.sqliteporter`
+
+### Tạo service làm việc với Database
+
+`ionic g service services/database`
+
+### Tạo 2 trang developers và developer
+
+```bash
+ionic g page pages/developers
+ionic g page pages/developer
+```
+
+
+
+
 ## Preferences
 
 https://ionicframework.com/docs/components
@@ -139,3 +161,6 @@ https://ionicframework.com/docs/cli/commands/generate
 
 > SQlite
 https://devdactic.com/ionic-4-sqlite-queries/
+
+>SQLite Porter
+https://ionicframework.com/docs/native/sqlite-porter

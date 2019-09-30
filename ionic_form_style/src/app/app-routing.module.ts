@@ -15,7 +15,9 @@ const routes: Routes = [
     path: 'list',
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
   },
-  { path: 'form-sql', loadChildren: './form-sql/form-sql.module#FormSqlPageModule' }
+  { path: 'form-sql', loadChildren: './form-sql/form-sql.module#FormSqlPageModule' },
+  { path: 'developers', loadChildren: './pages/developers/developers.module#DevelopersPageModule' },
+  { path: 'developer', loadChildren: './pages/developer/developer.module#DeveloperPageModule' }
 ];
 
 @NgModule({
