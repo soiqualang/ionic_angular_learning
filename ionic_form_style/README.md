@@ -75,6 +75,10 @@ export class HomePage {
 }
 ```
 
+## Lưu ý:
+
+* Các đối tượng trong form phải có thuộc tính name
+
 
 ## Components
 

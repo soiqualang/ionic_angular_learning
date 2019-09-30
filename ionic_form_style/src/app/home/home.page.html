@@ -12,14 +12,22 @@
 <ion-content fullscreen>
   <form onsubmit="processForm(event)">
     <ion-list lines="full" class="ion-no-margin ion-padding">
+
+      <ion-item>
+        <ion-label position="stacked">Loại hình học</ion-label>
+        <ion-select [(ngModel)]="vatthe.loaihinhhoc" name="loaihinhhoc">
+          <ion-select-option *ngFor="let hinhhoc of dm_hinhhoc" value="{{hinhhoc.name}}">{{hinhhoc.label}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
       <ion-item>
         <ion-label position="stacked">Chiều dài <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="number" [(ngModel)]="chunhat.chieudai" name="chieudai"></ion-input>
+        <ion-input required type="number" [(ngModel)]="vatthe.chieudai" name="chieudai"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Chiều rộng <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="number" [(ngModel)]="chunhat.chieurong" name="chieurong"></ion-input>
+        <ion-input required type="number" [(ngModel)]="vatthe.chieurong" name="chieurong"></ion-input>
       </ion-item>
 
       <div class="ion-padding">
@@ -29,11 +37,10 @@
 
       <ion-item-divider>
         <ion-label>
-          <!-- <h1 *ngIf="chunhat.chuvi">Kết quả: {{chunhat.chuvi}}</h1> -->
-          <h1>Kết quả: {{(chunhat.chieudai+chunhat.chieurong)*2}}</h1>
+          <!-- <h1 *ngIf="vatthe.chuvi">Kết quả: {{vatthe.chuvi}}</h1> -->
+          <h1>Kết quả: {{(vatthe.chieudai+vatthe.chieurong)*2}} | {{vatthe.loaihinhhoc}}</h1>
         </ion-label>
       </ion-item-divider>
-      
     </ion-list>
   </form>
 </ion-content>

@@ -10,18 +10,30 @@ export class HomePage {
   chieurong:any; */
 
   //chunhat: hình chữ nhật
-  chunhat={
+  vatthe={
     chieudai: null,
     chieurong: null,
     chuvi: null,
+    loaihinhhoc: null
   };
 
-  constructor() {}
+  dm_hinhhoc=[
+    {name:'hinhvuong',label:'Hình vuông'},
+    {name:'hinhchunhat',label:'Hình chữ nhật'},
+    {name:'hinhtamgiac',label:'Hình tam giác'},
+    {name:'hinhtron',label:'Hình tròn'},
+    {name:'hinhthang',label:'Hình thang'}
+  ];
+
+  constructor() {
+    //this.vatthe.loaihinhhoc={name:'hinhchunhat',label:'Hình chữ nhật'};
+    this.vatthe.loaihinhhoc='hinhchunhat';
+  }
 
   chuvi_calc(){
-    //alert(this.chunhat);
-    this.chunhat.chuvi=(eval(this.chunhat.chieudai+this.chunhat.chieurong))*2;
-    console.log(this.chunhat);
+    //alert(this.vatthe);
+    this.vatthe.chuvi=(eval(this.vatthe.chieudai+this.vatthe.chieurong))*2;
+    console.log(this.vatthe);
   }
   
 }
