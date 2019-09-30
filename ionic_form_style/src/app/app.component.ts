@@ -25,6 +25,11 @@ export class AppComponent {
       title: 'Form - SQL',
       url: '/form-sql',
       icon: 'bookmark'
+    },
+    {
+      title: 'Developers',
+      url: '/developers',
+      icon: 'code-working'
     }
   ];
 
