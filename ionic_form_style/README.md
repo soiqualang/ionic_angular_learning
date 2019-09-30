@@ -117,12 +117,25 @@ public appPages = [
   ];
 ```
 
-## Components
+## Add SQLite
+
+Muốn dùng được SQLite thì phải add platform
+
+`ionic cordova platform add android`
+
+`ionic cordova plugin add cordova-sqlite-storage`
+
+## Preferences
 
 https://ionicframework.com/docs/components
 
 https://ionicframework.com/docs/api/label
 
+> Ionic Form
 https://ionicframework.com/docs/v3/developer-resources/forms/
 
+> Ionic gen page, services, API
 https://ionicframework.com/docs/cli/commands/generate
+
+> SQlite
+https://devdactic.com/ionic-4-sqlite-queries/
