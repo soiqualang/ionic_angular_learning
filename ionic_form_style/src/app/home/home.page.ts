@@ -9,4 +9,8 @@ export class HomePage {
 
   constructor() {}
 
+  chuvi_calc(){
+    alert('hahahaha');
+  }
+  
 }
