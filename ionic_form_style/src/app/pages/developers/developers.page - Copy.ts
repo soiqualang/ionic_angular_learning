@@ -22,17 +22,17 @@ export class DevelopersPage implements OnInit {
  
   ngOnInit() {
     this.db.testfunc();
-    this.db.getDatabaseState().subscribe(rdy => {
+    /* this.db.getDatabaseState().subscribe(rdy => {
       if (rdy) {
         this.db.getDevs().subscribe(devs => {
           this.developers = devs;
         })
         this.products = this.db.getProducts();
       }
-    });
+    }); */
   }
  
-  addDeveloper() {
+  /* addDeveloper() {
     let skills = this.developer['skills'].split(',');
     skills = skills.map(skill => skill.trim());
  
@@ -47,6 +47,6 @@ export class DevelopersPage implements OnInit {
     .then(_ => {
       this.product = {};
     });
-  }
+  } */
  
 }
