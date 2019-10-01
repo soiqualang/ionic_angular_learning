@@ -1,14 +1,36 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Ionic Importa
     </ion-title>
-  </ion-toolbar>
+  </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+<ion-content padding>
+
+
+   <button
+      ion-button
+      block
+      color="primary"
+      (click)="import()">Import your data</button>
+
+
+  <ion-list *ngIf="hasData">
+  	<ion-card
+  	   padding
+  	   *ngFor="let technology of technologies">
+  		<h2>{{ technology.name }}</h2>
+  		<p>{{ technology.description }}</p>
+  	</ion-card>
+  </ion-list>
+
+
+  <button *ngIf="hasData"
+      ion-button
+      margin-top
+      block
+      color="primary"
+      (click)="exportAlert()">Export your data</button>
+
 </ion-content>
