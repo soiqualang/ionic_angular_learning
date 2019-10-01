@@ -23,6 +23,8 @@ ionic cordova plugin add cordova-plugin-x-toast
 npm install --save @ionic-native/toast
 ```
 
+add `<script src="cordova.js"></script>` to `index.html`
+
 ## Run app
 `ionic serve`
 
