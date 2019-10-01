@@ -60,3 +60,9 @@ https://www.thepolyglotdeveloper.com/2015/01/deploy-ionic-framework-app-pre-fill
 * http://yeesian.com/ArchGDAL.jl/latest/spatialite.html
 * http://www.gaia-gis.it/gaia-sins/spatialite-cookbook/html/php.html
 * https://github.com/DisyInformationssysteme/Cordova-spatialite-storage
+
+> Load local SQLite
+
+* https://forum.ionicframework.com/t/read-existing-sqlite-database-file-and-load-data/94167/10
+* https://github.com/an-rahulpandey/cordova-plugin-dbcopy
+* https://github.com/brodybits/cordova-sqlite-ext

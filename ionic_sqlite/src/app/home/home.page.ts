@@ -13,6 +13,8 @@ export class HomePage {
   row_data: any = []; // Table rows
   readonly database_name:string = "t1.db"; // DB name
   readonly table_name:string = "t1_table"; // Table name
+  //public storage: SQLite;
+  //public itemList: Array<Object>;
 
   constructor(private platform: Platform, private sqlite: SQLite) {
     this.platform.ready().then(() => {
@@ -34,6 +36,24 @@ export class HomePage {
       .catch(e => {
         alert("error " + JSON.stringify(e))
       });
+  }
+
+  openDB(){
+    //this.storage = new SQLite();
+    this.databaseObj.openDatabase({ name: "data.db", location: 'default', createFromLocation: 1 }).then((success) => {
+        this.databaseObj.executeSql("SELECT * FROM art", {}).then((data) => {
+              let rows = data.rows;
+              for (let i = 0; i < rows.length; i++) {
+                  this.row_data.push({
+                      id: rows.item(i).id
+                  });
+              }
+          }, (error) => {
+            console.info("Unable to execute sql " + JSON.stringify(error));
+        })
+    }, (err) => {
+        console.info("Error opening database: " + err);
+    });
   }
 
   getRows() {

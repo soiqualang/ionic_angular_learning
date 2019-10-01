@@ -27,7 +27,9 @@
     "@ionic-native/toast": "^5.14.0",
     "@ionic/angular": "^4.7.1",
     "cordova-android": "^8.1.0",
+    "cordova-plugin-dbcopy": "git+https://github.com/an-rahulpandey/cordova-plugin-dbcopy.git",
     "cordova-plugin-x-toast": "^2.7.2",
+    "cordova-sqlite-ext": "3.0.1",
     "cordova-sqlite-storage": "^3.4.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.5.1",
@@ -78,7 +80,8 @@
       },
       "cordova-plugin-ionic-keyboard": {},
       "cordova-sqlite-storage": {},
-      "cordova-plugin-x-toast": {}
+      "cordova-plugin-x-toast": {},
+      "cordova-plugin-dbcopy": {}
     },
     "platforms": [
       "android"
