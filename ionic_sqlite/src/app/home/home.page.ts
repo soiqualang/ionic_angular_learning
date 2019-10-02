@@ -38,7 +38,7 @@ export class HomePage {
       });
   }
 
-  openDB(){
+  /* openDB(){
     //this.storage = new SQLite();
     this.databaseObj.openDatabase({ name: "data.db", location: 'default', createFromLocation: 1 }).then((success) => {
         this.databaseObj.executeSql("SELECT * FROM art", {}).then((data) => {
@@ -54,7 +54,7 @@ export class HomePage {
     }, (err) => {
         console.info("Error opening database: " + err);
     });
-  }
+  } */
 
   getRows() {
     this.databaseObj.executeSql("SELECT * FROM " + this.table_name, [])
