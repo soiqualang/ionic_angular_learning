@@ -1,0 +1,7 @@
+{
+  "name": "load_sqlitedb",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
