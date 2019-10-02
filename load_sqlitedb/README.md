@@ -33,6 +33,48 @@ https://forum.ionicframework.com/t/prepopulated-sqlite-databases-in-ionic-2/5672
 
 => Fail!
 
+Tự viết hàm và tada... Ok! :v
+
+```ts
+processQuery(queries:any) {
+    for(let i=0;i<queries.length;i++){
+      if(queries[i].match(/(INSERT|CREATE|DROP|PRAGMA|BEGIN|COMMIT)/)) {
+        //queries[i+1] = queries[i]+ ';\n' + queries[i+1];
+        //console.log('------------>', queries[i]);
+        this.runSQL(queries[i]);
+      }
+    }
+    //console.log(queries[1]);
+    this.getSQL('select ten_vi from vn_tinh limit 10');
+  }
+runSQL(sql:string){
+    this.databaseObj.executeSql(sql, [])
+      .then((res) => {
+        //lert("query ok")
+        console.log('query ok')
+      })
+      .catch(e => {
+        alert("error " + JSON.stringify(e))
+      });
+  }
+
+getSQL(sql:string){
+this.databaseObj.executeSql(sql, [])
+    .then((res) => {
+    this.row_data = [];
+    if (res.rows.length > 0) {
+        for (var i = 0; i < res.rows.length; i++) {
+        this.row_data.push(res.rows.item(i));
+        }
+    }
+    console.log(this.row_data);
+    })
+    .catch(e => {
+    alert("error " + JSON.stringify(e))
+    });
+}
+```
+
 ## Import from JSON
 
 
