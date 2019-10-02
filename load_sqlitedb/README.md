@@ -9,6 +9,42 @@ Let's start!
 
 ## prepopulated DB
 
+> Không đọc từ một database được chuẩn bị trước được @@!
+
+=> Fail!
+
+```bash
+npm install -g sqlite3 
+sqlite3 -csv -header database_name.db "SELECT * FROM table_name" > data.csv
+sqlite3 -csv -header data.db "SELECT * FROM vn_tinh" > vn_tinh.csv
+
+npm install -g csvtojson
+csvtojson data.csv > data.json
+csvtojson vn_tinh.csv > vn_tinh.json
+```
+https://forum.ionicframework.com/t/prepopulated-sqlite-databases-in-ionic-2/56721/2
+
+
+## Import from file SQL
+
+> SQLite Porter plugin 
+> Ionic DevApp only supports a selective set of native plugins of which this plugin is not one of them.
+> If you wish to use this plugin, you need to do a full native build of the iOS app using Ionic/Cordova.
+
+=> Fail!
+
+## Import from JSON
+
+
+
+
+
+`npm i -g native-run`
+
+`ionic cordova run android`
+
+`ionic cordova run ios`
+
 ## Creat app
 `ionic start ionic_sqlite`
 
@@ -62,3 +98,6 @@ https://www.thepolyglotdeveloper.com/2015/01/deploy-ionic-framework-app-pre-fill
 * http://yeesian.com/ArchGDAL.jl/latest/spatialite.html
 * http://www.gaia-gis.it/gaia-sins/spatialite-cookbook/html/php.html
 * https://github.com/DisyInformationssysteme/Cordova-spatialite-storage
+
+> Plugin support on devapp
+https://ionicframework.com/docs/appflow/devapp/#native-cordova-plugin-support
