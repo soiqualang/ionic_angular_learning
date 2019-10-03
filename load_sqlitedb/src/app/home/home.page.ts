@@ -18,6 +18,7 @@ export class HomePage {
   databaseObj: SQLiteObject; // Database instance object
   name_model:string = ""; // Input field model
   row_data: any = []; // Table rows
+  table_data: any = []; // Table
   readonly database_name:string = "data.db"; // DB name
   readonly table_name:string = "vn_tinh"; // Table name
   //queries: string;
@@ -61,7 +62,7 @@ export class HomePage {
 
   seedDatabase() {
     //this.http.get('assets/solieu_congtrinh.sql', { responseType: 'text'})
-    this.http.get('assets/db.sql', { responseType: 'text'})
+    this.http.get('assets/vn_tinh.sql', { responseType: 'text'})
     .subscribe(sql => {
       //console.log(sql);
       this.processQuery(sql.split(';\n'));
@@ -77,7 +78,7 @@ export class HomePage {
       }
     }
     //console.log(queries[1]);
-    this.getSQL('select ten_vi from vn_tinh limit 10');
+    this.getTable('select ten_vi from vn_tinh');
   }
 
   //processQuery(localDB, 0, response.split(';\n'), 'solieu_congtrinh');
@@ -121,24 +122,24 @@ export class HomePage {
   runSQL(sql:string){
     this.databaseObj.executeSql(sql, [])
       .then((res) => {
-        //lert("query ok")
-        console.log('query ok')
+        //lert("query ok");
+        //console.log('query ok');
       })
       .catch(e => {
         alert("error " + JSON.stringify(e))
       });
   }
 
-  getSQL(sql:string){
+  getTable(sql:string){
     this.databaseObj.executeSql(sql, [])
       .then((res) => {
-        this.row_data = [];
+        this.table_data = [];
         if (res.rows.length > 0) {
           for (var i = 0; i < res.rows.length; i++) {
-            this.row_data.push(res.rows.item(i));
+            this.table_data.push(res.rows.item(i));
           }
         }
-        console.log(this.row_data);
+        console.log(this.table_data);
       })
       .catch(e => {
         alert("error " + JSON.stringify(e))

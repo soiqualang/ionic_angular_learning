@@ -27,6 +27,7 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^4.7.1",
     "cordova-android": "^8.1.0",
+    "cordova-ios": "^5.0.1",
     "cordova-plugin-dbcopy": "git+https://github.com/an-rahulpandey/cordova-plugin-dbcopy.git",
     "cordova-sqlite-ext": "3.0.1",
     "cordova-sqlite-storage": "^3.4.0",
@@ -87,7 +88,8 @@
       "uk.co.workingedge.cordova.plugin.sqliteporter": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   }
 }
