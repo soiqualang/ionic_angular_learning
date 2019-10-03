@@ -31,6 +31,10 @@ INSERT or IGNORE INTO ...
 CREATE TABLE IF NOT EXISTS ...
 ```
 
+## Không dùng được sqlitePorter nên viết hàm riêng
+
+
+
 
 ## Preferences
 

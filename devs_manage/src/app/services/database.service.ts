@@ -24,25 +24,64 @@ Fill the Database with our initial SQL data */
 export class DatabaseService {
 
   private database: SQLiteObject;
+  readonly database_name:string = "developers.db";
   private dbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
  
   developers = new BehaviorSubject([]);
   products = new BehaviorSubject([]);
 
-  constructor(private plt: Platform, private sqlitePorter: SQLitePorter, private sqlite: SQLite, private http: HttpClient) {
+  constructor(private plt: Platform, private sqlite: SQLite, private http: HttpClient) {
     this.plt.ready().then(() => {
-      this.sqlite.create({
-        name: 'developers.db',
-        location: 'default'
-      })
+      this.createDB();
+    }).catch(error => {
+      console.log(error);
+    })
+  }
+
+  createDB() {
+    let options = { name: this.database_name, location: 'default', createFromLocation: 1 };
+    this.sqlite.create(options)
       .then((db: SQLiteObject) => {
-          this.database = db;
-          this.seedDatabase();
+        this.database = db;
+        this.seedDatabase();
+      })
+      .catch(e => {
+        alert("error " + JSON.stringify(e))
       });
+  }
+  
+  seedDatabase() {
+    this.http.get('assets/devs.sql', { responseType: 'text'})
+    .subscribe(sql => {
+      this.processQuery(sql.split(';\n'));
     });
   }
- 
-  seedDatabase() {
+
+  processQuery(queries:any) {
+    for(let i=0;i<queries.length;i++){
+      if(queries[i].match(/(INSERT|CREATE|DROP|PRAGMA|BEGIN|COMMIT)/)) {
+        this.runSQL(queries[i]);
+      }
+    }
+    //console.log(queries[1]);
+    //this.getTable('select ten_vi from vn_tinh');
+    this.loadDevelopers();
+    this.loadProducts();
+    this.dbReady.next(true);
+  }
+
+  runSQL(sql:string){
+    this.database.executeSql(sql, [])
+      .then((res) => {
+        //lert("query ok");
+        //console.log('query ok');
+      })
+      .catch(e => {
+        alert("error " + JSON.stringify(e))
+      });
+  }
+
+  /* seedDatabase() {
     this.http.get('assets/seed.sql', { responseType: 'text'})
     .subscribe(sql => {
       this.sqlitePorter.importSqlToDb(this.database, sql)
@@ -53,7 +92,9 @@ export class DatabaseService {
         })
         .catch(e => console.error(e));
     });
-  }
+  } */
+
+
  
   getDatabaseState() {
     return this.dbReady.asObservable();
