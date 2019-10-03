@@ -1,0 +1,13 @@
+DROP TABLE IF EXISTS "districts";
+CREATE TABLE "districts" ( "tendistricts" text NULL, "iddistricts" integer NULL, "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT );
+DROP TABLE IF EXISTS "solieu_congtrinh";
+CREATE TABLE "solieu_congtrinh" ( "ghichu" text NULL, "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "trangthai" text NULL, "baocaohuhong" text NULL, "iddistricts" integer NULL, "idwards" integer NULL, "lon" real NULL, "lat" real NULL, "idusers" integer NULL, "ngaythunhan" numeric NULL, "hinh1" text NULL, "hinh2" text NULL, "hinh3" text NULL );
+DROP TABLE IF EXISTS "solieu_thuyvan";
+CREATE TABLE "solieu_thuyvan" ( "ghichu" text NULL, "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "doman" real NULL, "mucnuoc" real NULL, "iddistricts" integer NULL, "idwards" integer NULL, "lon" real NULL, "lat" real NULL, "idusers" integer NULL, "ngaythunhan" numeric NULL );
+DROP TABLE IF EXISTS "wards";
+CREATE TABLE "wards" ( "iddistricts" integer NULL, "tenwards" text NULL, "idwards" integer NULL, "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT );
+CREATE VIEW IF NOT EXISTS solieu_congtrinh_view AS SELECT t1.ghichu, t1.id, t1.trangthai, t1.baocaohuhong, t1.lon, t1.lat, t1.idusers, t1.ngaythunhan, t1.idusers, t1.iddistricts, t2.tendistricts, t1.idwards, t3.tenwards, t1.hinh1, t1.hinh2, t1.hinh3  FROM solieu_congtrinh t1 JOIN districts t2 ON t2.iddistricts = t1.iddistricts JOIN wards t3 ON t3.idwards = t1.idwards;
+CREATE VIEW IF NOT EXISTS solieu_thuyvan_view AS SELECT t1.ghichu, t1.id, t1.doman, t1.mucnuoc, t1.lon, t1.lat, t1.idusers, t1.ngaythunhan, t1.idusers, t1.iddistricts, t2.tendistricts, t1.idwards, t3.tenwards  FROM solieu_thuyvan t1 JOIN districts t2 ON t2.iddistricts = t1.iddistricts JOIN wards t3 ON t3.idwards = t1.idwards  DROP TABLE IF EXISTS "users";
+CREATE TABLE 'users' ( "ogc_fid" INTEGER PRIMARY KEY AUTOINCREMENT, 'id' INTEGER, 'username' VARCHAR(50), 'password' VARCHAR(255), 'fullname' VARCHAR(255), 'email' VARCHAR(100), 'tel' VARCHAR(30), 'usertype' VARCHAR(10), 'idphongban' INTEGER, 'img' VARCHAR(255));
+DROP TABLE IF EXISTS "users";
+CREATE TABLE 'users' ( "ogc_fid" INTEGER PRIMARY KEY AUTOINCREMENT, 'id' INTEGER, 'username' VARCHAR(50), 'password' VARCHAR(255), 'fullname' VARCHAR(255), 'email' VARCHAR(100), 'tel' VARCHAR(30), 'usertype' VARCHAR(10), 'idphongban' INTEGER, 'img' VARCHAR(255));

@@ -45,7 +45,7 @@ limit 10
 ## Preferences
 
 > TUT
-
+* https://devdactic.com/ionic-4-sqlite-queries/
 * https://www.djamware.com/post/59c53a1280aca768e4d2b143/ionic-3-angular-4-and-sqlite-crud-offline-mobile-app
 * https://www.freakyjolly.com/ionic-4-complete-sqlite-crud-tutorial-for-ionic-4-angular-applications/
 
