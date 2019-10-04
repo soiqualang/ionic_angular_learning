@@ -40,6 +40,7 @@ export class DevelopersPage implements OnInit {
  
     this.db.addDeveloper(this.developer['name'], skills, this.developer['img'])
     .then(_ => {
+      //Sau khi insert thi lam rong mang developer de nhan gia tri nguoi dung nhap vao
       this.developer = {};
     });
   }
