@@ -118,7 +118,7 @@ const routes: Routes = [
 
 > app.component.html
 
-```ts
+```html
 <ion-app>
   <ion-split-pane>
     <ion-menu type="overlay">
@@ -147,7 +147,7 @@ const routes: Routes = [
 
 > [Each page]
 
-```ts
+```html
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
