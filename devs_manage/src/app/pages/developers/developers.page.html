@@ -35,6 +35,7 @@
       <ion-button expand="block" (click)="addDeveloper()">Add Developer Info</ion-button>
  
       <ion-list>
+        <!-- [routerLink]="['/developers/'+dev.id]" -->
         <ion-item button *ngFor="let dev of developers" [routerLink]="['/', 'developers', dev.id]">
           <ion-avatar slot="start">
             <img [src]="dev.img">

@@ -13,8 +13,6 @@ const routes: Routes = [
   },
   //{ path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
   { path: 'developers', loadChildren: './pages/developers/developers.module#DevelopersPageModule' },
-  { path: 'developer', loadChildren: './pages/developer/developer.module#DeveloperPageModule' },
-  { path: 'developers', loadChildren: './pages/developers/developers.module#DevelopersPageModule' },
   { path: 'developers/:id', loadChildren: './pages/developer/developer.module#DeveloperPageModule' },
 ];
 

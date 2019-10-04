@@ -176,3 +176,6 @@ const routes: Routes = [
 ## Preferences
 
 * https://devdactic.com/ionic-4-sqlite-queries/
+
+> Route
+https://viblo.asia/p/angular-router-chuyen-route-thi-su-dung-routerlink-navigate-hay-navigateurl-Ljy5VYaGlra
