@@ -13,6 +13,10 @@ Let's start!
 
 ```bash
 ionic g service services/database
+ionic g service services/cong_hientrang_point
+ionic g service services/dap_hientrang_point
+ionic g service services/debao_hientrang_line
+
 ionic g page pages/list_congtrinh_thuyloi
 ionic g page pages/view_congtrinh_thuyloi
 ionic g page pages/add_congtrinh_thuyloi
@@ -40,7 +44,7 @@ add `<script src="cordova.js"></script>` to `index.html`
 
 ## Remove a page
 
-* Delete in `\src\app`
+* Delete page folders in `\src\app`
 * Remove route in `app-routing.module.ts`
 
 ## Route view_congtrinh
