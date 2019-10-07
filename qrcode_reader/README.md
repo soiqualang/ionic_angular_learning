@@ -40,3 +40,7 @@ add `<script src="cordova.js"></script>` to `index.html`
 ## Preferences
 
 * https://www.freakyjolly.com/ionic-4-add-barcode-qr-code-scanner-encoder-ionic-4-native-plugin/
+
+> Barcode Scanner
+https://beta.ionicframework.com/docs/native/barcode-scanner#barcodescanneroptions
+
