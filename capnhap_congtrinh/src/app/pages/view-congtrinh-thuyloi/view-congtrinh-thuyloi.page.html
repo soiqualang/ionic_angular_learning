@@ -1,9 +1,33 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>view_congtrinh_thuyloi</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
-</ion-content>
+    <!-- <ion-toolbar color="primary"> -->
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="list-congtrinh-thuyloi"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Chi tiết công trình</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="delete()">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+   
+  <ion-content padding>
+    {{devId}}
+    <!-- <div *ngIf="developer">
+      <ion-item>
+        <ion-label position="stacked">What\'s your name?</ion-label>
+        <ion-input [(ngModel)]="developer.name" placeholder="Developer Name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">What are your special skills (comma separated)?</ion-label>
+        <ion-input [(ngModel)]="skills" placeholder="Special Skills"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Your image URL</ion-label>
+        <ion-input [(ngModel)]="developer.img" placeholder="https://..."></ion-input>
+      </ion-item>
+      <ion-button expand="block" (click)="updateDeveloper()">Update Developer Info</ion-button>
+    </div> -->
+  </ion-content>

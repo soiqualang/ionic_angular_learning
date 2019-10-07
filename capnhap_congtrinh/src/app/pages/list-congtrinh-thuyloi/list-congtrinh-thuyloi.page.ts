@@ -25,12 +25,12 @@ export class ListCongtrinhThuyloiPage implements OnInit {
       if (rdy) {
         this.db.getDevs().subscribe(devs => {
           this.developers = devs;
-          console.log(this.developers);
+          //console.log(this.developers);
         });
       }
     });
   }
-  
+
   // add back when alpha.4 is out
   // navigate(item) {
   //   this.router.navigate(['/list', JSON.stringify(item)]);

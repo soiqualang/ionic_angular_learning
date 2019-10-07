@@ -16,7 +16,7 @@ const routes: Routes = [
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
   },
   { path: 'list-congtrinh-thuyloi', loadChildren: './pages/list-congtrinh-thuyloi/list-congtrinh-thuyloi.module#ListCongtrinhThuyloiPageModule' },
-  { path: 'view-congtrinh-thuyloi/:id', loadChildren: './pages/view-congtrinh-thuyloi/view-congtrinh-thuyloi.module#ViewCongtrinhThuyloiPageModule' },
+  { path: 'list-congtrinh-thuyloi/:id', loadChildren: './pages/view-congtrinh-thuyloi/view-congtrinh-thuyloi.module#ViewCongtrinhThuyloiPageModule' },
   { path: 'add-congtrinh-thuyloi', loadChildren: './pages/add-congtrinh-thuyloi/add-congtrinh-thuyloi.module#AddCongtrinhThuyloiPageModule' }
 ];
 
