@@ -179,3 +179,7 @@ const routes: Routes = [
 
 > Route
 https://viblo.asia/p/angular-router-chuyen-route-thi-su-dung-routerlink-navigate-hay-navigateurl-Ljy5VYaGlra
+
+> Timeline
+https://market.ionicframework.com/plugins/ionic-timeline
+
