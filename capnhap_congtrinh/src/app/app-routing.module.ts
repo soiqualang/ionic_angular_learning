@@ -14,7 +14,9 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
-  }
+  },
+  { path: 'congtrinh-thuyloi', loadChildren: './pages/congtrinh-thuyloi/congtrinh-thuyloi.module#CongtrinhThuyloiPageModule' },
+  { path: 'chitiet-congtrinh-thuyloi', loadChildren: './pages/chitiet-congtrinh-thuyloi/chitiet-congtrinh-thuyloi.module#ChitietCongtrinhThuyloiPageModule' }
 ];
 
 @NgModule({

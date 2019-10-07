@@ -7,19 +7,19 @@ Let's start!
 
 ***
 
-`ionic start qrcode_reader`
+`ionic start capnhap_congtrinh`
 
 ## Add libs
 
 ```bash
 ionic g service services/database
-ionic g page pages/developers
-ionic g page pages/developer
+ionic g page pages/congtrinh_thuyloi
+ionic g page pages/chitiet_congtrinh_thuyloi
 ```
 
 ```bash
-ionic cordova plugin add phonegap-plugin-barcodescanner
-npm install --save @ionic-native/barcode-scanner
+ionic cordova plugin add cordova-sqlite-storage
+npm install --save @ionic-native/sqlite
 ```
 
 ```bash
