@@ -49,6 +49,28 @@ Add `id` parameter
 
 `{ path: 'view-congtrinh-thuyloi/:id', loadChildren: './pages/view-congtrinh-thuyloi/view-congtrinh-thuyloi.module#ViewCongtrinhThuyloiPageModule' }`
 
+## Prepare Database
+
+### Make sqlite from qgis
+
+> For Spatial Data
+
+* QGIS Make `wkt` column
+* Export to SQLite with srid=4326
+* Adminer open Sqlite DB, remove geomerty column, ogc_id
+* Make `id` as `auto increment` (AI) column
+* Export to `sql file`
+
+> `SQL file` exported from Adminer
+
+* Remove comment started with `--`
+* Remove blank breakline
+* Remove Delete, Truncate command
+* Replace `CREATE TABLE` with `CREATE TABLE IF NOT EXISTS`
+* Replace `INSERT INTO` with `INSERT or IGNORE INTO`
+
+
+
 
 
 
