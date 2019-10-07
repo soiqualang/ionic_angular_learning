@@ -51,8 +51,6 @@ Add `id` parameter
 
 ## Prepare Database
 
-### Make sqlite from qgis
-
 > For Spatial Data
 
 * QGIS Make `wkt` column
@@ -68,6 +66,38 @@ Add `id` parameter
 * Remove Delete, Truncate command
 * Replace `CREATE TABLE` with `CREATE TABLE IF NOT EXISTS`
 * Replace `INSERT INTO` with `INSERT or IGNORE INTO`
+
+## Config
+
+### app.module.ts
+
+```ts
+/* SQLite */
+import { SQLite } from '@ionic-native/sqlite/ngx';
+import { HttpClientModule } from '@angular/common/http';
+
+....
+
+@NgModule({
+  declarations: [AppComponent],
+  entryComponents: [],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    HttpClientModule
+  ],
+  providers: [
+    StatusBar,
+    SplashScreen,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    SQLite
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+
+```
 
 
 
