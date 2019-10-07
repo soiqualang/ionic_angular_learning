@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CongtrinhThuyloiPage } from './congtrinh-thuyloi.page';
+import { AddCongtrinhThuyloiPage } from './add-congtrinh-thuyloi.page';
 
-describe('CongtrinhThuyloiPage', () => {
-  let component: CongtrinhThuyloiPage;
-  let fixture: ComponentFixture<CongtrinhThuyloiPage>;
+describe('AddCongtrinhThuyloiPage', () => {
+  let component: AddCongtrinhThuyloiPage;
+  let fixture: ComponentFixture<AddCongtrinhThuyloiPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CongtrinhThuyloiPage ],
+      declarations: [ AddCongtrinhThuyloiPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CongtrinhThuyloiPage);
+    fixture = TestBed.createComponent(AddCongtrinhThuyloiPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -13,8 +13,9 @@ Let's start!
 
 ```bash
 ionic g service services/database
-ionic g page pages/congtrinh_thuyloi
-ionic g page pages/chitiet_congtrinh_thuyloi
+ionic g page pages/list_congtrinh_thuyloi
+ionic g page pages/view_congtrinh_thuyloi
+ionic g page pages/add_congtrinh_thuyloi
 ```
 
 ```bash
@@ -33,14 +34,16 @@ add `<script src="cordova.js"></script>` to `index.html`
 `ionic serve --devapp`
 
 
+## Add pages
 
+> app.component.ts
+
+## Remove a page
+
+* Delete in `\src\app`
+* Remove route in `app-routing.module.ts`
 
 
 
 ## Preferences
-
-* https://www.freakyjolly.com/ionic-4-add-barcode-qr-code-scanner-encoder-ionic-4-native-plugin/
-
-> Barcode Scanner
-https://beta.ionicframework.com/docs/native/barcode-scanner#barcodescanneroptions
 

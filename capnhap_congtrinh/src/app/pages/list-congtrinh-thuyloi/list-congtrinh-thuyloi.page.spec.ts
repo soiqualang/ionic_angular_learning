@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChitietCongtrinhThuyloiPage } from './chitiet-congtrinh-thuyloi.page';
+import { ListCongtrinhThuyloiPage } from './list-congtrinh-thuyloi.page';
 
-describe('ChitietCongtrinhThuyloiPage', () => {
-  let component: ChitietCongtrinhThuyloiPage;
-  let fixture: ComponentFixture<ChitietCongtrinhThuyloiPage>;
+describe('ListCongtrinhThuyloiPage', () => {
+  let component: ListCongtrinhThuyloiPage;
+  let fixture: ComponentFixture<ListCongtrinhThuyloiPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChitietCongtrinhThuyloiPage ],
+      declarations: [ ListCongtrinhThuyloiPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChitietCongtrinhThuyloiPage);
+    fixture = TestBed.createComponent(ListCongtrinhThuyloiPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
