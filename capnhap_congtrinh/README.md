@@ -43,7 +43,18 @@ add `<script src="cordova.js"></script>` to `index.html`
 * Delete in `\src\app`
 * Remove route in `app-routing.module.ts`
 
+## Route view_congtrinh
+
+Add `id` parameter
+
+`{ path: 'view-congtrinh-thuyloi/:id', loadChildren: './pages/view-congtrinh-thuyloi/view-congtrinh-thuyloi.module#ViewCongtrinhThuyloiPageModule' }`
+
+
 
 
 ## Preferences
+
+> Icon
+https://ionicframework.com/docs/v3/ionicons/
+
 
