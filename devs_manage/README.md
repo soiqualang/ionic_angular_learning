@@ -183,3 +183,5 @@ https://viblo.asia/p/angular-router-chuyen-route-thi-su-dung-routerlink-navigate
 > Timeline
 https://market.ionicframework.com/plugins/ionic-timeline
 
+> Color
+https://ionicframework.com/docs/theming/colors#targetText=Ionic%20has%20nine%20default%20colors,and%20tint%20%2C%20used%20throughout%20Ionic.&targetText=When%20there%20is%20no%20color,the%20primary%20color%20by%20default.
