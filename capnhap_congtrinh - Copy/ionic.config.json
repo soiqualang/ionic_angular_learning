@@ -1,0 +1,7 @@
+{
+  "name": "capnhap_congtrinh",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

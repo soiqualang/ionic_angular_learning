@@ -1,0 +1,50 @@
+<ion-header>
+    <!-- <ion-toolbar color="primary"> -->
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="list-congtrinh-thuyloi"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Chi tiết công trình</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="delete()">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+   
+  <ion-content class="ion-padding">
+    <!-- {{congtrinh_dapId}} -->
+    <div *ngIf="dap_hientrang_point">
+      <ion-input hidden [(ngModel)]="dap_hientrang_point.id" placeholder="ID"></ion-input>
+      <ion-item>
+        <ion-label position="stacked">Tên đập</ion-label>
+        <ion-input [(ngModel)]="dap_hientrang_point.ten_dap" placeholder="Tên đập"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="stacked">Mã loại</ion-label>
+        <ion-input [(ngModel)]="dap_hientrang_point.ma_loai" placeholder="Mã loại"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="stacked">Lon</ion-label>
+        <ion-input [(ngModel)]="dap_hientrang_point.x" placeholder="Lon"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="stacked">Lat</ion-label>
+        <ion-input [(ngModel)]="dap_hientrang_point.y" placeholder="Lat"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="stacked">Well-known text</ion-label>
+        <ion-input [(ngModel)]="dap_hientrang_point.wkt" placeholder="Well-known text"></ion-input>
+      </ion-item>
+      <!-- <ion-item>
+        <ion-label position="stacked">Hình ảnh</ion-label>
+        <ion-input [(ngModel)]="developer.img" placeholder="https://..."></ion-input>
+      </ion-item> -->
+      <ion-button expand="block" (click)="update_table()">Cập nhật thông tin</ion-button>
+    </div>
+  </ion-content>
