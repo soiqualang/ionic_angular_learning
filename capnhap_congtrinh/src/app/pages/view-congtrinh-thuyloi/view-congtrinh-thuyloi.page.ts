@@ -11,15 +11,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ViewCongtrinhThuyloiPage implements OnInit {
 
-  developer: dap_hientrang_point[] = [];
-  devId: any;
+  dap_hientrang_point: dap_hientrang_point[] = [];
+  congtrinh_dapId: any;
 
   constructor(private route: ActivatedRoute, private db: DatabaseService, private router: Router) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.devId = params.get('id');
-      console.log(this.devId);
+      this.congtrinh_dapId = params.get('id');
+      console.log(this.congtrinh_dapId);
  
       /* this.db.getDeveloper(devId).then(data => {
         this.developer = data;

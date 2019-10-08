@@ -16,7 +16,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item button *ngFor="let item of developers" [routerLink]="['/', 'list-congtrinh-thuyloi', item.id]">
+    <ion-item button *ngFor="let item of dap_hientrang_point" [routerLink]="['/', 'list-congtrinh-thuyloi', item.id]">
       <!-- <ion-icon [name]="item.icon" slot="start"></ion-icon> -->
       <ion-icon name="arrow-dropright" slot="start"></ion-icon>
       {{item.ten_dap}}

@@ -11,11 +11,11 @@ import { Observable } from 'rxjs';
 })
 export class ListCongtrinhThuyloiPage implements OnInit {
 
-  developers: dap_hientrang_point[] = [];
+  dap_hientrang_point: dap_hientrang_point[] = [];
 
-  dap = {};
+  congtrinh_dap = {};
 
-  selectedView = 'dap_arr';
+  selectedView = 'congtrinh_dap_arr';
   
 
   constructor(public db: DatabaseService) { }
@@ -23,8 +23,8 @@ export class ListCongtrinhThuyloiPage implements OnInit {
   ngOnInit() {
     this.db.getDatabaseState().subscribe(rdy => {
       if (rdy) {
-        this.db.getDevs().subscribe(devs => {
-          this.developers = devs;
+        this.db.getdap_hientrang_point().subscribe(res => {
+          this.dap_hientrang_point = res;
           //console.log(this.developers);
         });
       }

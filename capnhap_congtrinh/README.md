@@ -37,6 +37,7 @@ add `<script src="cordova.js"></script>` to `index.html`
 
 `ionic serve --devapp`
 
+> http://192.168.11.129:8100
 
 ## Add pages
 
@@ -113,4 +114,12 @@ export class AppModule {}
 > Icon
 https://ionicframework.com/docs/v3/ionicons/
 
+> RxJS Observables | HTTP request is an asynchronous task
+* https://medium.com/@zmharker/rxjs-observables-in-ionic-and-angular-apps-a-beginners-guide-181643af675e
+* https://www.tiepphan.com/rxjs-reactive-programming/
+* https://viblo.asia/p/xu-ly-nhieu-http-requests-trong-angular-voi-rxjs-maGK74qeZj2
+* https://viblo.asia/p/tu-javascript-thuan-den-rxjs-phan-3-924lJryblPM
+
+> Login
+https://devdactic.com/ionic-4-login-angular/
 

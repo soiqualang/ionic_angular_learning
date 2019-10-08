@@ -39,7 +39,7 @@ export class DatabaseService {
   public database_name:string = "congtrinh_v1.db";
   public dbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  dap_arr = new BehaviorSubject([]);
+  congtrinh_dap_arr = new BehaviorSubject([]);
 
   constructor(public plt: Platform, public sqlite: SQLite, public http: HttpClient) {
     this.plt.ready().then(() => {
@@ -76,7 +76,7 @@ export class DatabaseService {
     }
     //console.log(queries[1]);
     //this.getTable('select ten_vi from vn_tinh');
-    this.loadDevelopers();
+    this.loaddap_hientrang_point();
     this.test1();
     this.dbReady.next(true);
   }
@@ -106,13 +106,13 @@ export class DatabaseService {
   dap_hientrang_point 
   */
 
-  getDevs(): Observable<dap_hientrang_point[]> {
-    return this.dap_arr.asObservable();
+  getdap_hientrang_point(): Observable<dap_hientrang_point[]> {
+    return this.congtrinh_dap_arr.asObservable();
   }
 
-  loadDevelopers() {
+  loaddap_hientrang_point() {
     return this.database.executeSql('SELECT * FROM dap_hientrang_point', []).then(data => {
-      let dap_arr: dap_hientrang_point[] = [];
+      let congtrinh_dap_arr: dap_hientrang_point[] = [];
       
       //console.log(data.rows.length);
       if (data.rows.length > 0) {
@@ -122,7 +122,7 @@ export class DatabaseService {
             skills = JSON.parse(data.rows.item(i).skills);
           } */
  
-          dap_arr.push({ 
+          congtrinh_dap_arr.push({ 
             id: data.rows.item(i).id,
             ten_dap: data.rows.item(i).ten_dap, 
             ma_loai: data.rows.item(i).ma_loai, 
@@ -132,7 +132,7 @@ export class DatabaseService {
            });
         }
       }
-      this.dap_arr.next(dap_arr);
+      this.congtrinh_dap_arr.next(congtrinh_dap_arr);
     });
   }
  
