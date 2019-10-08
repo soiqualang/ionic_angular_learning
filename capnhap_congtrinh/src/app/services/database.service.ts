@@ -135,7 +135,56 @@ export class DatabaseService {
       this.congtrinh_dap_arr.next(congtrinh_dap_arr);
     });
   }
+
+  getcongtrinh_dap(id): Promise<dap_hientrang_point> {
+    return this.database.executeSql('SELECT * FROM dap_hientrang_point WHERE id = ?', [id]).then(data => {
+       
+      return {
+        id: data.rows.item(0).id,
+        ten_dap: data.rows.item(0).ten_dap, 
+        ma_loai: data.rows.item(0).ma_loai, 
+        x: data.rows.item(0).x, 
+        y: data.rows.item(0).y, 
+        wkt: data.rows.item(0).wkt
+      }
+    });
+  }
+
+  updatecongtrinh_dap(dap_hientrang_point: dap_hientrang_point) {
+    let data = [dap_hientrang_point.ten_dap, dap_hientrang_point.ma_loai, dap_hientrang_point.x, dap_hientrang_point.y, dap_hientrang_point.wkt];
+    return this.database.executeSql(`UPDATE dap_hientrang_point SET ten_dap = ?, ma_loai = ?, x = ?, y = ?, wkt = ? WHERE id = ${dap_hientrang_point.id}`, data).then(data => {
+      this.loaddap_hientrang_point();
+    })
+  }
+
+  checknumerric(num){
+    if(!isNaN(num)){
+      return num;
+    }else if(num==null){
+      return 'null';
+    }else{
+      return "'"+num+"'";
+    }
+  }
+
+  update_table(table,field,value,dk1,gt_dk1){
+    let strupdate="";
+    let i=0;
+    for(i; i<field.length-1; i++){
+      strupdate+=field[i]+"="+this.checknumerric(value[i])+", ";
+      //strupdate+=field[i]+"="+value[i]+", ";
+      //console.log(strupdate);
+    }
+    strupdate+=field[i]+"="+this.checknumerric(value[i]);
+    let sql_add_news="UPDATE "+table+" SET "+strupdate+" WHERE "+dk1+"='"+gt_dk1+"'";
+    console.log(sql_add_news);
+    return Promise.resolve(this.runSQL(sql_add_news));
+  }
  
+
+
+
+  
   /* addDeveloper(name, skills, img) {
     let data = [name, JSON.stringify(skills), img];
     return this.database.executeSql('INSERT INTO developer (name, skills, img) VALUES (?, ?, ?)', data).then(data => {
