@@ -82,7 +82,7 @@ export class DatabaseService {
   }
 
   runSQL(sql:string){
-    this.database.executeSql(sql, [])
+    return this.database.executeSql(sql, [])
       .then((res) => {
         //lert("query ok");
         //console.log('query ok');
@@ -150,6 +150,25 @@ export class DatabaseService {
     });
   }
 
+  table_to_arraywhere(table,colum,value){
+    /* let sql="SELECT * from "+table+" where "+colum+" = '"+value+"' order by id desc";
+    console.log(sql);
+    return Promise.resolve(this.runSQL(sql)); */
+
+    return this.database.executeSql('SELECT * FROM '+table+' WHERE '+colum+' = ?', [value]).then(data => {       
+      /* return {
+        id: data.rows.item(0).id,
+        ten_dap: data.rows.item(0).ten_dap, 
+        ma_loai: data.rows.item(0).ma_loai, 
+        x: data.rows.item(0).x, 
+        y: data.rows.item(0).y, 
+        wkt: data.rows.item(0).wkt
+      } */
+      return data;
+    });
+  }
+
+
   updatecongtrinh_dap(dap_hientrang_point: dap_hientrang_point) {
     let data = [dap_hientrang_point.ten_dap, dap_hientrang_point.ma_loai, dap_hientrang_point.x, dap_hientrang_point.y, dap_hientrang_point.wkt];
     return this.database.executeSql(`UPDATE dap_hientrang_point SET ten_dap = ?, ma_loai = ?, x = ?, y = ?, wkt = ? WHERE id = ${dap_hientrang_point.id}`, data).then(data => {
@@ -172,8 +191,6 @@ export class DatabaseService {
     let i=0;
     for(i; i<field.length-1; i++){
       strupdate+=field[i]+"="+this.checknumerric(value[i])+", ";
-      //strupdate+=field[i]+"="+value[i]+", ";
-      //console.log(strupdate);
     }
     strupdate+=field[i]+"="+this.checknumerric(value[i]);
     let sql_add_news="UPDATE "+table+" SET "+strupdate+" WHERE "+dk1+"='"+gt_dk1+"'";

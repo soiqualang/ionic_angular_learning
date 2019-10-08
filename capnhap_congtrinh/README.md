@@ -123,3 +123,6 @@ https://ionicframework.com/docs/v3/ionicons/
 > Login
 https://devdactic.com/ionic-4-login-angular/
 
+> Tạo hàm đồng bộ
+https://stackoverflow.com/questions/39125964/angular2-then-does-not-exist-on-type-void
+
