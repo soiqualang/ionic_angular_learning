@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 /* DatabaseService */
-import { DatabaseService, dap_hientrang_point  } from 'src/app/services/database.service';
-import { Observable } from 'rxjs';
+import { DatabaseService } from 'src/app/services/database.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-congtrinh-thuyloi',
@@ -11,23 +11,32 @@ import { Observable } from 'rxjs';
 })
 export class AddCongtrinhThuyloiPage implements OnInit {
 
-  dap_hientrang_point: dap_hientrang_point[] = [];
+  congtrinh_dap = {};
 
-  dap = {};
-
-  selectedView = 'congtrinh_dap_arr';
-  
-
-  constructor(public db: DatabaseService) { }
+  constructor(public db: DatabaseService, private toast: ToastController) { }
 
   ngOnInit() {
     this.db.getDatabaseState().subscribe(rdy => {
       if (rdy) {
-        /* this.db.getdap_hientrang_point().subscribe(devs => {
-          this.dap_hientrang_point = devs;
-          //console.log(this.developers);
-        }); */
+        
       }
+    });
+  }
+
+  insert_table() {     
+    let value=[this.congtrinh_dap['ten_dap'],this.congtrinh_dap['ma_loai'],this.congtrinh_dap['x'],this.congtrinh_dap['y'],this.congtrinh_dap['wkt']];
+    let field=['ten_dap','ma_loai','x','y','wkt'];
+    this.db.insert_table('dap_hientrang_point',field,value)
+    .then(async (res) => {
+      //Sau khi insert thi lam rong mang congtrinh_dap de nhan gia tri nguoi dung nhap vao
+      this.db.loaddap_hientrang_point();
+      //message: this.congtrinh_dap['ten_dap']+' đã được thêm',
+      let toast = await this.toast.create({
+        message: this.congtrinh_dap['ten_dap']+' đã được thêm',
+        duration: 1500
+      });
+      toast.present();
+      this.congtrinh_dap = {};
     });
   }
 

@@ -43,7 +43,7 @@ export class ViewCongtrinhThuyloiPage implements OnInit {
     });
   }
 
-  updatecongtrinh_dap(){
+  update_table(){
     /* this.db.updatecongtrinh_dap(this.dap_hientrang_point).then(async (res) => {
       let toast = await this.toast.create({
         message: 'Đập '+this.dap_hientrang_point.ten_dap+' đã được cập nhật',
@@ -62,6 +62,13 @@ export class ViewCongtrinhThuyloiPage implements OnInit {
         duration: 1500
       });
       toast.present();
+    });
+  }
+
+  delete() {
+    this.db.delete('dap_hientrang_point','id',this.dap_hientrang_point.id).then(() => {
+      this.db.loaddap_hientrang_point();
+      this.router.navigateByUrl('/list-congtrinh-thuyloi');
     });
   }
 

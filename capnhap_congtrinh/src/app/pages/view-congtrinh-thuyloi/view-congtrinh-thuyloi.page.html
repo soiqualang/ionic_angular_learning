@@ -6,8 +6,7 @@
       </ion-buttons>
       <ion-title>Chi tiết công trình</ion-title>
       <ion-buttons slot="end">
-        <!-- <ion-button (click)="delete()"> -->
-        <ion-button>
+        <ion-button (click)="delete()">
           <ion-icon name="trash"></ion-icon>
         </ion-button>
       </ion-buttons>
@@ -46,6 +45,6 @@
         <ion-label position="stacked">Hình ảnh</ion-label>
         <ion-input [(ngModel)]="developer.img" placeholder="https://..."></ion-input>
       </ion-item> -->
-      <ion-button expand="block" (click)="updatecongtrinh_dap()">Cập nhật thông tin</ion-button>
+      <ion-button expand="block" (click)="update_table()">Cập nhật thông tin</ion-button>
     </div>
   </ion-content>

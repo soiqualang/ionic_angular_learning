@@ -155,7 +155,7 @@ export class DatabaseService {
     console.log(sql);
     return Promise.resolve(this.runSQL(sql)); */
 
-    return this.database.executeSql('SELECT * FROM '+table+' WHERE '+colum+' = ?', [value]).then(data => {       
+    return this.database.executeSql('SELECT * FROM '+table+' WHERE '+colum+' = ?', [value]).then(data => {
       /* return {
         id: data.rows.item(0).id,
         ten_dap: data.rows.item(0).ten_dap, 
@@ -196,6 +196,28 @@ export class DatabaseService {
     let sql_add_news="UPDATE "+table+" SET "+strupdate+" WHERE "+dk1+"='"+gt_dk1+"'";
     console.log(sql_add_news);
     return Promise.resolve(this.runSQL(sql_add_news));
+  }
+
+  insert_table(table,field,value){
+    let strfield="";
+    let strvalue="";
+    let i=0;
+    for(i; i<field.length-1; i++)
+    {
+      strfield+=field[i]+", ";
+      strvalue+="'"+value[i]+"', ";
+      
+    }
+    strfield+=field[i];
+    strvalue+="'"+value[i]+"'";
+    let sql_add_news="INSERT INTO "+table+"("+strfield+") VALUES ("+strvalue+")";
+    console.log(sql_add_news);
+    return Promise.resolve(this.runSQL(sql_add_news));
+  }
+
+  delete(table,where,id) {
+    return this.database.executeSql('DELETE FROM '+table+' WHERE '+where+' = ?', [id]).then(_ => {
+    });
   }
  
 
