@@ -20,3 +20,10 @@ INSERT or IGNORE INTO "dap_hientrang_point" ("id", "ten_dap", "ma_loai", "x", "y
 INSERT or IGNORE INTO "dap_hientrang_point" ("id", "ten_dap", "ma_loai", "x", "y", "wkt") VALUES (12,	'Đập Ba Lai',	'DAH01',	106.631,	10.142,	'Point (106.63078045 10.1421704)');
 INSERT or IGNORE INTO "dap_hientrang_point" ("id", "ten_dap", "ma_loai", "x", "y", "wkt") VALUES (13,	'Đập Vàm Đồn',	'DAH01',	106.385,	9.991,	'Point (106.38466904 9.99138523)');
 INSERT or IGNORE INTO "dap_hientrang_point" ("id", "ten_dap", "ma_loai", "x", "y", "wkt") VALUES (14,	'Đập Châu Bình',	'DAH01',	106.549,	10.199,	'Point (106.54925218 10.19882182)');
+CREATE TABLE IF NOT EXISTS "hinhanh" (
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "img" text NULL,
+  "takedate" text NULL,
+  "id_congtrinh" integer NULL,
+  "tbl_name" text NULL
+);

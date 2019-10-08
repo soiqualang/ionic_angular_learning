@@ -14,7 +14,8 @@ export interface dap_hientrang_point {
   ma_loai: string,
   x: number,
   y: number,
-  wkt: string
+  wkt: string,
+  img: string
 }
 
 export interface hinhanh {
