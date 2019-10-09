@@ -104,9 +104,74 @@ export class AppModule {}
 
 ```
 
+## Flow when add new table
 
+### database.service.ts
 
+> Define table Object
 
+```ts
+export interface dap_hientrang_point {
+  id: number,
+  ten_dap: string,
+  ma_loai: string,
+  x: number,
+  y: number,
+  wkt: string
+}
+```
+
+> Make 2 functions
+
+```ts
+getdap_hientrang_point(): Observable<dap_hientrang_point[]> {
+  return this.congtrinh_dap_arr.asObservable();
+}
+
+loaddap_hientrang_point(){
+  return this.table_to_array1('dap_hientrang_point').then(data => {
+    let congtrinh_dap_arr: dap_hientrang_point[] = [];
+    if (data.rows.length > 0) {
+      for (let i = 0; i < data.rows.length; i++) {
+        congtrinh_dap_arr.push(data.rows.item(i));
+      }
+    }
+    this.congtrinh_dap_arr.next(congtrinh_dap_arr);
+  });
+}
+```
+
+> Call `loaddap_hientrang_point()` when app loading
+
+```ts
+processQuery(queries:any) {
+  for(let i=0;i<queries.length;i++){
+    if(queries[i].match(/(INSERT|CREATE|DROP|PRAGMA|BEGIN|COMMIT)/)) {
+      this.runSQL(queries[i]);
+    }
+  }
+  //console.log(queries[1]);
+  //this.getTable('select ten_vi from vn_tinh');
+  this.loaddap_hientrang_point();
+  this.dbReady.next(true);
+}
+```
+
+### list-congtrinh-thuyloi.page.ts
+
+> Call `getdap_hientrang_point()` when Angular Init app
+
+```ts
+ngOnInit() {
+  this.db.getDatabaseState().subscribe(rdy => {
+    if (rdy) {
+      this.db.getdap_hientrang_point().subscribe(res => {
+        this.dap_hientrang_point = res;
+      });
+    }
+  });
+}
+```
 
 
 ## Preferences

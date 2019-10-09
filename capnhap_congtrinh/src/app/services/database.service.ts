@@ -122,7 +122,7 @@ export class DatabaseService {
   }
 
   loaddap_hientrang_point(){
-    this.table_to_array1('dap_hientrang_point').then(data => {
+    return this.table_to_array1('dap_hientrang_point').then(data => {
       let congtrinh_dap_arr: dap_hientrang_point[] = [];
       if (data.rows.length > 0) {
         for (let i = 0; i < data.rows.length; i++) {
