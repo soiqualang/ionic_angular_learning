@@ -12,6 +12,7 @@ import { ToastController } from '@ionic/angular';
 export class AddCongtrinhThuyloiPage implements OnInit {
 
   congtrinh_dap = {};
+  tmp={};
 
   constructor(public db: DatabaseService, private toast: ToastController) { }
 
@@ -37,6 +38,7 @@ export class AddCongtrinhThuyloiPage implements OnInit {
       });
       toast.present();
       this.congtrinh_dap = {};
+      this.tmp={};
     });
   }
 

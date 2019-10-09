@@ -25,7 +25,6 @@ export class ListCongtrinhThuyloiPage implements OnInit {
       if (rdy) {
         this.db.getdap_hientrang_point().subscribe(res => {
           this.dap_hientrang_point = res;
-          //console.log(this.developers);
         });
       }
     });

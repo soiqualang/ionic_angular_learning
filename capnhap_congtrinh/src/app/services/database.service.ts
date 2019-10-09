@@ -14,8 +14,7 @@ export interface dap_hientrang_point {
   ma_loai: string,
   x: number,
   y: number,
-  wkt: string,
-  img: string
+  wkt: string
 }
 
 export interface hinhanh {
@@ -77,8 +76,23 @@ export class DatabaseService {
     }
     //console.log(queries[1]);
     //this.getTable('select ten_vi from vn_tinh');
-    this.loaddap_hientrang_point();
-    this.test1();
+    //this.loaddap_hientrang_point();
+    this.table_to_array1('dap_hientrang_point').then(data => {
+      let congtrinh_dap_arr: dap_hientrang_point[] = [];
+      if (data.rows.length > 0) {
+        for (var i = 0; i < data.rows.length; i++) { 
+          congtrinh_dap_arr.push({ 
+            id: data.rows.item(i).id,
+            ten_dap: data.rows.item(i).ten_dap, 
+            ma_loai: data.rows.item(i).ma_loai, 
+            x: data.rows.item(i).x, 
+            y: data.rows.item(i).y, 
+            wkt: data.rows.item(i).wkt
+           });
+        }
+      }
+      this.congtrinh_dap_arr.next(congtrinh_dap_arr);
+    });
     this.dbReady.next(true);
   }
 
@@ -102,6 +116,18 @@ export class DatabaseService {
     console.log('hahahahahaha');
     return;
   }
+  
+  checknumerric(num){
+    if(!isNaN(num)){
+      return num;
+    }else if(num==null){
+      return 'null';
+    }else if(num==''){
+      return 'null';
+    }else{
+      return "'"+num+"'";
+    }
+  }
 
   /* 
   dap_hientrang_point 
@@ -114,15 +140,25 @@ export class DatabaseService {
   loaddap_hientrang_point() {
     return this.database.executeSql('SELECT * FROM dap_hientrang_point', []).then(data => {
       let congtrinh_dap_arr: dap_hientrang_point[] = [];
-      
-      //console.log(data.rows.length);
+
+      console.log(data.rows.item(0));
+
       if (data.rows.length > 0) {
-        for (var i = 0; i < data.rows.length; i++) {
-          /* let skills = [];
-          if (data.rows.item(i).skills != '') {
-            skills = JSON.parse(data.rows.item(i).skills);
-          } */
- 
+        for (let i = 0; i < data.rows.length; i++) {
+          congtrinh_dap_arr.push(data.rows.item(i));
+        }
+      }
+      
+      //console.log(Object.keys(congtrinh_dap_arr[0])[0]);
+
+      /* for(let i in congtrinh_dap_arr){
+        console.log(i); // alerts key
+        console.log(congtrinh_dap_arr[i]); //alerts key's value
+      } */
+
+      //console.log(data.rows.length);
+      /* if (data.rows.length > 0) {
+        for (let i = 0; i < data.rows.length; i++) { 
           congtrinh_dap_arr.push({ 
             id: data.rows.item(i).id,
             ten_dap: data.rows.item(i).ten_dap, 
@@ -132,22 +168,14 @@ export class DatabaseService {
             wkt: data.rows.item(i).wkt
            });
         }
-      }
+      } */
       this.congtrinh_dap_arr.next(congtrinh_dap_arr);
     });
   }
 
-  getcongtrinh_dap(id): Promise<dap_hientrang_point> {
-    return this.database.executeSql('SELECT * FROM dap_hientrang_point WHERE id = ?', [id]).then(data => {
-       
-      return {
-        id: data.rows.item(0).id,
-        ten_dap: data.rows.item(0).ten_dap, 
-        ma_loai: data.rows.item(0).ma_loai, 
-        x: data.rows.item(0).x, 
-        y: data.rows.item(0).y, 
-        wkt: data.rows.item(0).wkt
-      }
+  table_to_array1(table){
+    return this.database.executeSql('SELECT * FROM '+table, []).then(data => {
+      return data;
     });
   }
 
@@ -167,24 +195,6 @@ export class DatabaseService {
       } */
       return data;
     });
-  }
-
-
-  updatecongtrinh_dap(dap_hientrang_point: dap_hientrang_point) {
-    let data = [dap_hientrang_point.ten_dap, dap_hientrang_point.ma_loai, dap_hientrang_point.x, dap_hientrang_point.y, dap_hientrang_point.wkt];
-    return this.database.executeSql(`UPDATE dap_hientrang_point SET ten_dap = ?, ma_loai = ?, x = ?, y = ?, wkt = ? WHERE id = ${dap_hientrang_point.id}`, data).then(data => {
-      this.loaddap_hientrang_point();
-    })
-  }
-
-  checknumerric(num){
-    if(!isNaN(num)){
-      return num;
-    }else if(num==null){
-      return 'null';
-    }else{
-      return "'"+num+"'";
-    }
   }
 
   update_table(table,field,value,dk1,gt_dk1){
