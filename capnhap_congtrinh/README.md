@@ -207,6 +207,12 @@ npm install --save @ionic-native/photo-viewer@4
 ```
 
 
+Lam tiep phan hinh anh
+
+`hinhanh-congtrinh.page.ts`
+
+
+
 ## Preferences
 
 > Icon

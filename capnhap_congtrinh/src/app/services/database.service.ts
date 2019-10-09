@@ -40,6 +40,7 @@ export class DatabaseService {
   public dbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   congtrinh_dap_arr = new BehaviorSubject([]);
+  hinhanh_arr = new BehaviorSubject([]);
 
   constructor(public plt: Platform, public sqlite: SQLite, public http: HttpClient) {
     this.plt.ready().then(() => {
@@ -76,7 +77,8 @@ export class DatabaseService {
     }
     //console.log(queries[1]);
     //this.getTable('select ten_vi from vn_tinh');
-    this.loaddap_hientrang_point();    
+    this.loaddap_hientrang_point();   
+    this.loadhinhanh(); 
     this.dbReady.next(true);
   }
 
@@ -132,6 +134,26 @@ export class DatabaseService {
       this.congtrinh_dap_arr.next(congtrinh_dap_arr);
     });
   }
+
+  /* Hinh anh */
+  gethinhanh(): Observable<hinhanh[]> {
+    return this.hinhanh_arr.asObservable();
+  }
+
+  loadhinhanh(){
+    return this.table_to_array1('hinhanh').then(data => {
+      let hinhanh_arr: hinhanh[] = [];
+      if (data.rows.length > 0) {
+        for (let i = 0; i < data.rows.length; i++) {
+          hinhanh_arr.push(data.rows.item(i));
+        }
+      }
+      this.hinhanh_arr.next(hinhanh_arr);
+    });
+  }
+
+
+
 
   loaddap_hientrang_point_old() {
     return this.database.executeSql('SELECT * FROM dap_hientrang_point', []).then(data => {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 /* DatabaseService */
-import { DatabaseService, dap_hientrang_point  } from 'src/app/services/database.service';
+import { DatabaseService, dap_hientrang_point,hinhanh } from 'src/app/services/database.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,11 +12,7 @@ import { Observable } from 'rxjs';
 export class ListCongtrinhThuyloiPage implements OnInit {
 
   dap_hientrang_point: dap_hientrang_point[] = [];
-
-  congtrinh_dap = {};
-
-  selectedView = 'congtrinh_dap_arr';
-  
+  hinhanh: hinhanh[] = [];
 
   constructor(public db: DatabaseService) { }
 
@@ -25,6 +21,9 @@ export class ListCongtrinhThuyloiPage implements OnInit {
       if (rdy) {
         this.db.getdap_hientrang_point().subscribe(res => {
           this.dap_hientrang_point = res;
+        });
+        this.db.gethinhanh().subscribe(res => {
+          this.hinhanh = res;
         });
       }
     });

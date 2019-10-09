@@ -6,6 +6,12 @@
       </ion-buttons>
       <ion-title>Chi tiết công trình</ion-title>
       <ion-buttons slot="end">
+        <ion-button (click)="go2page('map')">
+          <ion-icon name="map"></ion-icon>
+        </ion-button>
+        <ion-button (click)="go2page('hinhanh-congtrinh/congtrinh_dap/999')">
+          <ion-icon name="images"></ion-icon>
+        </ion-button>
         <ion-button (click)="delete()">
           <ion-icon name="trash"></ion-icon>
         </ion-button>
@@ -48,36 +54,22 @@
       <!-- <ion-button expand="block" (click)="update_table()">Cập nhật thông tin</ion-button> -->
     </div>
 
-    <!-- Hinh anh -->
-
-    <h3 *ngIf="photoService.photos.length == 0" class="ion-text-center">Please Select Image!</h3>
- 
-    <ion-list>
-      <ion-item *ngFor="let photo of photoService.photos; index as pos" class="ion-text-wrap">
-        <ion-thumbnail slot="start">
-          <ion-img [src]="photo.data"></ion-img>
-        </ion-thumbnail>
-        <ion-label>
-          hahahahahaha
-        </ion-label>
-        <ion-button slot="end" fill="clear" (click)="startUpload(photo)">
-          <ion-icon slot="icon-only" name="cloud-upload"></ion-icon>
-        </ion-button>
-        <ion-button slot="end" fill="clear" (click)="deleteImage(photo, pos)">
-          <ion-icon slot="icon-only" name="trash"></ion-icon>
-        </ion-button>
-      </ion-item>
-    </ion-list>
-
-    
+    <!-- <ion-card class="welcome-card" *ngIf="firstphoto"> -->
+    <ion-card class="welcome-card" (click)="go2page('hinhanh-congtrinh/congtrinh_dap/999')">
+      <img src="/assets/shapes.svg" alt="" />
+      <!-- <ion-img [src]="firstphoto"></ion-img> -->
+      <ion-card-header>
+        <ion-card-subtitle>Còn 8 hình nữa.</ion-card-subtitle>
+        <!-- <ion-card-title>Welcome to Ionic</ion-card-title> -->
+      </ion-card-header>
+      <!-- <ion-card-content>
+        <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
+      </ion-card-content> -->
+    </ion-card>
   </ion-content>
 
   <ion-footer>
-    <ion-toolbar>
-      <ion-button expand="block" color="light" (click)="photoService.selectImage()">
-        <ion-icon slot="start" name="camera"></ion-icon>
-        Chọn hình ảnh
-      </ion-button>
-      <ion-button expand="block" color="light" (click)="update_table()">Cập nhật thông tin</ion-button>
+    <ion-toolbar color="primary">
+      <ion-button fill="clear" expand="full" color="light" (click)="update_table()">Cập nhật thông tin</ion-button>
     </ion-toolbar>
   </ion-footer>

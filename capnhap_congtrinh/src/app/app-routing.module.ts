@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'list-congtrinh-thuyloi', loadChildren: './pages/list-congtrinh-thuyloi/list-congtrinh-thuyloi.module#ListCongtrinhThuyloiPageModule' },
   { path: 'list-congtrinh-thuyloi/:id', loadChildren: './pages/view-congtrinh-thuyloi/view-congtrinh-thuyloi.module#ViewCongtrinhThuyloiPageModule' },
   { path: 'add-congtrinh-thuyloi', loadChildren: './pages/add-congtrinh-thuyloi/add-congtrinh-thuyloi.module#AddCongtrinhThuyloiPageModule' },
-  { path: 'hinhanh-congtrinh', loadChildren: './pages/hinhanh-congtrinh/hinhanh-congtrinh.module#HinhanhCongtrinhPageModule' }
+  { path: 'hinhanh-congtrinh/:tbl_name/:id_congtrinh', loadChildren: './pages/hinhanh-congtrinh/hinhanh-congtrinh.module#HinhanhCongtrinhPageModule' }
 ];
 
 @NgModule({
