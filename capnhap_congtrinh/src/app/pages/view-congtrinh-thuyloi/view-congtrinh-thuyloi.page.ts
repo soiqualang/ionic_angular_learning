@@ -5,6 +5,8 @@ import { DatabaseService, dap_hientrang_point  } from 'src/app/services/database
 import { ActivatedRoute, Router } from '@angular/router';
 /* Show thong bao */
 import { ToastController } from '@ionic/angular';
+/* Photo service */
+import { PhotoService } from 'src/app/services/photo.service';
 
 @Component({
   selector: 'app-view-congtrinh-thuyloi',
@@ -16,7 +18,7 @@ export class ViewCongtrinhThuyloiPage implements OnInit {
   dap_hientrang_point: dap_hientrang_point=null;
   congtrinh_dapId: any;
 
-  constructor(private route: ActivatedRoute, private db: DatabaseService, private router: Router, private toast: ToastController) { }
+  constructor(private route: ActivatedRoute, private db: DatabaseService, private router: Router, private toast: ToastController,public photoService: PhotoService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {

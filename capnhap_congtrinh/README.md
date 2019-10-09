@@ -191,7 +191,20 @@ ionic cordova plugin add cordova-sqlite-storage
 ionic cordova plugin add cordova-plugin-filepath
 ```
 
+### Add photo service
 
+`ionic g service services/photo`
+`ionic g page pages/hinhanh_congtrinh`
+
+
+## View image
+
+`npm install --save ionic-img-viewer`
+
+```bash
+ionic cordova plugin add com-sarriaroman-photoviewer
+npm install --save @ionic-native/photo-viewer@4
+```
 
 
 ## Preferences
@@ -214,3 +227,7 @@ https://stackoverflow.com/questions/39125964/angular2-then-does-not-exist-on-typ
 > Photos
 https://devdactic.com/ionic-4-image-upload-storage/
 
+> Image viewer
+https://www.npmjs.com/package/ionic-img-viewer
+
+https://ionicacademy.com/ionic-4-image-gallery-zoom/
