@@ -76,23 +76,7 @@ export class DatabaseService {
     }
     //console.log(queries[1]);
     //this.getTable('select ten_vi from vn_tinh');
-    //this.loaddap_hientrang_point();
-    this.table_to_array1('dap_hientrang_point').then(data => {
-      let congtrinh_dap_arr: dap_hientrang_point[] = [];
-      if (data.rows.length > 0) {
-        for (var i = 0; i < data.rows.length; i++) { 
-          congtrinh_dap_arr.push({ 
-            id: data.rows.item(i).id,
-            ten_dap: data.rows.item(i).ten_dap, 
-            ma_loai: data.rows.item(i).ma_loai, 
-            x: data.rows.item(i).x, 
-            y: data.rows.item(i).y, 
-            wkt: data.rows.item(i).wkt
-           });
-        }
-      }
-      this.congtrinh_dap_arr.next(congtrinh_dap_arr);
-    });
+    this.loaddap_hientrang_point();    
     this.dbReady.next(true);
   }
 
@@ -137,7 +121,19 @@ export class DatabaseService {
     return this.congtrinh_dap_arr.asObservable();
   }
 
-  loaddap_hientrang_point() {
+  loaddap_hientrang_point(){
+    this.table_to_array1('dap_hientrang_point').then(data => {
+      let congtrinh_dap_arr: dap_hientrang_point[] = [];
+      if (data.rows.length > 0) {
+        for (let i = 0; i < data.rows.length; i++) {
+          congtrinh_dap_arr.push(data.rows.item(i));
+        }
+      }
+      this.congtrinh_dap_arr.next(congtrinh_dap_arr);
+    });
+  }
+
+  loaddap_hientrang_point_old() {
     return this.database.executeSql('SELECT * FROM dap_hientrang_point', []).then(data => {
       let congtrinh_dap_arr: dap_hientrang_point[] = [];
 
