@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Bến Tre - Công trình thủy lợi
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h3 *ngIf="photoService.photos.length == 0" class="ion-text-center">Please Select Image!</h3>
+ 
+  <ion-list>
+    <ion-item *ngFor="let photo of photoService.photos; index as pos" class="ion-text-wrap">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="photo.data"></ion-img>
+      </ion-thumbnail>
+      <ion-label>
+        hahahahahaha
+      </ion-label>
+      <ion-button slot="end" fill="clear" (click)="startUpload(photo)">
+        <ion-icon slot="icon-only" name="cloud-upload"></ion-icon>
+      </ion-button>
+      <ion-button slot="end" fill="clear" (click)="deleteImage(photo, pos)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+ 
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-button fill="clear" expand="full" color="light" (click)="photoService.selectImage()">
+      <ion-icon slot="start" name="camera"></ion-icon>
+      Select Image
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

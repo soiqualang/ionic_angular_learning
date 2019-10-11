@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Danh sách công trình
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/', 'add-congtrinh-thuyloi']">
+        <ion-icon name="add-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item button *ngFor="let item of dap_hientrang_point" [routerLink]="['/', 'list-congtrinh-thuyloi', item.id]">
+      <!-- <ion-icon [name]="item.icon" slot="start"></ion-icon> -->
+      <ion-icon name="arrow-dropright" slot="start"></ion-icon>
+      {{item.ten_dap}}
+      <div class="item-note" slot="end">
+        {{item.ma_loai}}
+      </div>
+    </ion-item>
+  </ion-list>
+  <!--
+    <div *ngIf="selectedItem" padding>
+      You navigated here from <b>{{selectedItem.title }}</b>
+    </div>
+  -->
+</ion-content>

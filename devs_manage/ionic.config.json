@@ -1,0 +1,7 @@
+{
+  "name": "devs_manage",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

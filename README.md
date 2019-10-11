@@ -377,3 +377,6 @@ https://ionicframework.com/docs/theming/color-generator
 * https://www.javascripttuts.com/using-leaflet-open-street-map-in-an-ionic-application-in-one-go/
 * https://developer.here.com/blog/display-an-interactive-here-map-in-an-ionic-framework-application
 * https://developer.here.com/blog/interacting-with-a-leaflet-map-in-an-ionic-framework-pwa
+
+>PouchDB and SQLite
+https://www.techiediaries.com/ionic-sqlite-pouchdb/

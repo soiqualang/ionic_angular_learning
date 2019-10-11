@@ -1,0 +1,55 @@
+import { Component, OnInit } from '@angular/core';
+
+/* DatabaseService */
+import { DatabaseService, Dev  } from 'src/app/services/database.service';
+import { Observable } from 'rxjs';
+
+
+@Component({
+  selector: 'app-developers',
+  templateUrl: './developers.page.html',
+  styleUrls: ['./developers.page.scss'],
+})
+export class DevelopersPage implements OnInit {
+
+  developers: Dev[] = [];
+ 
+  products: Observable<any[]>;
+ 
+  developer = {};
+  product = {};
+ 
+  selectedView = 'devs';
+
+  constructor(private db: DatabaseService) { }
+
+  ngOnInit() {
+    this.db.getDatabaseState().subscribe(rdy => {
+      if (rdy) {
+        this.db.getDevs().subscribe(devs => {
+          this.developers = devs;
+        })
+        this.products = this.db.getProducts();
+      }
+    });
+  }
+ 
+  addDeveloper() {
+    let skills = this.developer['skills'].split(',');
+    skills = skills.map(skill => skill.trim());
+ 
+    this.db.addDeveloper(this.developer['name'], skills, this.developer['img'])
+    .then(_ => {
+      //Sau khi insert thi lam rong mang developer de nhan gia tri nguoi dung nhap vao
+      this.developer = {};
+    });
+  }
+ 
+  addProduct() {
+    this.db.addProduct(this.product['name'], this.product['creator'])
+    .then(_ => {
+      this.product = {};
+    });
+  }
+
+}

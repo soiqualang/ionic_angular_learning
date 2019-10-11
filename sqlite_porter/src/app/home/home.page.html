@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Importa
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+
+   <button
+      ion-button
+      block
+      color="primary"
+      (click)="import()">Import your data</button>
+
+
+  <ion-list *ngIf="hasData">
+  	<ion-card
+  	   padding
+  	   *ngFor="let technology of technologies">
+  		<h2>{{ technology.name }}</h2>
+  		<p>{{ technology.description }}</p>
+  	</ion-card>
+  </ion-list>
+
+
+  <button *ngIf="hasData"
+      ion-button
+      margin-top
+      block
+      color="primary"
+      (click)="exportAlert()">Export your data</button>
+
+</ion-content>

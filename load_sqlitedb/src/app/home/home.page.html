@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <form onsubmit="processForm(event)">
+    <ion-list lines="full" class="ion-no-margin ion-padding">
+
+      <ion-item>
+        <ion-label position="stacked">Tỉnh thành Việt Nam</ion-label>
+        <ion-select [(ngModel)]="tinh" name="tinh">
+          <ion-select-option *ngFor="let tinh of table_data" value="{{tinh.ten_vi}}">{{tinh.ten_vi}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      
+
+      <ion-item-divider>
+        <ion-label>
+          <!-- <h1 *ngIf="vatthe.chuvi">Kết quả: {{vatthe.chuvi}}</h1> -->
+          <h1>Kết quả: {{tinh}}</h1>
+        </ion-label>
+      </ion-item-divider>
+    </ion-list>
+  </form>
+</ion-content>

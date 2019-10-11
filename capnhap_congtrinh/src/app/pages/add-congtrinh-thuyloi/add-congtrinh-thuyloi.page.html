@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Thêm công trình</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- {{congtrinh_dapId}} -->
+  <ion-input hidden [(ngModel)]="congtrinh_dap.id" placeholder="ID"></ion-input>
+  <ion-item>
+    <ion-label position="stacked">Tên đập</ion-label>
+    <ion-input [(ngModel)]="congtrinh_dap.ten_dap" placeholder="Tên đập"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label position="stacked">Mã loại</ion-label>
+    <ion-input [(ngModel)]="congtrinh_dap.ma_loai" placeholder="Mã loại"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label position="stacked">Lon</ion-label>
+    <ion-input [(ngModel)]="congtrinh_dap.x" placeholder="Lon"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label position="stacked">Lat</ion-label>
+    <ion-input [(ngModel)]="congtrinh_dap.y" placeholder="Lat"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label position="stacked">Well-known text</ion-label>
+    <ion-input [(ngModel)]="congtrinh_dap.wkt" placeholder="Well-known text"></ion-input>
+  </ion-item>
+  <ion-item>
+      <ion-label position="stacked">Hình ảnh</ion-label>
+      <ion-input type="file" accept="image/*" [(ngModel)]="tmp.img" placeholder="Hình ảnh"></ion-input>
+    </ion-item>
+  <!-- <ion-item>
+    <ion-label position="stacked">Hình ảnh</ion-label>
+    <ion-input [(ngModel)]="developer.img" placeholder="https://..."></ion-input>
+  </ion-item> -->
+  <ion-button expand="block" (click)="insert_table()">Thêm thông tin</ion-button>
+</ion-content>
