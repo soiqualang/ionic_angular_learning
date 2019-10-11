@@ -68,6 +68,10 @@ ionic cordova platform add ios
 > cordova-res.cmd ios
 ```
 
+> <script src="cordova.js"></script>
+> sudo npm i -g cordova-res
+> sudo ionic cordova resources android --force
+
 ### Start Services (again)
 `ionic serve --devapp`
 
@@ -291,6 +295,13 @@ BUILD SUCCESSFUL in 58s
 Built the following apk(s):
         D:\sync\websvr\xampp\ionic_angular_learning\photo-gallery\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk
 ```
+
+
+```bash
+export ANDROID_HOME=/home/soiqualang/Android/Sdk/
+export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+```
+
 
 >Ok, I have signed the app following `https://ionicframework.com/docs/building/running` and now I can install the release version.
 So, if I use the command ionic cordova build android --prod I have a file “app-debug.apk” that I can eecute on my phone.

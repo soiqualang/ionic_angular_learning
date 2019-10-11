@@ -1,0 +1,7 @@
+{
+  "name": "form_input",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
