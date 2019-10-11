@@ -34,7 +34,7 @@ add `<script src="cordova.js"></script>` to `index.html`
 
 
 
-
+<img src="qrcode.png">
 
 
 ## Preferences
