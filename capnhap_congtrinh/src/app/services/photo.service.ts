@@ -30,13 +30,17 @@ export class PhotoService {
         buttons: [{
                 text: 'Load from Library',
                 handler: () => {
-                    this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
+                    this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY).then(res => {
+                      alert(res);
+                    });
                 }
             },
             {
                 text: 'Use Camera',
                 handler: () => {
-                    this.takePicture(this.camera.PictureSourceType.CAMERA);
+                    this.takePicture(this.camera.PictureSourceType.CAMERA).then(res => {
+                      alert(res);
+                    });
                 }
             },
             {
@@ -58,22 +62,26 @@ export class PhotoService {
         encodingType: this.camera.EncodingType.JPEG,
         mediaType: this.camera.MediaType.PICTURE
     };
+    var base64img:any;
 
-    this.camera.getPicture(options).then((imageData) => {
-      this.photos.unshift({
-        data: 'data:image/jpeg;base64,' + imageData
-      });
-
-      // Save all photos for later viewing
-      //this.storage.set('photos', this.photos);
-
-    }, (err) => {
-      console.log("Camera issue:" + err);
+    return new Promise(resolve => {
+      this.camera.getPicture(options).then((imageData) => {
+        base64img='data:image/jpeg;base64,' + imageData;
+        this.photos.unshift({
+          img: base64img
+        });
+  
+        // Save all photos for later viewing
+        //this.storage.set('photos', this.photos);
+        //console.log(base64img);
+        resolve('base64img');
+      }, (err) => {
+        console.log("Camera issue:" + err);
+      })
     });
- 
   }
 }
 
 class Photo {
-  data: any;
+  img: any;
 }

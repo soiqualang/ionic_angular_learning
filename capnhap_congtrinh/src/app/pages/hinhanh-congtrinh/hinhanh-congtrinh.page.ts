@@ -26,6 +26,9 @@ export class HinhanhCongtrinhPage implements OnInit {
       //let congtrinh_dapId = params.get('id');
       this.id_congtrinh = params.get('id_congtrinh');
       this.tbl_name = params.get('tbl_name');
+
+      
+
       //console.log(this.congtrinh_type);
  
       /* this.db.getcongtrinh_dap(this.congtrinh_dapId).then(data => {
@@ -44,6 +47,12 @@ export class HinhanhCongtrinhPage implements OnInit {
         }; */
         //console.log(this.dap_hientrang_point);
       });
+  }
+
+  selectImage(){
+    this.photoService.selectImage().then(res => {
+      console.log(res);
+    });
   }
 
 }
