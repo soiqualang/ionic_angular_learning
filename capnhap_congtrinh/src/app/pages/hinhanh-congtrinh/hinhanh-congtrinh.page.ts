@@ -19,7 +19,7 @@ export class HinhanhCongtrinhPage implements OnInit {
   id_congtrinh: any;
   tbl_name:any;
 
-  constructor(private route: ActivatedRoute, private db: DatabaseService, private router: Router, private toast: ToastController,public photoService: PhotoService) { }
+  constructor(private route: ActivatedRoute, public db: DatabaseService, private router: Router, private toast: ToastController,public photoService: PhotoService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {

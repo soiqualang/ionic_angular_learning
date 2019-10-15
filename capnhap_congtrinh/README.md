@@ -213,6 +213,11 @@ Lam tiep phan hinh anh
 
 
 
+> ionic Fetch is unavailable so cordova-plugin-ionic has been disabled
+
+npm install whatwg-fetch --save
+
+
 ## Preferences
 
 > Icon
