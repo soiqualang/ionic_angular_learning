@@ -223,7 +223,7 @@ export class DatabaseService {
     }
     strupdate+=field[i]+"="+this.checknumerric(value[i]);
     let sql_add_news="UPDATE "+table+" SET "+strupdate+" WHERE "+dk1+"='"+gt_dk1+"'";
-    console.log(sql_add_news);
+    /* console.log(sql_add_news); */
     return Promise.resolve(this.runSQL(sql_add_news));
   }
 

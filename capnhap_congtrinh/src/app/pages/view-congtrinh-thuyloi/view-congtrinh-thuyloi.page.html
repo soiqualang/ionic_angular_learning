@@ -64,7 +64,7 @@
       <ion-img *ngIf="hinhanh.len != 0" [src]="hinhanh.img"></ion-img>
       <ion-img *ngIf="hinhanh.len == 0" src="/assets/img/noimg.png"></ion-img>
       <ion-card-header>
-        <ion-card-subtitle *ngIf="hinhanh.len != 0">{{hinhanh.takedate}} | Còn {{hinhanh.len}} hình nữa.</ion-card-subtitle>
+        <ion-card-subtitle *ngIf="hinhanh.len != 0">{{hinhanh.takedate}} | Còn {{hinhanh.len-1}} hình nữa.</ion-card-subtitle>
         <ion-card-subtitle *ngIf="hinhanh.len == 0">Chọn hình ảnh</ion-card-subtitle>
         <!-- <ion-card-title>Welcome to Ionic</ion-card-title> -->
       </ion-card-header>

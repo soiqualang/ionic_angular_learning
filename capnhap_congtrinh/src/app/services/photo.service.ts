@@ -21,6 +21,7 @@ import { ToastController } from '@ionic/angular';
 export class PhotoService {
 
   public photos: Photo[] = [];
+  public hinhanh: hinhanh[] = [];
   id_congtrinh: any;
   tbl_name:any;
 
@@ -125,6 +126,7 @@ export class PhotoService {
             message: 'Ảnh đã được thêm',
             duration: 1500
           });
+          this.reloadHinhanh(this.id_congtrinh);
           toast.present();
         });
 
@@ -135,8 +137,24 @@ export class PhotoService {
     });
   }
 
+  reloadHinhanh(id_congtrinh){
+    this.hinhanh=[];
+    this.db.table_to_arraywhere('hinhanh','id_congtrinh',id_congtrinh).then(data => {
+      let len=data.rows.length;
+      for(let i=0;i<len;i++){
+        this.hinhanh.unshift({
+          rows: data.rows.item(i)
+        });
+      }
+    });
+  }
+
 }
 
 class Photo {
   img: any;
+}
+
+class hinhanh {
+  rows: any;
 }

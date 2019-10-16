@@ -10,14 +10,14 @@
  
 <ion-content class="ion-padding">
   <!-- {{hinhanh.rows.item(0).takedate}} -->
-  <h4 *ngIf="hinhanh.length == 0" class="ion-text-center">Chưa có hình</h4>
+  <h4 *ngIf="photoService.hinhanh.length == 0" class="ion-text-center">Chưa có hình</h4>
   
 
   <!-- <ion-item *ngFor="let t1 of hinhanh">{{t1.rows.takedate}}</ion-item>
  -->
 
   <ion-list>
-    <ion-item *ngFor="let t1 of hinhanh; index as pos" class="ion-text-wrap">
+    <ion-item *ngFor="let t1 of photoService.hinhanh; index as pos" class="ion-text-wrap">
       <ion-thumbnail slot="start">
         <ion-img [src]="t1.rows.img"></ion-img>
       </ion-thumbnail>
