@@ -6,11 +6,11 @@
     <ion-title>
       Danh sách công trình
     </ion-title>
-    <ion-buttons slot="end">
+    <!-- <ion-buttons slot="end">
       <ion-button [routerLink]="['/', 'add-congtrinh-thuyloi']">
         <ion-icon name="add-circle"></ion-icon>
       </ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
@@ -25,6 +25,13 @@
       </div>
     </ion-item>
   </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/', 'add-congtrinh-thuyloi']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <!--
     <div *ngIf="selectedItem" padding>
       You navigated here from <b>{{selectedItem.title }}</b>

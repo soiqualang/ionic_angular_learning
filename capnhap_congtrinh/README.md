@@ -232,10 +232,17 @@ Lam tiep phan hinh anh
 ]
 ```
 
+Khi xóa công trình thì phải xóa ảnh trước, tránh để nhiều nặng máy =))
 
 > ionic Fetch is unavailable so cordova-plugin-ionic has been disabled
 
 npm install whatwg-fetch --save
+
+## Todo
+
+Select photo by id_congtrinh and tbl_name
+
+
 
 
 ## Preferences

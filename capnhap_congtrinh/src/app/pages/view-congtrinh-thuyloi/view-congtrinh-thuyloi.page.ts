@@ -19,6 +19,7 @@ export class ViewCongtrinhThuyloiPage implements OnInit {
 
   dap_hientrang_point: dap_hientrang_point=null;
   congtrinh_dapId: any;
+  tbl_name='dap_hientrang_point';
 
   firstphoto:any;
 
@@ -52,7 +53,7 @@ export class ViewCongtrinhThuyloiPage implements OnInit {
         //console.log(this.dap_hientrang_point);
       }); */
 
-      this.db.table_to_arraywhere('dap_hientrang_point','id',this.congtrinh_dapId).then(data => {
+      this.db.table_to_arraywhere(this.tbl_name,'id',this.congtrinh_dapId).then(data => {
         this.dap_hientrang_point = data.rows.item(0);
         /* this.dap_hientrang_point = {
           id: data.rows.item(0).id,
@@ -94,7 +95,7 @@ export class ViewCongtrinhThuyloiPage implements OnInit {
     let value=[this.dap_hientrang_point.ten_dap,this.dap_hientrang_point.ma_loai,this.dap_hientrang_point.x,this.dap_hientrang_point.y,this.dap_hientrang_point.wkt];
     let field=['ten_dap','ma_loai','x','y','wkt'];
 
-    this.db.update_table('dap_hientrang_point',field,value,'id',this.dap_hientrang_point.id).then(async (res) => {
+    this.db.update_table(this.tbl_name,field,value,'id',this.dap_hientrang_point.id).then(async (res) => {
       this.db.loaddap_hientrang_point();
       let toast = await this.toast.create({
         message: this.dap_hientrang_point.ten_dap+' đã được cập nhật',
@@ -105,9 +106,14 @@ export class ViewCongtrinhThuyloiPage implements OnInit {
   }
 
   delete() {
-    this.db.delete('dap_hientrang_point','id',this.dap_hientrang_point.id).then(() => {
-      this.db.loaddap_hientrang_point();
-      this.router.navigateByUrl('/list-congtrinh-thuyloi');
+    /* Xóa hình ảnh */
+    let sql='DELETE FROM hinhanh WHERE id_congtrinh='+this.dap_hientrang_point.id+' AND tbl_name=\''+this.tbl_name+'\'';
+    this.db.runSQL(sql).then(() => {
+      /* Xóa đập hiện trạng */
+      this.db.delete(this.tbl_name,'id',this.dap_hientrang_point.id).then(() => {
+        this.db.loaddap_hientrang_point();
+        this.router.navigateByUrl('/list-congtrinh-thuyloi');
+      });
     });
   }
 
