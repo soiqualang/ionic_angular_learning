@@ -32,13 +32,20 @@
       </ion-button>
     </ion-item>
   </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="selectImage()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>
  
-<ion-footer>
+<!-- <ion-footer>
   <ion-toolbar color="primary">
     <ion-button fill="clear" expand="full" color="light" (click)="selectImage()">
       <ion-icon slot="start" name="camera"></ion-icon>
       Chọn hình ảnh
     </ion-button>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->
