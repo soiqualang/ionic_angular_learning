@@ -9,6 +9,9 @@ import { ToastController } from '@ionic/angular';
 /* Photo service */
 import { PhotoService } from 'src/app/services/photo.service';
 
+import { ModalController } from '@ionic/angular';
+import { MapModalPageModule } from 'src/app/map-modal/map-modal.module';
+
 
 @Component({
   selector: 'app-view-congtrinh-thuyloi',
@@ -35,9 +38,11 @@ export class ViewCongtrinhThuyloiPage implements OnInit {
     tbl_name: null,
     len: 0
   }
+
+  dataReturned:any;
   
 
-  constructor(private route: ActivatedRoute, public db: DatabaseService, private router: Router, private toast: ToastController,public photoService: PhotoService) { }
+  constructor(private route: ActivatedRoute, public db: DatabaseService, private router: Router, private toast: ToastController,public photoService: PhotoService,public modalController: ModalController) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -130,6 +135,25 @@ export class ViewCongtrinhThuyloiPage implements OnInit {
 
   go2page(page) {
     this.router.navigateByUrl('/'+page);
+  }
+
+  async openModal() {
+    const modal = await this.modalController.create({
+      component: MapModalPageModule,
+      componentProps: {
+        "paramID": 123,
+        "paramTitle": "Test Title"
+      }
+    });
+ 
+    modal.onDidDismiss().then((dataReturned) => {
+      if (dataReturned !== null) {
+        this.dataReturned = dataReturned.data;
+        //alert('Modal Sent Data :'+ dataReturned);
+      }
+    });
+ 
+    return await modal.present();
   }
 
 }

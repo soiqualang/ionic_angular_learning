@@ -19,6 +19,9 @@ import { File } from '@ionic-native/File/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 
+/* Add Modal */
+import { MapModalPageModule } from './map-modal/map-modal.module';
+
 //import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 @NgModule({
@@ -28,7 +31,8 @@ import { FilePath } from '@ionic-native/file-path/ngx';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MapModalPageModule
   ],
   providers: [
     StatusBar,

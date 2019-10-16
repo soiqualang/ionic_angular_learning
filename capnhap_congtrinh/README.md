@@ -238,9 +238,30 @@ Khi xóa công trình thì phải xóa ảnh trước, tránh để nhiều nặ
 
 npm install whatwg-fetch --save
 
-## Todo
+## Map to Modal
 
-Select photo by id_congtrinh and tbl_name
+`ionic g page map-modal`
+
+> app.module.ts
+
+`import { MapModalPageModule } from './map-modal/map-modal.module';`
+```ts
+....
+imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    HttpClientModule,
+    MapModalPageModule
+  ],
+  providers: [
+    StatusBar,
+    SplashScreen,
+....
+```
+
+
+https://www.freakyjolly.com/ionic-4-how-to-use-ionic-modal-popovers-and-pass-data-and-receive-response/#more-1885
 
 
 
@@ -272,4 +293,10 @@ https://ionicacademy.com/ionic-4-image-gallery-zoom/
 
 > Date
 https://stackoverflow.com/questions/1531093/how-do-i-get-the-current-date-in-javascript
+
+
+> Modal
+http://www.freakyjolly.com/ionic-3-add-modals-in-ionic-3-application-using-latest-ionic-cli-v4-12-0/
+
+https://www.freakyjolly.com/ionic-4-how-to-use-ionic-modal-popovers-and-pass-data-and-receive-response/#more-1885
 
