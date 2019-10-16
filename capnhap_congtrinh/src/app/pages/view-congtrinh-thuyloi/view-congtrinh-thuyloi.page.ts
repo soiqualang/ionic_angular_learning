@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 /* DatabaseService */
-import { DatabaseService, dap_hientrang_point, hinhanh } from 'src/app/services/database.service';
+import { DatabaseService, dap_hientrang_point } from 'src/app/services/database.service';
 import { ActivatedRoute, Router } from '@angular/router';
 /* Show thong bao */
 import { ToastController } from '@ionic/angular';
@@ -22,7 +22,19 @@ export class ViewCongtrinhThuyloiPage implements OnInit {
 
   firstphoto:any;
 
-  hinhanh: hinhanh=null;
+  /* hinhanh: hinhanh=null; */
+  /* hinhanh:any;
+  tmp:any; */
+
+  hinhanh={
+    id: null,
+    img: null,
+    takedate: null,
+    id_congtrinh: null,
+    tbl_name: null,
+    len: 0
+  }
+  
 
   constructor(private route: ActivatedRoute, public db: DatabaseService, private router: Router, private toast: ToastController,public photoService: PhotoService) { }
 
@@ -51,13 +63,22 @@ export class ViewCongtrinhThuyloiPage implements OnInit {
           wkt: data.rows.item(0).wkt
         }; */
         //console.log(this.dap_hientrang_point);
+        //console.log(data);
       });
-
       
       this.db.table_to_arraywhere('hinhanh','id_congtrinh',this.congtrinh_dapId).then(data => {
-        this.hinhanh = data.rows.item(0);
+        /* this.hinhanh = data.rows.item;
+        console.log(this.hinhanh(0).takedate);
+        //alert('hahahaha');
+        console.log(this.hinhanh.length);
+        this.tmp=this.hinhanh(0).takedate; */
+        
+        let len=data.rows.length;
+        this.hinhanh.img=data.rows.item(len-1).img;
+        this.hinhanh.takedate=data.rows.item(len-1).takedate;
+        this.hinhanh.len=len;
+        console.log(data.rows.length);
       });
-
     });
   }
 

@@ -9,15 +9,20 @@
 </ion-header>
  
 <ion-content class="ion-padding">
-  <h4 *ngIf="photoService.photos.length == 0" class="ion-text-center">Chưa có hình</h4>
- 
+  <!-- {{hinhanh.rows.item(0).takedate}} -->
+  <h4 *ngIf="hinhanh.length == 0" class="ion-text-center">Chưa có hình</h4>
+  
+
+  <!-- <ion-item *ngFor="let t1 of hinhanh">{{t1.rows.takedate}}</ion-item>
+ -->
+
   <ion-list>
-    <ion-item *ngFor="let photo of photoService.photos; index as pos" class="ion-text-wrap">
+    <ion-item *ngFor="let t1 of hinhanh; index as pos" class="ion-text-wrap">
       <ion-thumbnail slot="start">
-        <ion-img [src]="photo.img"></ion-img>
+        <ion-img [src]="t1.rows.img"></ion-img>
       </ion-thumbnail>
       <ion-label>
-        hahahahahaha
+        {{t1.rows.takedate}}
       </ion-label>
       <ion-button slot="end" fill="clear" (click)="startUpload(photo)">
         <ion-icon slot="icon-only" name="cloud-upload"></ion-icon>

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-
 import { ActionSheetController } from '@ionic/angular';
-
 /* Camera */
 import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/Camera/ngx';
+import { DatabaseService } from 'src/app/services/database.service';
+import { ToastController } from '@ionic/angular';
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,10 @@ import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/Camera/n
 export class PhotoService {
 
   public photos: Photo[] = [];
+  id_congtrinh: any;
+  tbl_name:any;
 
-  constructor(private camera: Camera, private actionSheetController: ActionSheetController) { }
+  constructor(private camera: Camera, private actionSheetController: ActionSheetController,public db: DatabaseService, private toast: ToastController) { }
 
 
   async selectImage() {
@@ -30,16 +33,20 @@ export class PhotoService {
         buttons: [{
                 text: 'Load from Library',
                 handler: () => {
-                    this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY).then(res => {
-                      alert(res);
+                    this.takePicture_and_Save(this.camera.PictureSourceType.PHOTOLIBRARY).then(res => {
+                      //alert(res);
+                      //return res;
+                      //this.photo2base64('base64img')
                     });
                 }
             },
             {
                 text: 'Use Camera',
                 handler: () => {
-                    this.takePicture(this.camera.PictureSourceType.CAMERA).then(res => {
-                      alert(res);
+                    this.takePicture_and_Save(this.camera.PictureSourceType.CAMERA).then(res => {
+                      //alert(res);
+                      //return res;
+                      //this.photo2base64('base64img')
                     });
                 }
             },
@@ -54,7 +61,8 @@ export class PhotoService {
 
   takePicture(sourceType: PictureSourceType) {
     var options: CameraOptions = {
-        quality: 100,
+        /* quality: 100, */
+        quality: 10,
         sourceType: sourceType,
         saveToPhotoAlbum: false,
         correctOrientation: true,
@@ -80,6 +88,53 @@ export class PhotoService {
       })
     });
   }
+
+  takePicture_and_Save(sourceType: PictureSourceType) {
+    var options: CameraOptions = {
+        /* quality: 100, */
+        quality: 1,
+        sourceType: sourceType,
+        saveToPhotoAlbum: false,
+        correctOrientation: true,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE
+    };
+    var base64img:any;
+
+    return new Promise(resolve => {
+      this.camera.getPicture(options).then((imageData) => {
+        base64img='data:image/jpeg;base64,' + imageData;
+        this.photos.unshift({
+          img: base64img
+        });
+  
+        // Save all photos for later viewing
+        //this.storage.set('photos', this.photos);
+        //console.log(base64img);
+
+        /* alert(this.id_congtrinh+' | '+this.tbl_name); */
+        //format yyyy/mm/dd - why chinese????!!!!!
+        let today = new Date().toLocaleDateString('zh-Hans-CN')
+        console.log(today)
+        /* Save image to DB */
+        let value=[base64img,today,this.id_congtrinh,this.tbl_name];
+        let field=['img','takedate','id_congtrinh','tbl_name'];
+        this.db.insert_table('hinhanh',field,value).then(async (res) => {
+          let toast = await this.toast.create({
+            message: 'Ảnh đã được thêm',
+            duration: 1500
+          });
+          toast.present();
+        });
+
+        resolve('base64img');
+      }, (err) => {
+        console.log("Camera issue:" + err);
+      })
+    });
+  }
+
 }
 
 class Photo {

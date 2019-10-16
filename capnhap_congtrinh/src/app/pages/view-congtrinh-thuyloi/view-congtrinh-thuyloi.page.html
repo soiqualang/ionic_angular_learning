@@ -55,17 +55,17 @@
     </div>
 
     <!-- <ion-card class="welcome-card" *ngIf="firstphoto"> -->
-    <ion-card class="welcome-card" (click)="go2page('hinhanh-congtrinh/congtrinh_dap/999')">
+    <ion-card class="welcome-card" (click)="go2page('hinhanh-congtrinh/congtrinh_dap/'+congtrinh_dapId)">
       <!-- <img src="/assets/shapes.svg" alt="" /> -->
       <!-- <ion-img [src]="firstphoto"></ion-img> -->
       <!-- <ion-img [src]="photoService.photos[0].data"></ion-img> -->
       <!-- <ion-img *ngIf="photoService.photos; else defaul_img" [src]="photoService.photos[0].data"></ion-img>
       <img #defaul_img src="/assets/img/noimg.png" alt="" /> -->
-      <ion-img *ngIf="photoService.photos.length != 0" [src]="photoService.photos[0].img"></ion-img>
-      <ion-img *ngIf="photoService.photos.length == 0" src="/assets/img/noimg.png"></ion-img>
+      <ion-img *ngIf="hinhanh.len != 0" [src]="hinhanh.img"></ion-img>
+      <ion-img *ngIf="hinhanh.len == 0" src="/assets/img/noimg.png"></ion-img>
       <ion-card-header>
-        <ion-card-subtitle *ngIf="photoService.photos.length != 0">Còn {{photoService.photos.length}} hình nữa.</ion-card-subtitle>
-        <ion-card-subtitle *ngIf="photoService.photos.length == 0">Chọn hình ảnh</ion-card-subtitle>
+        <ion-card-subtitle *ngIf="hinhanh.len != 0">{{hinhanh.takedate}} | Còn {{hinhanh.len}} hình nữa.</ion-card-subtitle>
+        <ion-card-subtitle *ngIf="hinhanh.len == 0">Chọn hình ảnh</ion-card-subtitle>
         <!-- <ion-card-title>Welcome to Ionic</ion-card-title> -->
       </ion-card-header>
       <!-- <ion-card-content>

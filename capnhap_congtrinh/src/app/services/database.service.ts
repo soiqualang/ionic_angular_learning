@@ -240,7 +240,7 @@ export class DatabaseService {
     strfield+=field[i];
     strvalue+="'"+value[i]+"'";
     let sql_add_news="INSERT INTO "+table+"("+strfield+") VALUES ("+strvalue+")";
-    console.log(sql_add_news);
+    /* console.log(sql_add_news); */
     return Promise.resolve(this.runSQL(sql_add_news));
   }
 

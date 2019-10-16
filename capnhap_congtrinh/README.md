@@ -211,6 +211,26 @@ Lam tiep phan hinh anh
 
 `hinhanh-congtrinh.page.ts`
 
+```json
+[{
+		"rows": {
+			"id": 5,
+			"img": "hahahahahah",
+			"takedate": "2019/10/16",
+			"id_congtrinh": 26,
+			"tbl_name": "congtrinh_dap"
+		}
+	}, {
+		"rows": {
+			"id": 4,
+			"img": "hohohoho",
+			"takedate": "2019/10/16",
+			"id_congtrinh": 26,
+			"tbl_name": "congtrinh_dap"
+		}
+	}
+]
+```
 
 
 > ionic Fetch is unavailable so cordova-plugin-ionic has been disabled
@@ -242,3 +262,7 @@ https://devdactic.com/ionic-4-image-upload-storage/
 https://www.npmjs.com/package/ionic-img-viewer
 
 https://ionicacademy.com/ionic-4-image-gallery-zoom/
+
+> Date
+https://stackoverflow.com/questions/1531093/how-do-i-get-the-current-date-in-javascript
+

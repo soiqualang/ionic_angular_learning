@@ -24,7 +24,7 @@ export class AddCongtrinhThuyloiPage implements OnInit {
     });
   }
 
-  insert_table() {     
+  insert_table() {
     let value=[this.congtrinh_dap['ten_dap'],this.congtrinh_dap['ma_loai'],this.congtrinh_dap['x'],this.congtrinh_dap['y'],this.congtrinh_dap['wkt']];
     let field=['ten_dap','ma_loai','x','y','wkt'];
     this.db.insert_table('dap_hientrang_point',field,value)
