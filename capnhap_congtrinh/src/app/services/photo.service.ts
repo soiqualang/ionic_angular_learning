@@ -121,12 +121,12 @@ export class PhotoService {
         /* Save image to DB */
         let value=[base64img,today,this.id_congtrinh,this.tbl_name];
         let field=['img','takedate','id_congtrinh','tbl_name'];
-        this.db.insert_table('hinhanh',field,value).then(async (res) => {
+        this.db.insert_table('hinhanh',field,value).then(async (res) => {          
+          this.reloadHinhanh(this.id_congtrinh);
           let toast = await this.toast.create({
             message: 'Ảnh đã được thêm',
             duration: 1500
           });
-          this.reloadHinhanh(this.id_congtrinh);
           toast.present();
         });
 
@@ -146,6 +146,12 @@ export class PhotoService {
           rows: data.rows.item(i)
         });
       }
+    });
+  }
+
+  deleteHinhanh(idhinhanh,id_congtrinh){
+    this.db.delete('hinhanh','id',idhinhanh).then(() => {
+      this.reloadHinhanh(id_congtrinh);
     });
   }
 
