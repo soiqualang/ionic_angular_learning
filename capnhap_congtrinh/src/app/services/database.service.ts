@@ -87,6 +87,7 @@ export class DatabaseService {
       .then((res) => {
         //lert("query ok");
         //console.log('query ok');
+        return res;
       })
       .catch(e => {
         console.log("error " + JSON.stringify(e))
@@ -201,8 +202,26 @@ export class DatabaseService {
     /* let sql="SELECT * from "+table+" where "+colum+" = '"+value+"' order by id desc";
     console.log(sql);
     return Promise.resolve(this.runSQL(sql)); */
+    let sql='SELECT * FROM '+table+' WHERE '+colum+' = ?';
+    return this.database.executeSql(sql, [value]).then(data => {
+      /* return {
+        id: data.rows.item(0).id,
+        ten_dap: data.rows.item(0).ten_dap, 
+        ma_loai: data.rows.item(0).ma_loai, 
+        x: data.rows.item(0).x, 
+        y: data.rows.item(0).y, 
+        wkt: data.rows.item(0).wkt
+      } */
+      return data;
+    });
+  }
 
-    return this.database.executeSql('SELECT * FROM '+table+' WHERE '+colum+' = ?', [value]).then(data => {
+  table_to_array_2dk(table,col1,val1,col2,val2){
+    /* let sql="SELECT * from "+table+" where "+colum+" = '"+value+"' order by id desc";
+    console.log(sql);
+    return Promise.resolve(this.runSQL(sql)); */
+    let sql='SELECT * FROM "'+table+'" WHERE "'+col1+'" = ? AND "'+col2+'" = ?';
+    return this.database.executeSql(sql, [val1,val2]).then(data => {
       /* return {
         id: data.rows.item(0).id,
         ten_dap: data.rows.item(0).ten_dap, 

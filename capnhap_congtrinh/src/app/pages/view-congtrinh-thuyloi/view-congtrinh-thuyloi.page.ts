@@ -67,19 +67,30 @@ export class ViewCongtrinhThuyloiPage implements OnInit {
         //console.log(data);
       });
       
-      this.db.table_to_arraywhere('hinhanh','id_congtrinh',this.congtrinh_dapId).then(data => {
-        /* this.hinhanh = data.rows.item;
-        console.log(this.hinhanh(0).takedate);
-        //alert('hahahaha');
-        console.log(this.hinhanh.length);
-        this.tmp=this.hinhanh(0).takedate; */
-        
+      /* this.db.table_to_arraywhere('hinhanh','id_congtrinh',this.congtrinh_dapId).then(data => {        
+        let len=data.rows.length;
+        this.hinhanh.img=data.rows.item(len-1).img;
+        this.hinhanh.takedate=data.rows.item(len-1).takedate;
+        this.hinhanh.len=len;
+        console.log(data.rows.length);
+      }); */
+
+      this.db.table_to_array_2dk('hinhanh','id_congtrinh',this.congtrinh_dapId,'tbl_name',this.tbl_name).then(data => {        
         let len=data.rows.length;
         this.hinhanh.img=data.rows.item(len-1).img;
         this.hinhanh.takedate=data.rows.item(len-1).takedate;
         this.hinhanh.len=len;
         console.log(data.rows.length);
       });
+
+      /* let sql='SELECT * FROM hinhanh WHERE id_congtrinh='+this.congtrinh_dapId+' AND tbl_name=\''+this.tbl_name+'\'';
+      this.db.runSQL(sql).then(data => {
+        let len=data.rows.length;
+        this.hinhanh.img=data.rows.item(len-1).img;
+        this.hinhanh.takedate=data.rows.item(len-1).takedate;
+        this.hinhanh.len=len;
+        console.log(data.rows.length);
+      }); */
     });
   }
 

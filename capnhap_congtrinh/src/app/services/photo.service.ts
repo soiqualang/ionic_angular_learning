@@ -122,7 +122,7 @@ export class PhotoService {
         let value=[base64img,today,this.id_congtrinh,this.tbl_name];
         let field=['img','takedate','id_congtrinh','tbl_name'];
         this.db.insert_table('hinhanh',field,value).then(async (res) => {          
-          this.reloadHinhanh(this.id_congtrinh);
+          this.reloadHinhanh(this.id_congtrinh,this.tbl_name);
           let toast = await this.toast.create({
             message: 'Ảnh đã được thêm',
             duration: 1500
@@ -137,9 +137,9 @@ export class PhotoService {
     });
   }
 
-  reloadHinhanh(id_congtrinh){
+  reloadHinhanh(id_congtrinh,tbl_name){
     this.hinhanh=[];
-    this.db.table_to_arraywhere('hinhanh','id_congtrinh',id_congtrinh).then(data => {
+    this.db.table_to_array_2dk('hinhanh','id_congtrinh',id_congtrinh,'tbl_name',tbl_name).then(data => {
       let len=data.rows.length;
       for(let i=0;i<len;i++){
         this.hinhanh.unshift({
@@ -149,9 +149,9 @@ export class PhotoService {
     });
   }
 
-  deleteHinhanh(idhinhanh,id_congtrinh){
+  deleteHinhanh(idhinhanh,id_congtrinh,tbl_name){
     this.db.delete('hinhanh','id',idhinhanh).then(() => {
-      this.reloadHinhanh(id_congtrinh);
+      this.reloadHinhanh(id_congtrinh,tbl_name);
     });
   }
 

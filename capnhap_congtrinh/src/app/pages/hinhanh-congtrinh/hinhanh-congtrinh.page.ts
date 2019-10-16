@@ -26,7 +26,7 @@ export class HinhanhCongtrinhPage implements OnInit {
       this.id_congtrinh = params.get('id_congtrinh');
       this.tbl_name = params.get('tbl_name');
       this.photoService.hinhanh=[];
-      this.photoService.reloadHinhanh(this.id_congtrinh);
+      this.photoService.reloadHinhanh(this.id_congtrinh,this.tbl_name);
       });
   }
 
