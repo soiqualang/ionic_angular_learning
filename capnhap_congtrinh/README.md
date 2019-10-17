@@ -355,6 +355,14 @@ async closeModal() {
 
 ```
 
+### Build map model services
+
+`ionic g service services/modal`
+
+=> Hiện tại bị fail, không thể get back giá trị về khi dismiss bên modal services @@
+
+
+
 
 https://www.freakyjolly.com/ionic-4-how-to-use-ionic-modal-popovers-and-pass-data-and-receive-response/#more-1885
 
