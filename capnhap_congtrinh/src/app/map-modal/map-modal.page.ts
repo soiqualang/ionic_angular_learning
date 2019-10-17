@@ -32,8 +32,11 @@ export class MapModalPage implements OnInit {
   initMap() {
     const map = new Map('map').setView([10.147,106.437], 9);
 
-    tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    /* tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map); */
+    tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'edupala.com © ionic LeafLet',
     }).addTo(map);
 
     const customMarkerIcon = icon({

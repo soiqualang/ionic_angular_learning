@@ -424,6 +424,8 @@ https://www.javascripttuts.com/using-leaflet-open-street-map-in-an-ionic-applica
 
 `npm install leaflet`
 
+`npm install leaflet --save`
+
 `npm install @types/leaflet`
 
 > map-modal.page.html
