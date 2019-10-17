@@ -333,20 +333,20 @@ async closeModal() {
 
 ```html
 <ion-header>
-  <ion-toolbar text-center>
+  <ion-toolbar class="ion-text-center">
     <ion-title>map-modal</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="ion-padding">
   <ion-grid>
     <ion-row>
-      <ion-col text-center>
+      <ion-col class="ion-text-center">
         ID : {{modelId}}
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col text-center>
+      <ion-col class="ion-text-center">
         <ion-button (click)="closeModal()">Close Modal</ion-button>
       </ion-col>
     </ion-row>
