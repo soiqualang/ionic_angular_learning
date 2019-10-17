@@ -20,6 +20,36 @@
     <ion-input [(ngModel)]="congtrinh_dap.ma_loai" placeholder="Mã loại"></ion-input>
   </ion-item>
   
+
+
+  <!-- <ion-grid fixed>
+    <ion-row>
+      <ion-col text-center>
+        <ion-button (click)="checkGPSPermission()">
+          Request GPS Accuracy
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4">Longitudeha</ion-col>
+      <ion-col> {{locationCoords.longitude}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4">Latitude</ion-col>
+      <ion-col>{{locationCoords.latitude}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4">Accuracy</ion-col>
+      <ion-col>{{locationCoords.accuracy}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4">Timestamp</ion-col>
+      <ion-col>{{locationCoords.timestamp | date:'medium'}}</ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+
+
   <ion-item>
     <ion-label position="stacked">Lon</ion-label>
     <ion-input [(ngModel)]="congtrinh_dap.x" placeholder="Lon"></ion-input>
@@ -29,11 +59,34 @@
     <ion-label position="stacked">Lat</ion-label>
     <ion-input [(ngModel)]="congtrinh_dap.y" placeholder="Lat"></ion-input>
   </ion-item>
+
+
+  <p *ngIf="dataReturned">{{dataReturned}}</p>
   
-  <ion-item>
+  <ion-card class="welcome-card">
+    <!-- <img src="/assets/motorbike.jpg" alt="" /> -->
+    <ion-card-header>
+      <ion-card-subtitle>Vị trí <span *ngIf="locationCoords.accuracy">(Acc: {{locationCoords.accuracy}})</span></ion-card-subtitle>
+      <!-- <ion-card-title>Vị trí</ion-card-title> -->
+    </ion-card-header>
+    <ion-card-content>      
+      <ion-item button (click)="checkGPSPermission()">
+        <ion-icon name="locate" slot="start"></ion-icon>
+        <ion-label>Lấy tọa độ vị trí</ion-label>
+        <!-- <ion-button fill="outline" slot="end">LOCATE</ion-button> -->
+      </ion-item>
+      <ion-item button (click)="openModal()">
+        <ion-icon name="map" slot="start"></ion-icon>
+        <ion-label>Mở bản đồ</ion-label>
+        <!-- <ion-button fill="outline" slot="end">Open MAP</ion-button> -->
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  
+  <!-- <ion-item>
     <ion-label position="stacked">Well-known text</ion-label>
     <ion-input [(ngModel)]="congtrinh_dap.wkt" placeholder="Well-known text"></ion-input>
-  </ion-item>
+  </ion-item> -->
   <!-- <ion-item>
     <ion-label position="stacked">Hình ảnh</ion-label>
     <ion-input type="file" accept="image/*" [(ngModel)]="tmp.img" placeholder="Hình ảnh"></ion-input>
@@ -42,5 +95,14 @@
     <ion-label position="stacked">Hình ảnh</ion-label>
     <ion-input [(ngModel)]="developer.img" placeholder="https://..."></ion-input>
   </ion-item> -->
-  <ion-button expand="block" (click)="insert_table()">Thêm thông tin</ion-button>
+  <!-- <ion-button expand="block" (click)="insert_table()">Thêm thông tin</ion-button> -->
+
+  
+
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-button fill="clear" expand="full" color="light" (click)="insert_table()">Thêm thông tin</ion-button>
+  </ion-toolbar>
+</ion-footer>

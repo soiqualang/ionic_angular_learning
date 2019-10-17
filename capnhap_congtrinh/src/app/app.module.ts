@@ -24,6 +24,13 @@ import { MapModalPageModule } from './map-modal/map-modal.module';
 
 //import { PhotoViewer } from '@ionic-native/photo-viewer';
 
+/* Geolocation */
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -42,7 +49,10 @@ import { MapModalPageModule } from './map-modal/map-modal.module';
     Camera,
     File,
     WebView,
-    FilePath
+    FilePath,
+    AndroidPermissions,
+    Geolocation,
+    LocationAccuracy
   ],
   bootstrap: [AppComponent]
 })

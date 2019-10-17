@@ -361,11 +361,58 @@ async closeModal() {
 
 => Hiện tại bị fail, không thể get back giá trị về khi dismiss bên modal services @@
 
-
-
-
 https://www.freakyjolly.com/ionic-4-how-to-use-ionic-modal-popovers-and-pass-data-and-receive-response/#more-1885
 
+## Ionic Geolocation
+
+> `cordova-plugin-android-permissions`: Get permissions by showing the permission dialogue. We will use this plugin to get Geolocation access permission, but this can be used for any type of permission.
+
+```bash
+$ ionic cordova plugin add cordova-plugin-android-permissions
+$ npm install @ionic-native/android-permissions
+```
+
+> Geolocation packages
+> `cordova-plugin-request-location-accuracy`: Shows a dialogue to the user to turn on GPS we show in the image below so that the user does not need to leave the app or go to setting.
+
+```bash
+$ ionic cordova plugin add cordova-plugin-request-location-accuracy
+$ npm install @ionic-native/location-accuracy
+```
+
+> `cordova-plugin-geolocation`: Finally after getting location access permission and turning on device GPS, we will fetch accurate device Geolocation coordinates using this Geolocation plugin.
+
+```bash
+$ ionic cordova plugin add cordova-plugin-geolocation
+$ npm install @ionic-native/geolocation
+```
+
+> app.module.ts
+
+```ts
+/* Geolocation */
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+...
+providers: [
+    StatusBar,
+    SplashScreen,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    SQLite,
+    Camera,
+    File,
+    WebView,
+    FilePath,
+    AndroidPermissions,
+    Geolocation,
+    LocationAccuracy
+  ],
+```
+
+`ionic cordova run android -l -c`
+
+**Test trên máy android ảo (ADV) thì fail, máy thật thì ok @@**
 
 
 
@@ -402,4 +449,11 @@ https://stackoverflow.com/questions/1531093/how-do-i-get-the-current-date-in-jav
 http://www.freakyjolly.com/ionic-3-add-modals-in-ionic-3-application-using-latest-ionic-cli-v4-12-0/
 
 https://www.freakyjolly.com/ionic-4-how-to-use-ionic-modal-popovers-and-pass-data-and-receive-response/#more-1885
+
+> Geolocation
+
+https://www.freakyjolly.com/ionic-4-turn-on-device-gps-in-ionic-4-application-without-leaving-app-using-ionic-native-plugin/
+
+> Bat dong bo
+https://www.freecodecamp.org/news/javascript-from-callbacks-to-async-await-1cc090ddad99/
 

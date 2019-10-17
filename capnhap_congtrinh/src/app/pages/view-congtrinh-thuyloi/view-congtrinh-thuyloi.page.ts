@@ -42,7 +42,7 @@ export class ViewCongtrinhThuyloiPage implements OnInit {
   dataReturned:any;
   
 
-  constructor(private route: ActivatedRoute, public db: DatabaseService, private router: Router, private toast: ToastController,public photoService: PhotoService,public modalController: ModalController) { }
+  constructor(private route: ActivatedRoute, public db: DatabaseService, private router: Router, private toast: ToastController,public photoService: PhotoService,private modalController: ModalController) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {

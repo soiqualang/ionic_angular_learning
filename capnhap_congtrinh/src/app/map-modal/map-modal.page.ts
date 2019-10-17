@@ -10,6 +10,8 @@ export class MapModalPage implements OnInit {
 
   modalTitle:string;
   modelId:number;
+  gps_lon:number;
+  gps_lat:number;
 
   constructor(private modalController: ModalController,private navParams: NavParams) { }
 
@@ -17,6 +19,8 @@ export class MapModalPage implements OnInit {
     console.table(this.navParams);
     this.modelId = this.navParams.data.paramID;
     this.modalTitle = this.navParams.data.paramTitle;
+    this.gps_lon = this.navParams.data.gps_lon;
+    this.gps_lat = this.navParams.data.gps_lat;
   }
 
   async closeModal() {
