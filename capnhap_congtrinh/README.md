@@ -414,6 +414,25 @@ providers: [
 
 **Test trên máy android ảo (ADV) thì fail, máy thật thì ok @@**
 
+## Leaflet
+
+https://www.javascripttuts.com/using-leaflet-open-street-map-in-an-ionic-application-in-one-go/
+
+> index.html
+
+`<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />`
+
+`npm install leaflet`
+
+`npm install @types/leaflet`
+
+> map-modal.page.html
+
+`<div id="map" style="height:100%;"></div>`
+
+
+
+
 
 
 ## Preferences
@@ -457,3 +476,7 @@ https://www.freakyjolly.com/ionic-4-turn-on-device-gps-in-ionic-4-application-wi
 > Bat dong bo
 https://www.freecodecamp.org/news/javascript-from-callbacks-to-async-await-1cc090ddad99/
 
+> Leaflet
+https://edupala.com/how-to-add-leaflet-map-in-ionic-4/
+
+https://www.javascripttuts.com/using-leaflet-open-street-map-in-an-ionic-application-in-one-go/

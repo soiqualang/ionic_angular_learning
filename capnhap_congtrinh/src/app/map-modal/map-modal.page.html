@@ -4,8 +4,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-grid>
+<ion-content>
+
+  <div id="map" style="height:100%;"></div>
+
+  <!-- <ion-grid>
     <ion-row>
       <ion-col text-center>
         ID : {{modelId}}
@@ -22,5 +25,10 @@
         <ion-button (click)="closeModal()">Close Modal</ion-button>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
 </ion-content>
+<ion-footer>
+    <ion-toolbar color="primary">
+      <ion-button fill="clear" expand="full" color="light" (click)="closeModal()">Lấy tọa độ</ion-button>
+    </ion-toolbar>
+  </ion-footer>
