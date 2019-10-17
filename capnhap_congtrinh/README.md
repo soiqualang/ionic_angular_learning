@@ -7,6 +7,10 @@ Let's start!
 
 ***
 
+> Android SDK Window
+
+`C:\Users\soiqu\AppData\Local\Android\Sdk`
+
 `ionic start capnhap_congtrinh`
 
 ## Add libs
@@ -258,6 +262,97 @@ imports: [
     StatusBar,
     SplashScreen,
 ....
+```
+
+> view-congtrinh-thuyloi.page.ts
+
+```ts
+import { ModalController } from '@ionic/angular';
+//Lưu ý chỗ này import page chứ không phải module như bên trên nhé!
+import { MapModalPage } from 'src/app/map-modal/map-modal.page';
+
+...
+
+constructor(private route: ActivatedRoute, public db: DatabaseService, private router: Router, private toast: ToastController,public photoService: PhotoService,public modalController: ModalController) { }
+
+//Hàm gọi modal ra
+async openModal() {
+    /* alert('hahaha'); */
+    const modal = await this.modalController.create({
+      component: MapModalPage,
+      componentProps: {
+        "paramID": 123,
+        "paramTitle": "Test Title"
+      }
+    });
+ 
+    modal.onDidDismiss().then((dataReturned) => {
+      if (dataReturned !== null) {
+        this.dataReturned = dataReturned.data;
+        //alert('Modal Sent Data :'+ dataReturned);
+      }
+    });
+ 
+    return await modal.present();
+  }
+
+```
+
+> view-congtrinh-thuyloi.page.html
+
+```html
+<div class="ion-padding">
+  <h2>Click button to open modal</h2>
+</div>
+
+<ion-button (click)="openModal()">Open Modal</ion-button>
+
+<p *ngIf="dataReturned">{{dataReturned}}</p>
+```
+
+> map-modal.page.ts
+
+```ts
+import { ModalController, NavParams } from '@ionic/angular';
+...
+constructor(private modalController: ModalController,private navParams: NavParams) { }
+...
+ngOnInit() {
+  console.table(this.navParams);
+  this.modelId = this.navParams.data.paramID;
+  this.modalTitle = this.navParams.data.paramTitle;
+}
+
+async closeModal() {
+  const onClosedData: string = "Wrapped Up!";
+  await this.modalController.dismiss(onClosedData);
+}
+```
+
+> map-modal.page.html
+
+```html
+<ion-header>
+  <ion-toolbar text-center>
+    <ion-title>map-modal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        ID : {{modelId}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <ion-button (click)="closeModal()">Close Modal</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
 ```
 
 

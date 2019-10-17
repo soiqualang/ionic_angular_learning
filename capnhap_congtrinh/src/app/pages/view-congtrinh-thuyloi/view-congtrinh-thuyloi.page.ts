@@ -10,7 +10,7 @@ import { ToastController } from '@ionic/angular';
 import { PhotoService } from 'src/app/services/photo.service';
 
 import { ModalController } from '@ionic/angular';
-import { MapModalPageModule } from 'src/app/map-modal/map-modal.module';
+import { MapModalPage } from 'src/app/map-modal/map-modal.page';
 
 
 @Component({
@@ -138,8 +138,9 @@ export class ViewCongtrinhThuyloiPage implements OnInit {
   }
 
   async openModal() {
+    /* alert('hahaha'); */
     const modal = await this.modalController.create({
-      component: MapModalPageModule,
+      component: MapModalPage,
       componentProps: {
         "paramID": 123,
         "paramTitle": "Test Title"
