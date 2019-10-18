@@ -26,9 +26,14 @@
       </ion-col>
     </ion-row>
   </ion-grid> -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="t1()">
+      <ion-icon name="locate"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
 <ion-footer>
     <ion-toolbar color="primary">
-      <ion-button fill="clear" expand="full" color="light" (click)="closeModal()">Lấy tọa độ</ion-button>
+      <ion-button fill="clear" expand="full" color="light" (click)="closeModal()">Lưu tọa độ</ion-button>
     </ion-toolbar>
   </ion-footer>

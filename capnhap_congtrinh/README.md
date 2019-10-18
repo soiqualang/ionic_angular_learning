@@ -459,7 +459,22 @@ https://stackoverflow.com/questions/36246815/data-toggle-tab-does-not-download-l
 
 > That fix worked for me, and it should work in every cases.
 
+Lưu ý import latlon from leaflet
 
+> import { map, tileLayer, marker, icon,`latLng`,control,LayerGroup } from 'leaflet';
+
+> mappin.setLatLng(`latLng`(position.lat, position.lng),{draggable:'true'});
+
+là `latLng` not latlng hay LatLng hay Latlng =))
+
+> Hack
+
+`D:\sync\websvr\xampp\ionic_angular_learning\capnhap_congtrinh\node_modules\leaflet\dist`
+
+`ne=Qi.extend({options:{position:"bottomright",prefix:'<a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>'}`
+
+
+Fab button lại làm bản đồ không hiện full page @@!
 
 ## Preferences
 

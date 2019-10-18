@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 
 /* Map leaflet */
-import { Map, tileLayer, marker, icon,latLng } from 'leaflet';
-import { map } from 'rxjs/operators';
+import { map, tileLayer, marker, icon,latLng,control,LayerGroup } from 'leaflet';
 import { HttpClient } from '@angular/common/http';
 import { Platform } from '@ionic/angular';
 import { Router,ActivatedRoute } from '@angular/router';
@@ -21,6 +20,8 @@ export class MapModalPage implements OnInit {
   gps_lat:number;
   center:any;
   options:any;
+  /* map1:any;
+  mappin:any; */
 
   constructor(private modalController: ModalController,private navParams: NavParams,public http: HttpClient,public plt: Platform,public router: Router, public activatedRoute:ActivatedRoute) {
     this.plt.ready().then(() => {
@@ -29,100 +30,7 @@ export class MapModalPage implements OnInit {
       //.subscribe(restaurants => this.initMap(restaurants));
       this.initMap();
     });
-  }
-
-  /* ionViewDidEnter() {
-    this.center = latLng(Number(this.activatedRoute.snapshot.paramMap.get("latitude")), Number(this.activatedRoute.snapshot.paramMap.get("longitude")));
-    this.options = {
-      layers: [
-        tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18, attribution: "..." })
-      ],
-      zoom: 17,
-      center: this.center,
-      attributionControl: false,
-    };
-
-    //this.layers.push(this.mapService.getMarker(this.center, "assets/icon/map/placeholder.png"));
-
-  } */
-
-  initMap() {
-
-    var mymap = new Map('map').setView([51.505, -0.09], 13);
-
-    var osm=tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png',{ 
-                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'});
-    osm.addTo(mymap);
-
-    window.dispatchEvent(new Event('resize'));
-
-  //  L.tileLayer('http://*.*.*.*/hot/{z}/{x}/{y}.png', {
-  //              attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
-  //              maxZoom: 18
- //            }).addTo(mymap);
-
-    marker([51.5, -0.09]).addTo(mymap).bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
-
-    /* L.circle([51.508, -0.11], 500, {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5
-    }).addTo(mymap).bindPopup("I am a circle."); */
-
-
-    /* const map = new Map('map').setView([10.147,106.437], 9); */
-
-    /* var map = new Map('map', {
-        center: [10.7912802,106.0836726],
-        zoom: 13
-    }); */
-
-    /* tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map); */
-    /* tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
-      attribution: 'edupala.com © ionic LeafLet',
-    }).addTo(map); */
-
-    /* const customMarkerIcon = icon({
-      iconUrl: 'assets/images/custom-marker-icon.png',
-      iconSize: [64, 64], 
-      popupAnchor: [0, -20]
-    }); */
-
-    /* restaurants.forEach((restaurant) => {
-      marker([restaurant.position.lat, restaurant.position.lgn], {icon: customMarkerIcon})
-      .bindPopup(`<b>${restaurant.title}</b>`, { autoClose: false })
-      .on('click', () => this.router.navigateByUrl('/restaurant'))
-      .addTo(map).openPopup();
-    }); */
-
-
-    /* var GoogleHybrid_url='https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}';
-        
-    var GoogleHybrid=tileLayer(
-        GoogleHybrid_url,
-        {
-            attribution: 'Map data © Google contributors'
-        }
-    );
-    //GoogleHybrid.addTo(map);
-
-    var mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
-        
-    var mapboxlayer=new L.TileLayer(
-        mbUrl,
-        {
-            id: 'mapbox.light',
-            attribution: 'Mapbox contributors'
-        }
-    );
-    
-    mapboxlayer.addTo(map);
-    //map.addLayer(mapboxlayer); */
-  }
-
-  
+  }  
 
   ngOnInit() {
     console.table(this.navParams);
@@ -136,5 +44,129 @@ export class MapModalPage implements OnInit {
     const onClosedData: string = "Wrapped Up!";
     await this.modalController.dismiss(onClosedData);
   }
+
+  /* removemark(){
+    if(this.mappin!=''){
+      this.map1.removeLayer(this.mappin);
+    }
+  } */
+
+  initMap() {
+
+    /* this.map1=map('map').setView([10.147,106.437], 9); */
+    var map1=map('map').setView([10.147,106.437], 9);
+
+    var mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+        
+    var mapboxlayer=tileLayer(
+        mbUrl,
+        {
+            id: 'mapbox.light',
+            /* attribution: 'Mapbox contributors' */
+        }
+    );
+    map1.addLayer(mapboxlayer);
+
+    var vetinhmap = tileLayer('http://mt0.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+      maxZoom: 18,
+      minZoom: 9,
+    });
+    vetinhmap.addTo(map1);
+
+    var baseMaps = {
+      "Nền Vệ tinh": vetinhmap,
+      "OpenStreetMap": mapboxlayer
+    };
+
+    control.layers(baseMaps).addTo(map1);
+
+    var mappin='';
+
+    /* marker([10.612018902571782, 106.44378662109376]).addTo(this.map).bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup(); */
+
+    map1.on('click', function(e){
+      //map.once('click', function(e){
+        //map.removeLayer(marker);
+        //removemark();
+        if(mappin!=''){
+          map1.removeLayer(mappin);
+        }
+
+        mappin = marker(e.latlng, {draggable:'true'}).addTo(map1);
+        var coord = e.latlng.toString().split(',');
+        var lat = coord[0].split('(');
+        var lng = coord[1].split(')');
+        /* document.frm_congtrinh.lat.value=lat[1];
+        document.frm_congtrinh.lon.value=lng[0]; */
+        mappin.on('dragend', function(event){
+          mappin = event.target;
+          var position = mappin.getLatLng();
+          /* console.table(position); */
+
+          /* console.log(latLng(position.lat, position.lng)); */
+
+          mappin.setLatLng(latLng(position.lat, position.lng),{draggable:'true'});
+          map1.panTo(latLng(position.lat, position.lng));
+          /* document.frm_congtrinh.lat.value=position.lat;
+          document.frm_congtrinh.lon.value=position.lng; */
+        });
+      });
+
+
+    /* Fix lỗi hiện không hết bản đồ */
+    window.dispatchEvent(new Event('resize'));
+  }
+
+
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.showPosition);
+    } else { 
+      console.table("Geolocation is not supported by this browser.");
+    }
+  }
+
+  showPosition(position) {
+
+    /* console.table(position.coords); */
+
+    /* document.frm_congtrinh.lat.value=position.coords.latitude;
+    document.frm_congtrinh.lon.value=position.coords.longitude;
+    
+    document.frm_thuyvan.lat.value=position.coords.latitude;
+    document.frm_thuyvan.lon.value=position.coords.longitude; */
+    
+    //this.loc2mark(position.coords.latitude,position.coords.longitude);
+  }
+
+  loc2mark(lat,lon){
+    if(mappin!=''){
+      map1.removeLayer(mappin);
+    }
+    mappin = marker([lat,lon], {draggable:'true'}).addTo(map1);
+    
+    map1.panTo(latLng(lat, lon));
+    map1.setZoom(16);
+    
+    mappin.on('dragend', function(event){
+      mappin = event.target;
+      var position = mappin.getLatLng();
+      mappin.setLatLng(new latLng(position.lat, position.lng),{draggable:'true'});
+      map1.panTo(new latLng(position.lat, position.lng));
+      map1.setZoom(16);
+      
+      //document.frm_congtrinh.lat.value=position.lat;
+      //document.frm_congtrinh.lon.value=position.lng;
+      
+    });
+  }
+
+  t1(){
+    this.t2(99,88);
+  }
+  t2(lat,lon){
+    alert(lat);
+  }
+  
 
 }
