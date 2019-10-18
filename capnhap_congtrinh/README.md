@@ -428,12 +428,36 @@ https://www.javascripttuts.com/using-leaflet-open-street-map-in-an-ionic-applica
 
 `npm install @types/leaflet`
 
+`ionic plugin add cordova-plugin-whitelist`
+
 > map-modal.page.html
 
 `<div id="map" style="height:100%;"></div>`
 
+### Tránh lỗi không hiển thị bản đồ không full màn hình
+
+> If your Leaflet map suddenly works correctly after you resize your browser window, then you experience the classic "map container size not valid at map initialization": in order to work correctly, Leaflet reads the map container size when you initialize the map (L.map("mapContainerId")).
+
+> If your application hides that container (typically through CSS display: none;, or some framework tab / modal / whatever…) or later changes its dimensions, Leaflet will not be aware of the new size. Hence it will not render correctly. Typically, it downloads tiles only for the fraction of the container it thinks is shown. This can be a single tile in the top left corner in the case of a container that was entirely hidden at map initialization time.
+
+> This mistake often arises when embedding the map container in a "tab" or "modal" panel, possibly using popular frameworks (Bootstrap, Angular, Ionic, etc.).
+
+> Leaflet listens to browser window resize event, and reads again the container size when it happens. This explains why the map suddenly works on window resizing.
+
+> You can also manually trigger this update by calling map.invalidateSize() when the tab panel is displayed (e.g. add a listener on the tab button click), at least the first time the container is rendered with its correct dimensions.
+
+> As for implementing the tab button click listener, perform a new search on SO on that topic: you should have plenty resources available for that matter, for most of the popular frameworks.
+
+https://stackoverflow.com/questions/36246815/data-toggle-tab-does-not-download-leaflet-map/36257493#36257493
 
 
+>First, thank you @ghybs for your good explanation on why the Leaflet maps are not shown properly in these cases.
+
+> For those who tried unsuccessfully the @ghybs's answer, you should try to resize your browser instead of calling a method of the map object :
+
+`window.dispatchEvent(new Event('resize'));`
+
+> That fix worked for me, and it should work in every cases.
 
 
 
@@ -482,3 +506,10 @@ https://www.freecodecamp.org/news/javascript-from-callbacks-to-async-await-1cc09
 https://edupala.com/how-to-add-leaflet-map-in-ionic-4/
 
 https://www.javascripttuts.com/using-leaflet-open-street-map-in-an-ionic-application-in-one-go/
+
+> Leaflet map suddenly works correctly after you resize your browser window
+https://stackoverflow.com/questions/36246815/data-toggle-tab-does-not-download-leaflet-map/36257493#36257493
+
+https://stackoverflow.com/questions/55617065/leaflet-map-doesnt-cover-whole-map-area
+
+`window.dispatchEvent(new Event('resize'));`
