@@ -528,3 +528,5 @@ https://stackoverflow.com/questions/36246815/data-toggle-tab-does-not-download-l
 https://stackoverflow.com/questions/55617065/leaflet-map-doesnt-cover-whole-map-area
 
 `window.dispatchEvent(new Event('resize'));`
+
+https://stackoverflow.com/questions/19186428/refresh-leaflet-map-map-container-is-already-initialized

@@ -1,6 +1,12 @@
 <ion-header>
   <ion-toolbar text-center>
     <ion-title>{{modalTitle}}</ion-title>
+    <ion-buttons slot="end">
+      <!-- <ion-button (click)="getLocation()"> -->
+      <ion-button (click)="zoom2current_location()">
+        <ion-icon name="locate"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -26,14 +32,16 @@
       </ion-col>
     </ion-row>
   </ion-grid> -->
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+
+  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="t1()">
       <ion-icon name="locate"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
+  </ion-fab> -->
+
 </ion-content>
 <ion-footer>
-    <ion-toolbar color="primary">
-      <ion-button fill="clear" expand="full" color="light" (click)="closeModal()">Lưu tọa độ</ion-button>
-    </ion-toolbar>
-  </ion-footer>
+  <ion-toolbar color="primary">
+    <ion-button fill="clear" expand="full" color="light" (click)="closeModal()">Lưu tọa độ</ion-button>
+  </ion-toolbar>
+</ion-footer>

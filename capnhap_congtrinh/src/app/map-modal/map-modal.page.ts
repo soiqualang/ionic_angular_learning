@@ -2,16 +2,27 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 
 /* Map leaflet */
-import { map, tileLayer, marker, icon,latLng,control,LayerGroup } from 'leaflet';
+import { map, tileLayer, marker, icon,latLng,control,LayerGroup,circle } from 'leaflet';
 import { HttpClient } from '@angular/common/http';
 import { Platform } from '@ionic/angular';
 import { Router,ActivatedRoute } from '@angular/router';
+
+declare var window;
 
 @Component({
   selector: 'app-map-modal',
   templateUrl: './map-modal.page.html',
   styleUrls: ['./map-modal.page.scss'],
 })
+
+/* declare global {
+  interface Window {
+    haha:any;
+    map1:any;
+    mappin:any;
+  }
+} */
+
 export class MapModalPage implements OnInit {
 
   modalTitle:string;
@@ -22,15 +33,13 @@ export class MapModalPage implements OnInit {
   options:any;
   /* map1:any;
   mappin:any; */
+  public window = window;
 
   constructor(private modalController: ModalController,private navParams: NavParams,public http: HttpClient,public plt: Platform,public router: Router, public activatedRoute:ActivatedRoute) {
     this.plt.ready().then(() => {
-      //this.http.get('https://oghuxxw1e6.execute-api.us-east-1.amazonaws.com/dev')
-      //.pipe(map(res => res.json()))
-      //.subscribe(restaurants => this.initMap(restaurants));
       this.initMap();
     });
-  }  
+  }
 
   ngOnInit() {
     console.table(this.navParams);
@@ -45,16 +54,15 @@ export class MapModalPage implements OnInit {
     await this.modalController.dismiss(onClosedData);
   }
 
-  /* removemark(){
-    if(this.mappin!=''){
-      this.map1.removeLayer(this.mappin);
-    }
-  } */
-
   initMap() {
-
-    /* this.map1=map('map').setView([10.147,106.437], 9); */
+    /* var container = L.DomUtil.get('map');
+    if(container != null){
+      container._leaflet_id = null;
+      document.getElementById('map').innerHTML = "";
+    } */
+    this.window.haha='hahahahahaha';
     var map1=map('map').setView([10.147,106.437], 9);
+    this.window.map1=map1;
 
     var mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
         
@@ -71,7 +79,6 @@ export class MapModalPage implements OnInit {
       maxZoom: 18,
       minZoom: 9,
     });
-    vetinhmap.addTo(map1);
 
     var baseMaps = {
       "Nền Vệ tinh": vetinhmap,
@@ -80,14 +87,37 @@ export class MapModalPage implements OnInit {
 
     control.layers(baseMaps).addTo(map1);
 
-    var mappin='';
 
-    /* marker([10.612018902571782, 106.44378662109376]).addTo(this.map).bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup(); */
+    var mappin='';
+    //Zoom to current location
+    map1.locate({
+      setView: true,
+      maxZoom: 16
+    });
+
+    function onLocationFound(e) {
+      var radius = e.accuracy / 2;
+      if(mappin!=''){
+        map1.removeLayer(mappin);
+      }
+      mappin = marker(e.latlng, {draggable:'true'}).addTo(map1);
+      var coord = e.latlng.toString().split(',');
+      var lat = coord[0].split('(');
+      var lng = coord[1].split(')');
+      mappin.on('dragend', function(event){
+        mappin = event.target;
+        var position = mappin.getLatLng();
+
+        mappin.setLatLng(latLng(position.lat, position.lng),{draggable:'true'});
+        map1.panTo(latLng(position.lat, position.lng));
+      });
+    }
+
+    map1.on('locationfound', onLocationFound);
+
+    /* ======================= */
 
     map1.on('click', function(e){
-      //map.once('click', function(e){
-        //map.removeLayer(marker);
-        //removemark();
         if(mappin!=''){
           map1.removeLayer(mappin);
         }
@@ -96,19 +126,12 @@ export class MapModalPage implements OnInit {
         var coord = e.latlng.toString().split(',');
         var lat = coord[0].split('(');
         var lng = coord[1].split(')');
-        /* document.frm_congtrinh.lat.value=lat[1];
-        document.frm_congtrinh.lon.value=lng[0]; */
         mappin.on('dragend', function(event){
           mappin = event.target;
           var position = mappin.getLatLng();
-          /* console.table(position); */
-
-          /* console.log(latLng(position.lat, position.lng)); */
 
           mappin.setLatLng(latLng(position.lat, position.lng),{draggable:'true'});
           map1.panTo(latLng(position.lat, position.lng));
-          /* document.frm_congtrinh.lat.value=position.lat;
-          document.frm_congtrinh.lon.value=position.lng; */
         });
       });
 
@@ -117,55 +140,13 @@ export class MapModalPage implements OnInit {
     window.dispatchEvent(new Event('resize'));
   }
 
-
-  getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.showPosition);
-    } else { 
-      console.table("Geolocation is not supported by this browser.");
-    }
-  }
-
-  showPosition(position) {
-
-    /* console.table(position.coords); */
-
-    /* document.frm_congtrinh.lat.value=position.coords.latitude;
-    document.frm_congtrinh.lon.value=position.coords.longitude;
-    
-    document.frm_thuyvan.lat.value=position.coords.latitude;
-    document.frm_thuyvan.lon.value=position.coords.longitude; */
-    
-    //this.loc2mark(position.coords.latitude,position.coords.longitude);
-  }
-
-  loc2mark(lat,lon){
-    if(mappin!=''){
-      map1.removeLayer(mappin);
-    }
-    mappin = marker([lat,lon], {draggable:'true'}).addTo(map1);
-    
-    map1.panTo(latLng(lat, lon));
-    map1.setZoom(16);
-    
-    mappin.on('dragend', function(event){
-      mappin = event.target;
-      var position = mappin.getLatLng();
-      mappin.setLatLng(new latLng(position.lat, position.lng),{draggable:'true'});
-      map1.panTo(new latLng(position.lat, position.lng));
-      map1.setZoom(16);
-      
-      //document.frm_congtrinh.lat.value=position.lat;
-      //document.frm_congtrinh.lon.value=position.lng;
-      
+  zoom2current_location(){
+    /* Khong hiu sao chay duoc :') */
+    var map1=this.window.map1;
+    map1.locate({
+      setView: true,
+      maxZoom: 16
     });
-  }
-
-  t1(){
-    this.t2(99,88);
-  }
-  t2(lat,lon){
-    alert(lat);
   }
   
 
