@@ -35,6 +35,11 @@ export class MapModalPage implements OnInit {
   mappin:any; */
   public window = window;
 
+  toado={
+    gps_lon:null,
+    gps_lat:null
+  }
+
   constructor(private modalController: ModalController,private navParams: NavParams,public http: HttpClient,public plt: Platform,public router: Router, public activatedRoute:ActivatedRoute) {
     this.plt.ready().then(() => {
       this.initMap();
@@ -45,12 +50,16 @@ export class MapModalPage implements OnInit {
     console.table(this.navParams);
     this.modelId = this.navParams.data.paramID;
     this.modalTitle = this.navParams.data.paramTitle;
-    this.gps_lon = this.navParams.data.gps_lon;
-    this.gps_lat = this.navParams.data.gps_lat;
+    window.gps_lon = this.navParams.data.gps_lon;
+    window.gps_lat = this.navParams.data.gps_lat;
   }
 
   async closeModal() {
-    const onClosedData: string = "Wrapped Up!";
+    /* const onClosedData: any = window.gps_lon; */
+    const onClosedData: any = {
+      gps_lon:window.gps_lon,
+      gps_lat:window.gps_lat
+    };
     await this.modalController.dismiss(onClosedData);
   }
 
@@ -100,15 +109,25 @@ export class MapModalPage implements OnInit {
         window.map1.removeLayer(window.mappin);
       }
       window.mappin = marker(e.latlng, {draggable:true}).addTo(window.map1);
-      var coord = e.latlng.toString().split(',');
+      /* var coord = e.latlng.toString().split(',');
       var lat = coord[0].split('(');
-      var lng = coord[1].split(')');
+      var lng = coord[1].split(')'); */
+
+      var position = window.mappin.getLatLng();
+      //gan data cho form
+      window.gps_lon = position.lng;
+      window.gps_lat = position.lat;
+
       window.mappin.on('dragend', function(event){
         window.mappin = event.target;
-        var position = window.mappin.getLatLng();
+        position = window.mappin.getLatLng();
 
         window.mappin.setLatLng(latLng(position.lat, position.lng),{draggable:true});
         window.map1.panTo(latLng(position.lat, position.lng));
+
+        //gan data cho form
+        window.gps_lon = position.lng;
+        window.gps_lat = position.lat;
       });
     }
 
@@ -122,15 +141,24 @@ export class MapModalPage implements OnInit {
         }
 
         window.mappin = marker(e.latlng, {draggable:true}).addTo(window.map1);
-        var coord = e.latlng.toString().split(',');
+        /* var coord = e.latlng.toString().split(',');
         var lat = coord[0].split('(');
-        var lng = coord[1].split(')');
+        var lng = coord[1].split(')'); */
+        var position = window.mappin.getLatLng();
+        //gan data cho form
+        window.gps_lon = position.lng;
+        window.gps_lat = position.lat;
+
         window.mappin.on('dragend', function(event){
           window.mappin = event.target;
-          var position = window.mappin.getLatLng();
+          position = window.mappin.getLatLng();
 
           window.mappin.setLatLng(latLng(position.lat, position.lng),{draggable:true});
           window.map1.panTo(latLng(position.lat, position.lng));
+
+          //gan data cho form
+          window.gps_lon = position.lng;
+          window.gps_lat = position.lat;
         });
       });
 

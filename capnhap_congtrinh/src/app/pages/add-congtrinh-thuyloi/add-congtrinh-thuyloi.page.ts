@@ -78,6 +78,9 @@ export class AddCongtrinhThuyloiPage implements OnInit {
       if (dataReturned !== null) {
         this.dataReturned = dataReturned.data;
         //alert('Modal Sent Data :'+ dataReturned);
+        this.congtrinh_dap['x']=this.dataReturned.gps_lon;
+        this.congtrinh_dap['y']=this.dataReturned.gps_lat;
+        console.log(this.dataReturned);
       }
     });
  
