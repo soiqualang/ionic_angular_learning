@@ -61,8 +61,7 @@ export class MapModalPage implements OnInit {
       document.getElementById('map').innerHTML = "";
     } */
     this.window.haha='hahahahahaha';
-    var map1=map('map').setView([10.147,106.437], 9);
-    this.window.map1=map1;
+    window.map1=map('map').setView([10.147,106.437], 9);
 
     var mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
         
@@ -73,7 +72,7 @@ export class MapModalPage implements OnInit {
             /* attribution: 'Mapbox contributors' */
         }
     );
-    map1.addLayer(mapboxlayer);
+    window.map1.addLayer(mapboxlayer);
 
     var vetinhmap = tileLayer('http://mt0.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
       maxZoom: 18,
@@ -85,53 +84,53 @@ export class MapModalPage implements OnInit {
       "OpenStreetMap": mapboxlayer
     };
 
-    control.layers(baseMaps).addTo(map1);
+    control.layers(baseMaps).addTo(window.map1);
 
 
-    var mappin='';
+    window.mappin='';
     //Zoom to current location
-    map1.locate({
+    window.map1.locate({
       setView: true,
       maxZoom: 16
     });
 
     function onLocationFound(e) {
       var radius = e.accuracy / 2;
-      if(mappin!=''){
-        map1.removeLayer(mappin);
+      if(window.mappin!=''){
+        window.map1.removeLayer(window.mappin);
       }
-      mappin = marker(e.latlng, {draggable:'true'}).addTo(map1);
+      window.mappin = marker(e.latlng, {draggable:'true'}).addTo(window.map1);
       var coord = e.latlng.toString().split(',');
       var lat = coord[0].split('(');
       var lng = coord[1].split(')');
-      mappin.on('dragend', function(event){
-        mappin = event.target;
-        var position = mappin.getLatLng();
+      window.mappin.on('dragend', function(event){
+        window.mappin = event.target;
+        var position = window.mappin.getLatLng();
 
-        mappin.setLatLng(latLng(position.lat, position.lng),{draggable:'true'});
-        map1.panTo(latLng(position.lat, position.lng));
+        window.mappin.setLatLng(latLng(position.lat, position.lng),{draggable:'true'});
+        window.map1.panTo(latLng(position.lat, position.lng));
       });
     }
 
-    map1.on('locationfound', onLocationFound);
+    window.map1.on('locationfound', onLocationFound);
 
     /* ======================= */
 
-    map1.on('click', function(e){
-        if(mappin!=''){
-          map1.removeLayer(mappin);
+    window.map1.on('click', function(e){
+        if(window.mappin!=''){
+          window.map1.removeLayer(window.mappin);
         }
 
-        mappin = marker(e.latlng, {draggable:'true'}).addTo(map1);
+        window.mappin = marker(e.latlng, {draggable:'true'}).addTo(window.map1);
         var coord = e.latlng.toString().split(',');
         var lat = coord[0].split('(');
         var lng = coord[1].split(')');
-        mappin.on('dragend', function(event){
-          mappin = event.target;
-          var position = mappin.getLatLng();
+        window.mappin.on('dragend', function(event){
+          window.mappin = event.target;
+          var position = window.mappin.getLatLng();
 
-          mappin.setLatLng(latLng(position.lat, position.lng),{draggable:'true'});
-          map1.panTo(latLng(position.lat, position.lng));
+          window.mappin.setLatLng(latLng(position.lat, position.lng),{draggable:'true'});
+          window.map1.panTo(latLng(position.lat, position.lng));
         });
       });
 
@@ -142,8 +141,7 @@ export class MapModalPage implements OnInit {
 
   zoom2current_location(){
     /* Khong hiu sao chay duoc :') */
-    var map1=this.window.map1;
-    map1.locate({
+    window.map1.locate({
       setView: true,
       maxZoom: 16
     });
