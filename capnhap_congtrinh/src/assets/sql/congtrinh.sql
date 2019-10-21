@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "dap_hientrang_point" (
-  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "id" text NOT NULL PRIMARY KEY,
   "ten_dap" text NULL,
   "ma_loai" text NULL,
   "x" real NULL,

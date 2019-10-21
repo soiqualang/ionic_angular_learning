@@ -62,11 +62,11 @@
 
 
   <!-- <p *ngIf="dataReturned">{{dataReturned}}</p> -->
-  
+  <!-- Toa do -->
   <ion-card class="welcome-card">
     <!-- <img src="/assets/motorbike.jpg" alt="" /> -->
     <ion-card-header>
-      <ion-card-subtitle>Vị trí <span *ngIf="locationCoords.accuracy">(Acc: {{locationCoords.accuracy}})</span></ion-card-subtitle>
+      <ion-card-subtitle>Vị trí <span *ngIf="locationCoords.accuracy">(Acc: {{locationCoords.accuracy/2}})</span></ion-card-subtitle>
       <!-- <ion-card-title>Vị trí</ion-card-title> -->
     </ion-card-header>
     <ion-card-content>      
@@ -81,6 +81,17 @@
         <!-- <ion-button fill="outline" slot="end">Open MAP</ion-button> -->
       </ion-item>
     </ion-card-content>
+  </ion-card>
+
+  <!-- hinh anh -->
+  {{congtrinh_dapId}}|{{hinhanh.len}}
+  <ion-card class="welcome-card" (click)="db.go2page('hinhanh-congtrinh/dap_hientrang_point/'+congtrinh_dapId)">
+    <ion-img *ngIf="hinhanh.len != 0" [src]="hinhanh.img"></ion-img>
+    <ion-img *ngIf="hinhanh.len == 0" src="/assets/img/noimg.png"></ion-img>
+    <ion-card-header>
+      <ion-card-subtitle *ngIf="hinhanh.len != 0">{{hinhanh.takedate}} | Còn {{hinhanh.len-1}} hình nữa.</ion-card-subtitle>
+      <ion-card-subtitle *ngIf="hinhanh.len == 0">Chọn hình ảnh</ion-card-subtitle>
+    </ion-card-header>
   </ion-card>
   
   <!-- <ion-item>

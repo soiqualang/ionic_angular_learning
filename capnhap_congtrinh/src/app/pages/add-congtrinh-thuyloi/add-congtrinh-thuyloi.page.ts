@@ -11,6 +11,9 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 
+/* Photo service */
+import { PhotoService } from 'src/app/services/photo.service';
+
 
 @Component({
   selector: 'app-add-congtrinh-thuyloi',
@@ -25,8 +28,18 @@ export class AddCongtrinhThuyloiPage implements OnInit {
 
   locationCoords: any;
   timetest: any;
+  congtrinh_dapId:any;
+  tbl_name='dap_hientrang_point';
+  hinhanh={
+    id: null,
+    img: null,
+    takedate: null,
+    id_congtrinh: null,
+    tbl_name: null,
+    len: 0
+  }
 
-  constructor(public db: DatabaseService, private toast: ToastController,private modalController: ModalController,public androidPermissions:AndroidPermissions,public locationAccuracy:LocationAccuracy,public geolocation: Geolocation) {
+  constructor(public db: DatabaseService, private toast: ToastController,private modalController: ModalController,public androidPermissions:AndroidPermissions,public locationAccuracy:LocationAccuracy,public geolocation: Geolocation,public photoService: PhotoService) {
     this.locationCoords = {
       latitude: "",
       longitude: "",
@@ -39,14 +52,21 @@ export class AddCongtrinhThuyloiPage implements OnInit {
   ngOnInit() {
     this.db.getDatabaseState().subscribe(rdy => {
       if (rdy) {
-        
+        this.congtrinh_dapId=this.db.makefid();
+        this.db.table_to_array_2dk('hinhanh','id_congtrinh',this.congtrinh_dapId,'tbl_name',this.tbl_name).then(data => {        
+          let len=data.rows.length;
+          this.hinhanh.img=data.rows.item(len-1).img;
+          this.hinhanh.takedate=data.rows.item(len-1).takedate;
+          this.hinhanh.len=len;
+          console.log(data.rows.length);
+        });
       }
     });
   }
 
   insert_table() {
-    let value=[this.congtrinh_dap['ten_dap'],this.congtrinh_dap['ma_loai'],this.congtrinh_dap['x'],this.congtrinh_dap['y'],this.congtrinh_dap['wkt']];
-    let field=['ten_dap','ma_loai','x','y','wkt'];
+    let value=[this.congtrinh_dapId,this.congtrinh_dap['ten_dap'],this.congtrinh_dap['ma_loai'],this.congtrinh_dap['x'],this.congtrinh_dap['y'],this.congtrinh_dap['wkt']];
+    let field=['id','ten_dap','ma_loai','x','y','wkt'];
     this.db.insert_table('dap_hientrang_point',field,value)
     .then(async (res) => {
       //Sau khi insert thi lam rong mang congtrinh_dap de nhan gia tri nguoi dung nhap vao

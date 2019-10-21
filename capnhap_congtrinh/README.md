@@ -476,6 +476,51 @@ là `latLng` not latlng hay LatLng hay Latlng =))
 
 Fab button lại làm bản đồ không hiện full page @@!
 
+
+## Delare global window variable
+
+```ts
+...
+import { Platform } from '@ionic/angular';
+import { Router,ActivatedRoute } from '@angular/router';
+
+declare var window;
+
+@Component({
+  selector: 'app-map-modal',
+  templateUrl: './map-modal.page.html',
+  styleUrls: ['./map-modal.page.scss'],
+})
+...
+export class MapModalPage implements OnInit {
+  ...
+  public window = window;
+  ...
+  function(){
+    window.haha='hahahahaha';
+  }
+
+```
+
+## MD5 encypt
+
+`npm install ts-md5 --save`
+
+```ts
+makefid(){
+  let ran_num=Math.random().toString();
+  let cur_date=new Date().toISOString();
+  let hash=Md5.hashStr(ran_num+cur_date);
+  //alert(hash);
+}
+```
+
+## Lưu ảnh tức thời
+
+Tạo thêm cột `fid` là mã md5 hash
+
+Khi lưu ảnh thì lưu vào quan hệ `fid_congtrinh`
+
 ## Preferences
 
 > Icon

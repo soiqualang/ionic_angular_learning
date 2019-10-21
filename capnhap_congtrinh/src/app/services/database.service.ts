@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
+import {Md5} from 'ts-md5/dist/md5';
 
 /* SQLite */
 import { Platform } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { BehaviorSubject, Observable } from 'rxjs';
+
+import { ActivatedRoute, Router } from '@angular/router';
 
 /* import { DapHientrangPointService  } from 'src/app/services/dap-hientrang-point.service'; */
 
@@ -42,7 +45,7 @@ export class DatabaseService {
   congtrinh_dap_arr = new BehaviorSubject([]);
   hinhanh_arr = new BehaviorSubject([]);
 
-  constructor(public plt: Platform, public sqlite: SQLite, public http: HttpClient) {
+  constructor(public plt: Platform, public sqlite: SQLite, public http: HttpClient,private route: ActivatedRoute,private router: Router) {
     this.plt.ready().then(() => {
       this.createDB();
     }).catch(error => {
@@ -266,6 +269,18 @@ export class DatabaseService {
   delete(table,where,id) {
     return this.database.executeSql('DELETE FROM '+table+' WHERE '+where+' = ?', [id]).then(_ => {
     });
+  }
+
+  makefid(){
+    let ran_num=Math.random().toString();
+    let cur_date=new Date().toISOString();
+    let hash=Md5.hashStr(ran_num+cur_date);
+    //alert(hash);
+    return hash;
+  }
+
+  go2page(page) {
+    this.router.navigateByUrl('/'+page);
   }
  
 
