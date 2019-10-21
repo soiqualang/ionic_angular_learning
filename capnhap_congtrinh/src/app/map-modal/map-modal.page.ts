@@ -99,7 +99,7 @@ export class MapModalPage implements OnInit {
       if(window.mappin!=''){
         window.map1.removeLayer(window.mappin);
       }
-      window.mappin = marker(e.latlng, {draggable:'true'}).addTo(window.map1);
+      window.mappin = marker(e.latlng, {draggable:true}).addTo(window.map1);
       var coord = e.latlng.toString().split(',');
       var lat = coord[0].split('(');
       var lng = coord[1].split(')');
@@ -107,7 +107,7 @@ export class MapModalPage implements OnInit {
         window.mappin = event.target;
         var position = window.mappin.getLatLng();
 
-        window.mappin.setLatLng(latLng(position.lat, position.lng),{draggable:'true'});
+        window.mappin.setLatLng(latLng(position.lat, position.lng),{draggable:true});
         window.map1.panTo(latLng(position.lat, position.lng));
       });
     }
@@ -121,7 +121,7 @@ export class MapModalPage implements OnInit {
           window.map1.removeLayer(window.mappin);
         }
 
-        window.mappin = marker(e.latlng, {draggable:'true'}).addTo(window.map1);
+        window.mappin = marker(e.latlng, {draggable:true}).addTo(window.map1);
         var coord = e.latlng.toString().split(',');
         var lat = coord[0].split('(');
         var lng = coord[1].split(')');
@@ -129,7 +129,7 @@ export class MapModalPage implements OnInit {
           window.mappin = event.target;
           var position = window.mappin.getLatLng();
 
-          window.mappin.setLatLng(latLng(position.lat, position.lng),{draggable:'true'});
+          window.mappin.setLatLng(latLng(position.lat, position.lng),{draggable:true});
           window.map1.panTo(latLng(position.lat, position.lng));
         });
       });
