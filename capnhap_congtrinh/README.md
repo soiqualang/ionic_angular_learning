@@ -68,7 +68,6 @@ Add `id` parameter
 * QGIS Make `wkt` column
 * Export to SQLite with srid=4326
 * Adminer open Sqlite DB, remove geomerty column, ogc_id
-* Make `id` as `auto increment` (AI) column
 * Export to `sql file`
 
 > `SQL file` exported from Adminer
@@ -78,6 +77,7 @@ Add `id` parameter
 * Remove Delete, Truncate command
 * Replace `CREATE TABLE` with `CREATE TABLE IF NOT EXISTS`
 * Replace `INSERT INTO` with `INSERT or IGNORE INTO`
+* Make id as text (do id duoc tao truoc khi luu (tu ham tao ma md5 hash) de co the luu hinh anh ngay luc nhap cong trinh)
 
 ## Config
 

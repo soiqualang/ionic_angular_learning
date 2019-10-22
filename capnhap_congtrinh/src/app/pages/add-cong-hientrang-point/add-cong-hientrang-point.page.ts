@@ -79,8 +79,8 @@ export class AddCongHientrangPointPage implements OnInit {
   }
 
   insert_table() {
-    let value=[this.fid,this.congtrinh_cong['ghichu_ten'],this.congtrinh_cong['maso_cong'],this.congtrinh_cong['x'],this.congtrinh_cong['y'],this.congtrinh_cong['wkt']];
-    let field=['id','ghichu_ten','maso_cong','x','y','wkt'];
+    let value=[this.fid,this.congtrinh_cong['ghichu_ten'],this.congtrinh_cong['maso_cong'],this.congtrinh_cong['ghichu_kiemtra'],this.congtrinh_cong['x'],this.congtrinh_cong['y'],this.congtrinh_cong['wkt']];
+    let field=['id','ghichu_ten','maso_cong','ghichu_kiemtra','x','y','wkt'];
     this.db.insert_table('cong_hientrang_point',field,value)
     .then(async (res) => {
       //Sau khi insert thi lam rong mang congtrinh_cong de nhan gia tri nguoi dung nhap vao

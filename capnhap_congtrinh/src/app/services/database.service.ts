@@ -24,6 +24,7 @@ export interface cong_hientrang_point {
   id: number,
   ghichu_ten: string,
   maso_cong: string,
+  ghichu_kiemtra: string,
   x: number,
   y: number,
   wkt: string
