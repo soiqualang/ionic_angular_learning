@@ -22,13 +22,23 @@ export class AppComponent {
       icon: 'list'
     } */,
     {
-      title: 'Công trình đập',
+      title: 'Danh sách đập',
       url: '/list-congtrinh-thuyloi',
       icon: 'list'
     },
     {
       title: 'Thêm đập',
       url: '/add-congtrinh-thuyloi',
+      icon: 'add-circle'
+    },
+    {
+      title: 'Danh sách cống',
+      url: '/list-cong-hientrang-point',
+      icon: 'list'
+    },
+    {
+      title: 'Thêm cống',
+      url: '/add-cong-hientrang-point',
       icon: 'add-circle'
     }
   ];

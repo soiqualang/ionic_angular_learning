@@ -19,7 +19,10 @@ const routes: Routes = [
   { path: 'list-congtrinh-thuyloi/:id', loadChildren: './pages/view-congtrinh-thuyloi/view-congtrinh-thuyloi.module#ViewCongtrinhThuyloiPageModule' },
   { path: 'add-congtrinh-thuyloi', loadChildren: './pages/add-congtrinh-thuyloi/add-congtrinh-thuyloi.module#AddCongtrinhThuyloiPageModule' },
   { path: 'hinhanh-congtrinh/:tbl_name/:id_congtrinh', loadChildren: './pages/hinhanh-congtrinh/hinhanh-congtrinh.module#HinhanhCongtrinhPageModule' },
-  { path: 'map-modal', loadChildren: './map-modal/map-modal.module#MapModalPageModule' }
+  { path: 'map-modal', loadChildren: './map-modal/map-modal.module#MapModalPageModule' },
+  { path: 'list-cong-hientrang-point', loadChildren: './pages/list-cong-hientrang-point/list-cong-hientrang-point.module#ListCongHientrangPointPageModule' },
+  { path: 'list-cong-hientrang-point/:id', loadChildren: './pages/view-cong-hientrang-point/view-cong-hientrang-point.module#ViewCongHientrangPointPageModule' },
+  { path: 'add-cong-hientrang-point', loadChildren: './pages/add-cong-hientrang-point/add-cong-hientrang-point.module#AddCongHientrangPointPageModule' }
 ];
 
 @NgModule({
