@@ -41,6 +41,9 @@ add `<script src="cordova.js"></script>` to `index.html`
 
 `ionic serve --devapp`
 
+`ionic cordova run android -l -c`
+
+
 > http://192.168.11.129:8100
 
 ## Add pages
