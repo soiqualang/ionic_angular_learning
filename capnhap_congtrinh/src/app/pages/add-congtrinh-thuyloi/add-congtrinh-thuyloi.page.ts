@@ -81,6 +81,9 @@ export class AddCongtrinhThuyloiPage implements OnInit {
       toast.present();
       this.congtrinh_dap = {};
       this.tmp={};
+      this.imgarr_len=0;
+      this.first_img=null;
+      this.img_takedate=null;
     });
   }
 

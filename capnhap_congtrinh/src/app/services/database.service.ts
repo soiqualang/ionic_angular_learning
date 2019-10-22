@@ -20,6 +20,15 @@ export interface dap_hientrang_point {
   wkt: string
 }
 
+export interface cong_hientrang_point {
+  id: number,
+  ghichu_ten: string,
+  maso_cong: string,
+  x: number,
+  y: number,
+  wkt: string
+}
+
 export interface hinhanh {
   id: number,
   img: string,
@@ -43,6 +52,7 @@ export class DatabaseService {
   public dbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   congtrinh_dap_arr = new BehaviorSubject([]);
+  congtrinh_cong_arr = new BehaviorSubject([]);
   hinhanh_arr = new BehaviorSubject([]);
 
   constructor(public plt: Platform, public sqlite: SQLite, public http: HttpClient,private route: ActivatedRoute,private router: Router) {
@@ -80,8 +90,9 @@ export class DatabaseService {
     }
     //console.log(queries[1]);
     //this.getTable('select ten_vi from vn_tinh');
-    this.loaddap_hientrang_point();   
-    this.loadhinhanh(); 
+    this.loaddap_hientrang_point();
+    this.loadhinhanh();
+    this.loadcong_hientrang_point();
     this.dbReady.next(true);
   }
 
@@ -128,7 +139,7 @@ export class DatabaseService {
   }
 
   loaddap_hientrang_point(){
-    return this.table_to_array1('dap_hientrang_point').then(data => {
+    return this.table_to_array_order('dap_hientrang_point','ten_dap','ASC').then(data => {
       let congtrinh_dap_arr: dap_hientrang_point[] = [];
       if (data.rows.length > 0) {
         for (let i = 0; i < data.rows.length; i++) {
@@ -136,6 +147,27 @@ export class DatabaseService {
         }
       }
       this.congtrinh_dap_arr.next(congtrinh_dap_arr);
+    });
+  }
+
+  /* 
+  cong_hientrang_point 
+  */
+  
+  getcong_hientrang_point(): Observable<cong_hientrang_point[]> {
+  return this.congtrinh_cong_arr.asObservable();
+  }
+
+  loadcong_hientrang_point(){
+    return this.table_to_array_order('cong_hientrang_point','ghichu_ten','ASC').then(data => {
+      let congtrinh_cong_arr: cong_hientrang_point[] = [];
+      //alert(data.rows.length);
+      if (data.rows.length > 0) {
+        for (let i = 0; i < data.rows.length; i++) {
+          congtrinh_cong_arr.push(data.rows.item(i));
+        }
+      }
+      this.congtrinh_cong_arr.next(congtrinh_cong_arr);
     });
   }
 
@@ -197,6 +229,12 @@ export class DatabaseService {
 
   table_to_array1(table){
     return this.database.executeSql('SELECT * FROM '+table, []).then(data => {
+      return data;
+    });
+  }
+
+  table_to_array_order(table,orcol='id',opt='ASC'){
+    return this.database.executeSql('SELECT * FROM '+table+' ORDER BY '+orcol+' '+opt+'', []).then(data => {
       return data;
     });
   }

@@ -1,9 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>list_cong_hientrang_point</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Danh sách cống
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-item button *ngFor="let item of cong_hientrang_point" [routerLink]="['/', 'list-cong-hientrang-point', item.id]">
+      <ion-icon name="arrow-dropright" slot="start"></ion-icon>
+      {{item.ghichu_ten}}
+      <div class="item-note" slot="end">
+        {{item.maso_cong}}
+      </div>
+    </ion-item>
+  </ion-list>
 
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/', 'add-cong-hientrang-point']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

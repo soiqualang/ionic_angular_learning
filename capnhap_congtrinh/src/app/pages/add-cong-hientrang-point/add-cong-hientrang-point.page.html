@@ -1,9 +1,64 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>add_cong_hientrang_point</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Thêm cống</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+  <ion-input hidden [(ngModel)]="congtrinh_cong.id" placeholder="ID"></ion-input>
+  <ion-item>
+    <ion-label position="stacked">Tên cống</ion-label>
+    <ion-input [(ngModel)]="congtrinh_cong.ghichu_ten" placeholder="Tên cống"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label position="stacked">Mã số</ion-label>
+    <ion-input [(ngModel)]="congtrinh_cong.maso_cong" placeholder="Mã số"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Lon</ion-label>
+    <ion-input [(ngModel)]="congtrinh_cong.x" placeholder="Lon"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label position="stacked">Lat</ion-label>
+    <ion-input [(ngModel)]="congtrinh_cong.y" placeholder="Lat"></ion-input>
+  </ion-item>
+
+  <!-- Toa do -->
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-card-subtitle>Vị trí <span *ngIf="locationCoords.accuracy">(Acc: {{locationCoords.accuracy/2}})</span></ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>      
+      <ion-item button (click)="checkGPSPermission()">
+        <ion-icon name="locate" slot="start"></ion-icon>
+        <ion-label>Lấy tọa độ vị trí</ion-label>
+      </ion-item>
+      <ion-item button (click)="openModal()">
+        <ion-icon name="map" slot="start"></ion-icon>
+        <ion-label>Mở bản đồ</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="welcome-card" (click)="db.go2page('hinhanh-congtrinh/cong_hientrang_point/'+fid)">
+    <ion-img *ngIf="imgarr_len != 0" [src]="first_img"></ion-img>
+    <ion-img *ngIf="imgarr_len == 0" src="/assets/img/noimg.png"></ion-img>
+    <ion-card-header>
+      <ion-card-subtitle *ngIf="imgarr_len != 0">{{img_takedate}} | Còn {{imgarr_len-1}} hình nữa.</ion-card-subtitle>
+      <ion-card-subtitle *ngIf="imgarr_len == 0">Chọn hình ảnh</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-button fill="clear" expand="full" color="light" (click)="insert_table()">Thêm thông tin</ion-button>
+  </ion-toolbar>
+</ion-footer>
