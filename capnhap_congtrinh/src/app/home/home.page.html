@@ -10,31 +10,44 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <h3 *ngIf="photoService.photos.length == 0" class="ion-text-center">Please Select Image!</h3>
- 
-  <ion-list>
-    <ion-item *ngFor="let photo of photoService.photos; index as pos" class="ion-text-wrap">
-      <ion-thumbnail slot="start">
-        <ion-img [src]="photo.data"></ion-img>
-      </ion-thumbnail>
-      <ion-label>
-        hahahahahaha
-      </ion-label>
-      <ion-button slot="end" fill="clear" (click)="startUpload(photo)">
-        <ion-icon slot="icon-only" name="cloud-upload"></ion-icon>
-      </ion-button>
-      <ion-button slot="end" fill="clear" (click)="deleteImage(photo, pos)">
-        <ion-icon slot="icon-only" name="trash"></ion-icon>
-      </ion-button>
-    </ion-item>
-  </ion-list>
+  <ion-card class="welcome-card">
+    <img src="/assets/img/dapnuoc.jpg" alt="" />
+    <ion-card-header>
+      <ion-card-subtitle>Truy cập nhanh</ion-card-subtitle>
+      <ion-card-title>Công trình đập</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>      
+      <ion-item button (click)="db.go2page('list-congtrinh-thuyloi')">
+        <ion-icon name="list" slot="start"></ion-icon>
+        <ion-label>Danh sách đập</ion-label>
+        <ion-button fill="outline" slot="end">Xem</ion-button>
+      </ion-item>
+      <ion-item button (click)="db.go2page('add-congtrinh-thuyloi')">
+        <ion-icon name="add-circle" slot="start"></ion-icon>
+        <ion-label>Thêm đập</ion-label>
+        <ion-button fill="outline" slot="end">Thêm</ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="welcome-card">
+      <img src="/assets/img/congnuoc.jpg" alt="" />
+      <ion-card-header>
+        <ion-card-subtitle>Truy cập nhanh</ion-card-subtitle>
+        <ion-card-title>Công trình cống</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>      
+        <ion-item button (click)="db.go2page('list-congtrinh-thuyloi')">
+          <ion-icon name="list" slot="start"></ion-icon>
+          <ion-label>Danh sách cống</ion-label>
+          <ion-button fill="outline" slot="end">Xem</ion-button>
+        </ion-item>
+        <ion-item button (click)="db.go2page('add-congtrinh-thuyloi')">
+          <ion-icon name="add-circle" slot="start"></ion-icon>
+          <ion-label>Thêm cống</ion-label>
+          <ion-button fill="outline" slot="end">Thêm</ion-button>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
 </ion-content>
  
-<ion-footer>
-  <ion-toolbar color="primary">
-    <ion-button fill="clear" expand="full" color="light" (click)="photoService.selectImage()">
-      <ion-icon slot="start" name="camera"></ion-icon>
-      Select Image
-    </ion-button>
-  </ion-toolbar>
-</ion-footer>

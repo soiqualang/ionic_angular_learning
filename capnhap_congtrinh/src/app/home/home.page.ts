@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PhotoService } from '../services/photo.service';
+import { DatabaseService } from 'src/app/services/database.service';
  
 @Component({
   selector: 'app-home',
@@ -9,6 +9,6 @@ import { PhotoService } from '../services/photo.service';
 
 export class HomePage {
 
-  constructor(public photoService: PhotoService) {}
+  constructor(public db: DatabaseService) {}
 
 }

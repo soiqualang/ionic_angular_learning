@@ -12,6 +12,10 @@ import { PhotoService } from 'src/app/services/photo.service';
 import { ModalController } from '@ionic/angular';
 import { MapModalPage } from 'src/app/map-modal/map-modal.page';
 
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+
 
 @Component({
   selector: 'app-view-congtrinh-thuyloi',
@@ -43,63 +47,32 @@ export class ViewCongtrinhThuyloiPage implements OnInit {
   imgarr_len:any;
   first_img:any;
   img_takedate:any;
+
+  locationCoords: any;
+  timetest: any;
+  congtrinh_dap = {};
   
 
-  constructor(private route: ActivatedRoute, public db: DatabaseService, private router: Router, private toast: ToastController,public photoService: PhotoService,private modalController: ModalController) { }
+  constructor(private route: ActivatedRoute, public db: DatabaseService, private router: Router, private toast: ToastController,public photoService: PhotoService,private modalController: ModalController,public androidPermissions:AndroidPermissions,public locationAccuracy:LocationAccuracy,public geolocation: Geolocation) {
+    this.locationCoords = {
+      latitude: "",
+      longitude: "",
+      accuracy: "",
+      timestamp: ""
+    }
+    this.timetest = Date.now();
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       //let congtrinh_dapId = params.get('id');
       this.congtrinh_dapId = params.get('id');
 
-      //this.firstphoto=this.photoService.photos[1].data;
-
-      //console.log(this.congtrinh_dapId);
- 
-      /* this.db.getcongtrinh_dap(this.congtrinh_dapId).then(data => {
-        this.dap_hientrang_point = data;
-        //console.log(this.dap_hientrang_point);
-      }); */
-
       this.db.table_to_arraywhere(this.tbl_name,'id',this.congtrinh_dapId).then(data => {
         this.dap_hientrang_point = data.rows.item(0);
-        /* this.dap_hientrang_point = {
-          id: data.rows.item(0).id,
-          ten_dap: data.rows.item(0).ten_dap, 
-          ma_loai: data.rows.item(0).ma_loai, 
-          x: data.rows.item(0).x, 
-          y: data.rows.item(0).y, 
-          wkt: data.rows.item(0).wkt
-        }; */
-        //console.log(this.dap_hientrang_point);
-        //console.log(data);
-      });
-      
-      /* this.db.table_to_arraywhere('hinhanh','id_congtrinh',this.congtrinh_dapId).then(data => {        
-        let len=data.rows.length;
-        this.hinhanh.img=data.rows.item(len-1).img;
-        this.hinhanh.takedate=data.rows.item(len-1).takedate;
-        this.hinhanh.len=len;
-        console.log(data.rows.length);
-      }); */
-
-      /* this.db.table_to_array_2dk('hinhanh','id_congtrinh',this.congtrinh_dapId,'tbl_name',this.tbl_name).then(data => {        
-        let len=data.rows.length;
-        this.hinhanh.img=data.rows.item(len-1).img;
-        this.hinhanh.takedate=data.rows.item(len-1).takedate;
-        this.hinhanh.len=len;
-        console.log(data.rows.length);
-      }); */
+        
+      });      
       this.reloadHinhanh(this.congtrinh_dapId,this.tbl_name);
-
-      /* let sql='SELECT * FROM hinhanh WHERE id_congtrinh='+this.congtrinh_dapId+' AND tbl_name=\''+this.tbl_name+'\'';
-      this.db.runSQL(sql).then(data => {
-        let len=data.rows.length;
-        this.hinhanh.img=data.rows.item(len-1).img;
-        this.hinhanh.takedate=data.rows.item(len-1).takedate;
-        this.hinhanh.len=len;
-        console.log(data.rows.length);
-      }); */
     });
   }
 
@@ -124,16 +97,12 @@ export class ViewCongtrinhThuyloiPage implements OnInit {
   }
 
   update_table(){
-    /* this.db.updatecongtrinh_dap(this.dap_hientrang_point).then(async (res) => {
-      let toast = await this.toast.create({
-        message: 'Đập '+this.dap_hientrang_point.ten_dap+' đã được cập nhật',
-        duration: 3000
-      });
-      toast.present();
-    }); */
 
-    let value=[this.dap_hientrang_point.ten_dap,this.dap_hientrang_point.ma_loai,this.dap_hientrang_point.x,this.dap_hientrang_point.y,this.dap_hientrang_point.wkt];
-    let field=['ten_dap','ma_loai','x','y','wkt'];
+    /* let value=[this.dap_hientrang_point.ten_dap,this.dap_hientrang_point.ma_loai,this.dap_hientrang_point.x,this.dap_hientrang_point.y,this.dap_hientrang_point.wkt];
+    let field=['ten_dap','ma_loai','x','y','wkt']; */
+
+    let value=[this.dap_hientrang_point.ten_dap,this.dap_hientrang_point.ma_loai,this.dap_hientrang_point.x,this.dap_hientrang_point.y];
+    let field=['ten_dap','ma_loai','x','y'];
 
     this.db.update_table(this.tbl_name,field,value,'id',this.dap_hientrang_point.id).then(async (res) => {
       this.db.loaddap_hientrang_point();
@@ -167,7 +136,9 @@ export class ViewCongtrinhThuyloiPage implements OnInit {
       component: MapModalPage,
       componentProps: {
         "paramID": 123,
-        "paramTitle": "Test Title"
+        "paramTitle": "Bản đồ",
+        "gps_lon":9999,
+        "gps_lat":8888
       }
     });
  
@@ -175,10 +146,85 @@ export class ViewCongtrinhThuyloiPage implements OnInit {
       if (dataReturned !== null) {
         this.dataReturned = dataReturned.data;
         //alert('Modal Sent Data :'+ dataReturned);
+        this.congtrinh_dap['x']=this.dataReturned.gps_lon;
+        this.congtrinh_dap['y']=this.dataReturned.gps_lat;
+
+        this.dap_hientrang_point.x=this.dataReturned.gps_lon;
+        this.dap_hientrang_point.y=this.dataReturned.gps_lat;
+        console.log(this.dataReturned);
       }
     });
  
     return await modal.present();
+  }
+
+  /* Geolocation */
+  //Check if application having GPS access permission  
+  checkGPSPermission() {
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION).then(
+      result => {
+        if (result.hasPermission) {
+ 
+          //If having permission show 'Turn On GPS' dialogue
+          this.askToTurnOnGPS();
+        } else {
+ 
+          //If not having permission ask for permission
+          this.requestGPSPermission();
+        }
+      },
+      err => {
+        alert(err);
+      }
+    );
+  }
+ 
+  requestGPSPermission() {
+    this.locationAccuracy.canRequest().then((canRequest: boolean) => {
+      if (canRequest) {
+        console.log("4");
+      } else {
+        //Show 'GPS Permission Request' dialogue
+        this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION)
+          .then(
+            () => {
+              // call method to turn on GPS
+              this.askToTurnOnGPS();
+            },
+            error => {
+              //Show alert if user click on 'No Thanks'
+              alert('requestPermission Error requesting location permissions ' + error)
+            }
+          );
+      }
+    });
+  }
+ 
+  askToTurnOnGPS() {
+    this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+      () => {
+        // When GPS Turned ON call method to get Accurate location coordinates
+        this.getLocationCoordinates()
+      },
+      error => alert('Error requesting location permissions ' + JSON.stringify(error))
+    );
+  }
+ 
+  // Methos to get device accurate coordinates using device GPS
+  getLocationCoordinates() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.locationCoords.latitude = resp.coords.latitude;
+      this.locationCoords.longitude = resp.coords.longitude;
+      this.locationCoords.accuracy = resp.coords.accuracy;
+      this.locationCoords.timestamp = resp.timestamp;
+      this.congtrinh_dap['x']=resp.coords.longitude;
+      this.congtrinh_dap['y']=resp.coords.latitude;
+
+      this.dap_hientrang_point.x=resp.coords.longitude;
+      this.dap_hientrang_point.y=resp.coords.latitude;
+    }).catch((error) => {
+      alert('Error getting location' + error);
+    });
   }
 
 }

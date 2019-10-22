@@ -61,6 +61,7 @@ export class AddCongtrinhThuyloiPage implements OnInit {
     });
   }
 
+  /* call function after click back */
   ionViewDidEnter() {
     this.reloadHinhanh(this.congtrinh_dapId,this.tbl_name);
   }

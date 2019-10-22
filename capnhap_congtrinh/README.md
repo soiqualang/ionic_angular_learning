@@ -524,6 +524,17 @@ Tạo thêm cột `fid` là mã md5 hash
 
 Khi lưu ảnh thì lưu vào quan hệ `fid_congtrinh`
 
+## Generated back button click event
+
+Sự kiện khi click back
+
+```ts
+ionViewDidEnter() {
+    this.reloadHinhanh(this.congtrinh_dapId,this.tbl_name);
+  }
+```
+
+
 ## Preferences
 
 > Icon

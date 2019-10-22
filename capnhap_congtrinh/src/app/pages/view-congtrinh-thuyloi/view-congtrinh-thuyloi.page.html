@@ -43,49 +43,38 @@
         <ion-input [(ngModel)]="dap_hientrang_point.y" placeholder="Lat"></ion-input>
       </ion-item>
       
-      <ion-item>
+      <!-- <ion-item>
         <ion-label position="stacked">Well-known text</ion-label>
         <ion-input [(ngModel)]="dap_hientrang_point.wkt" placeholder="Well-known text"></ion-input>
-      </ion-item>
-      <!-- <ion-item>
-        <ion-label position="stacked">Hình ảnh</ion-label>
-        <ion-input [(ngModel)]="developer.img" placeholder="https://..."></ion-input>
       </ion-item> -->
-      <!-- <ion-button expand="block" (click)="update_table()">Cập nhật thông tin</ion-button> -->
     </div>
 
-    <!-- <ion-card class="welcome-card" *ngIf="firstphoto"> -->
     <ion-card class="welcome-card" (click)="go2page('hinhanh-congtrinh/dap_hientrang_point/'+congtrinh_dapId)">
-      <!-- <img src="/assets/shapes.svg" alt="" /> -->
-      <!-- <ion-img [src]="firstphoto"></ion-img> -->
-      <!-- <ion-img [src]="photoService.photos[0].data"></ion-img> -->
-      <!-- <ion-img *ngIf="photoService.photos; else defaul_img" [src]="photoService.photos[0].data"></ion-img>
-      <img #defaul_img src="/assets/img/noimg.png" alt="" /> -->
       <ion-img *ngIf="imgarr_len != 0" [src]="first_img"></ion-img>
       <ion-img *ngIf="imgarr_len == 0" src="/assets/img/noimg.png"></ion-img>
       <ion-card-header>
         <ion-card-subtitle *ngIf="imgarr_len != 0">{{img_takedate}} | Còn {{imgarr_len-1}} hình nữa.</ion-card-subtitle>
         <ion-card-subtitle *ngIf="imgarr_len == 0">Chọn hình ảnh</ion-card-subtitle>
-        <!-- <ion-card-title>Welcome to Ionic</ion-card-title> -->
       </ion-card-header>
-      <!-- <ion-card-content>
-        <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
-      </ion-card-content> -->
     </ion-card>
-
-    <!-- <div class="ion-padding">
-      <h2>Click button to open modal</h2>
-    </div>
-   
-    <ion-button (click)="openModal()">Open Modal</ion-button> -->
   
-    <p *ngIf="dataReturned">{{dataReturned}}</p>
+    <!-- <p *ngIf="dataReturned">{{dataReturned}}</p> -->
 
-    <ion-card class="welcome-card" (click)="openModal()">
-      <img #defaul_img src="/assets/img/map.png" alt="" />
-      <ion-card-header>        
-        <ion-card-title>Bản đồ</ion-card-title>
+    <!-- Vi tri -->
+    <ion-card class="welcome-card">
+      <ion-card-header>
+        <ion-card-subtitle>Vị trí <span *ngIf="locationCoords.accuracy">(Acc: {{locationCoords.accuracy/2}})</span></ion-card-subtitle>
       </ion-card-header>
+      <ion-card-content>      
+        <ion-item button (click)="checkGPSPermission()">
+          <ion-icon name="locate" slot="start"></ion-icon>
+          <ion-label>Lấy tọa độ vị trí</ion-label>
+        </ion-item>
+        <ion-item button (click)="openModal()">
+          <ion-icon name="map" slot="start"></ion-icon>
+          <ion-label>Mở bản đồ</ion-label>
+        </ion-item>
+      </ion-card-content>
     </ion-card>
 
   </ion-content>

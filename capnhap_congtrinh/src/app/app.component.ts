@@ -12,7 +12,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 export class AppComponent {
   public appPages = [
     {
-      title: 'Thống kê chung',
+      title: 'Truy cập nhanh',
       url: '/home',
       icon: 'home'
     }/* ,
@@ -22,14 +22,14 @@ export class AppComponent {
       icon: 'list'
     } */,
     {
-      title: 'Danh sách công trình',
+      title: 'Công trình đập',
       url: '/list-congtrinh-thuyloi',
-      icon: 'pin'
+      icon: 'list'
     },
     {
-      title: 'Thêm công trinh',
+      title: 'Thêm đập',
       url: '/add-congtrinh-thuyloi',
-      icon: 'hammer'
+      icon: 'add-circle'
     }
   ];
 
