@@ -536,7 +536,13 @@ ionViewDidEnter() {
 
 ***
 
-jajjja
+# Thêm quản lý cống
+
+```console
+ionic g page pages/list_cong_hientrang_point
+ionic g page pages/view_cong_hientrang_point
+ionic g page pages/add_cong_hientrang_point
+```
 
 
 
