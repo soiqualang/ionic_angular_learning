@@ -544,6 +544,11 @@ ionic g page pages/view_cong_hientrang_point
 ionic g page pages/add_cong_hientrang_point
 ```
 
+## Todo
+
+* Fix lỗi không hiện hình ảnh khi quay về
+* Gửi dữ liệu về Server
+
 
 
 ## Preferences
