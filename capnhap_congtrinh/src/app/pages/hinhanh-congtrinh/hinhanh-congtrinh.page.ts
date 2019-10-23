@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 /* DatabaseService */
 import { DatabaseService, dap_hientrang_point  } from 'src/app/services/database.service';
+import { ApiService } from 'src/app/services/api.service';
+
 import { ActivatedRoute, Router } from '@angular/router';
 /* Show thong bao */
 import { ToastController } from '@ionic/angular';
@@ -18,7 +20,7 @@ export class HinhanhCongtrinhPage implements OnInit {
   id_congtrinh: any;
   tbl_name:any;
 
-  constructor(private route: ActivatedRoute, public db: DatabaseService, private router: Router, private toast: ToastController,public photoService: PhotoService) { }
+  constructor(private route: ActivatedRoute, public db: DatabaseService, private router: Router, private toast: ToastController,public photoService: PhotoService,public api:ApiService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -34,6 +36,19 @@ export class HinhanhCongtrinhPage implements OnInit {
     this.photoService.selectImage().then(res => {
       this.photoService.id_congtrinh=this.id_congtrinh;
       this.photoService.tbl_name=this.tbl_name;
+    });
+  }
+
+  /* Gui du lieu ve server */
+
+  postData(t1:any,tbl_name:any){
+    this.api.postData(t1,tbl_name).then(async (res) => {
+      console.log(res);
+      let toast = await this.toast.create({
+        message: 'Hình đã được gửi về hệ thống',
+        duration: 1500
+      });
+      toast.present();
     });
   }
 

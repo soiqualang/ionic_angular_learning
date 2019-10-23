@@ -587,6 +587,10 @@ decimal_format(value,decimalPlaces){
 decimal_format(106.45333456,3); //106.453
 ```
 
+## Gửi dữ liệu về Server
+
+`ionic g service services/api`
+
 
 
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 /* DatabaseService */
 import { DatabaseService, cong_hientrang_point } from 'src/app/services/database.service';
+import { ApiService } from 'src/app/services/api.service';
+
 import { ActivatedRoute, Router } from '@angular/router';
 /* Show thong bao */
 import { ToastController } from '@ionic/angular';
@@ -43,7 +45,7 @@ export class ViewCongHientrangPointPage implements OnInit {
 
   locationCoords: any;
 
-  constructor(private route: ActivatedRoute, public db: DatabaseService, private router: Router, private toast: ToastController,public photoService: PhotoService,private modalController: ModalController,public androidPermissions:AndroidPermissions,public locationAccuracy:LocationAccuracy,public geolocation: Geolocation) {
+  constructor(private route: ActivatedRoute, public db: DatabaseService, private router: Router, private toast: ToastController,public photoService: PhotoService,private modalController: ModalController,public androidPermissions:AndroidPermissions,public locationAccuracy:LocationAccuracy,public geolocation: Geolocation,public api:ApiService) {
     this.locationCoords = {
       latitude: "",
       longitude: "",
@@ -198,5 +200,17 @@ export class ViewCongHientrangPointPage implements OnInit {
     });
   }
 
+  /* Gui du lieu ve server */
+
+  postData(){
+    this.api.postData(this.cong_hientrang_point,this.tbl_name).then(async (res) => {
+      console.log(res);
+      let toast = await this.toast.create({
+        message: this.cong_hientrang_point.ghichu_ten+' đã được gửi về hệ thống',
+        duration: 1500
+      });
+      toast.present();
+    });
+  }
 
 }
