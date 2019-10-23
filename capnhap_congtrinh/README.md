@@ -577,12 +577,24 @@ search_filter(){
 
 ```
 
+## Format decimal number
+
+```js
+decimal_format(value,decimalPlaces){
+  return Number(Math.round(parseFloat(value + 'e' + decimalPlaces)) + 'e-' + decimalPlaces).toFixed(decimalPlaces);
+}
+
+decimal_format(106.45333456,3); //106.453
+```
+
+
 
 
 ## Todo
 
 * Fix lỗi không hiện hình ảnh khi quay về
 * Search list
+* Show vi tri marker khi view lai du lieu da luu
 * Gửi dữ liệu về Server
 
 
@@ -641,3 +653,7 @@ https://stackoverflow.com/questions/55617065/leaflet-map-doesnt-cover-whole-map-
 `window.dispatchEvent(new Event('resize'));`
 
 https://stackoverflow.com/questions/19186428/refresh-leaflet-map-map-container-is-already-initialized
+
+> Format decimal number
+https://stackoverflow.com/questions/6134039/format-number-to-always-show-2-decimal-places
+

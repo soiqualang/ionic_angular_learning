@@ -1,6 +1,8 @@
 <ion-header>
   <ion-toolbar text-center>
-    <ion-title>{{modalTitle}}</ion-title>
+    <ion-title>{{modalTitle}} | {{decimal_format(window.gps_lon,5)}} | {{decimal_format(window.gps_lat,5)}}</ion-title>
+    <!-- <ion-title>{{modalTitle}} | {{window.gps_lon}} | {{window.gps_lat}}</ion-title> -->
+    <!-- <ion-title>{{modalTitle}} | {{window.gps_lon.toFixed(5)}} | {{window.gps_lat.toFixed(5)}}</ion-title> -->
     <ion-buttons slot="end">
       <!-- <ion-button (click)="getLocation()"> -->
       <ion-button (click)="zoom2current_location()">

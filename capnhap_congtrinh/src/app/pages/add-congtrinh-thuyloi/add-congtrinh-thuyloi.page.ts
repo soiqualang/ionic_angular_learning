@@ -110,7 +110,7 @@ export class AddCongtrinhThuyloiPage implements OnInit {
         "paramID": 123,
         "paramTitle": "Bản đồ",
         "gps_lon":9999,
-        "gps_lat":8888
+        "gps_lat":9999
       }
     });
  

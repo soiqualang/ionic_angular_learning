@@ -6,12 +6,12 @@
       </ion-buttons>
       <ion-title>Chi tiết đập</ion-title>
       <ion-buttons slot="end">
-        <ion-button (click)="go2page('map')">
+        <!-- <ion-button (click)="go2page('map')">
           <ion-icon name="map"></ion-icon>
         </ion-button>
         <ion-button (click)="go2page('hinhanh-congtrinh/dap_hientrang_point/'+congtrinh_dapId)">
           <ion-icon name="images"></ion-icon>
-        </ion-button>
+        </ion-button> -->
         <ion-button (click)="delete()">
           <ion-icon name="trash"></ion-icon>
         </ion-button>
@@ -49,14 +49,6 @@
       </ion-item> -->
     </div>
 
-    <ion-card class="welcome-card" (click)="go2page('hinhanh-congtrinh/dap_hientrang_point/'+congtrinh_dapId)">
-      <ion-img *ngIf="imgarr_len != 0" [src]="first_img"></ion-img>
-      <ion-img *ngIf="imgarr_len == 0" src="/assets/img/noimg.png"></ion-img>
-      <ion-card-header>
-        <ion-card-subtitle *ngIf="imgarr_len != 0">{{img_takedate}} | Còn {{imgarr_len-1}} hình nữa.</ion-card-subtitle>
-        <ion-card-subtitle *ngIf="imgarr_len == 0">Chọn hình ảnh</ion-card-subtitle>
-      </ion-card-header>
-    </ion-card>
   
     <!-- <p *ngIf="dataReturned">{{dataReturned}}</p> -->
 
@@ -76,6 +68,16 @@
         </ion-item>
       </ion-card-content>
     </ion-card>
+
+    <ion-card class="welcome-card" (click)="go2page('hinhanh-congtrinh/dap_hientrang_point/'+congtrinh_dapId)">
+      <ion-img *ngIf="imgarr_len != 0" [src]="first_img"></ion-img>
+      <ion-img *ngIf="imgarr_len == 0" src="/assets/img/noimg.png"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle *ngIf="imgarr_len != 0">{{img_takedate}} | Còn {{imgarr_len-1}} hình nữa.</ion-card-subtitle>
+        <ion-card-subtitle *ngIf="imgarr_len == 0">Chọn hình ảnh</ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+  
 
   </ion-content>
 

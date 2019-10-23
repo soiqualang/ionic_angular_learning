@@ -137,8 +137,8 @@ export class ViewCongtrinhThuyloiPage implements OnInit {
       componentProps: {
         "paramID": 123,
         "paramTitle": "Bản đồ",
-        "gps_lon":9999,
-        "gps_lat":8888
+        "gps_lon":this.dap_hientrang_point.x,
+        "gps_lat":this.dap_hientrang_point.y
       }
     });
  
