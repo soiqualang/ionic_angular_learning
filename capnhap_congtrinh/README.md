@@ -126,6 +126,8 @@ export interface dap_hientrang_point {
   y: number,
   wkt: string
 }
+
+//wkt: dự tính lưu các dạng không gian khác như vùng, đường
 ```
 
 > Make 2 functions
@@ -600,7 +602,7 @@ decimal_format(106.45333456,3); //106.453
 * Search list
 * Show vi tri marker khi view lai du lieu da luu
 * Gửi dữ liệu về Server
-
+* Quản lý trạng thái upload (đã up, chưa up, cập nhật,..)
 
 
 ## Preferences
