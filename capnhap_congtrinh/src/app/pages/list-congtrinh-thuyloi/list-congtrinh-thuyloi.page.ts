@@ -12,7 +12,10 @@ import { Observable } from 'rxjs';
 export class ListCongtrinhThuyloiPage implements OnInit {
 
   dap_hientrang_point: dap_hientrang_point[] = [];
+  dap_hientrang_point2: dap_hientrang_point[] = [];
   hinhanh: hinhanh[] = [];
+  query:any;
+  notifi:any;
 
   constructor(public db: DatabaseService) { }
 
@@ -21,12 +24,18 @@ export class ListCongtrinhThuyloiPage implements OnInit {
       if (rdy) {
         this.db.getdap_hientrang_point().subscribe(res => {
           this.dap_hientrang_point = res;
+          this.dap_hientrang_point2 = res;
         });
         this.db.gethinhanh().subscribe(res => {
           this.hinhanh = res;
         });
       }
     });
+  }
+
+  search_filter(){
+    this.notifi=this.query;
+    this.dap_hientrang_point2=this.dap_hientrang_point.filter(item => item.ten_dap.toLowerCase().includes(this.query.toLowerCase()) || item.ma_loai.toLowerCase().includes(this.query.toLowerCase()));
   }
 
   // add back when alpha.4 is out

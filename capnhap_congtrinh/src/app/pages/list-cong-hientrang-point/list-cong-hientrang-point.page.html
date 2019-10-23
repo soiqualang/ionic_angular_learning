@@ -7,17 +7,25 @@
       Danh sách cống
     </ion-title>
   </ion-toolbar>
+  <ion-toolbar>
+    <!-- <ion-searchbar debounce="500" [(ngModel)]="query"></ion-searchbar> -->
+    <ion-searchbar debounce="500" [(ngModel)]="query" (ionChange)=search_filter()></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <!-- {{notifi}} -->
   <ion-list>
-    <ion-item button *ngFor="let item of cong_hientrang_point" [routerLink]="['/', 'list-cong-hientrang-point', item.id]">
-      <ion-icon name="arrow-dropright" slot="start"></ion-icon>
-      {{item.ghichu_ten}}
-      <div class="item-note" slot="end">
-        {{item.maso_cong}}
-      </div>
-    </ion-item>
+    <span *ngFor="let item of cong_hientrang_point2" [routerLink]="['/', 'list-cong-hientrang-point', item.id]">
+      <!-- <ion-item button *ngIf="ishow(item)"> -->
+      <ion-item button>
+        <ion-icon name="arrow-dropright" slot="start"></ion-icon>
+        {{item.ghichu_ten}}
+        <div class="item-note" slot="end">
+          {{item.maso_cong}}
+        </div>
+      </ion-item>
+  </span>
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">

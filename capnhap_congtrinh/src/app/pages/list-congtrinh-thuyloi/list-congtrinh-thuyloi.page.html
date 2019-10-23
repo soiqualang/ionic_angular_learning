@@ -12,18 +12,24 @@
       </ion-button>
     </ion-buttons> -->
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar debounce="500" [(ngModel)]="query" (ionChange)=search_filter()></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <!-- {{notifi}} -->
   <ion-list>
-    <ion-item button *ngFor="let item of dap_hientrang_point" [routerLink]="['/', 'list-congtrinh-thuyloi', item.id]">
-      <!-- <ion-icon [name]="item.icon" slot="start"></ion-icon> -->
-      <ion-icon name="arrow-dropright" slot="start"></ion-icon>
-      {{item.ten_dap}}
-      <div class="item-note" slot="end">
-        {{item.ma_loai}}
-      </div>
-    </ion-item>
+    <span *ngFor="let item of dap_hientrang_point2" [routerLink]="['/', 'list-congtrinh-thuyloi', item.id]">
+      <ion-item button>
+        <!-- <ion-icon [name]="item.icon" slot="start"></ion-icon> -->
+        <ion-icon name="arrow-dropright" slot="start"></ion-icon>
+        {{item.ten_dap}}
+        <div class="item-note" slot="end">
+          {{item.ma_loai}}
+        </div>
+      </ion-item>
+  </span>
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">

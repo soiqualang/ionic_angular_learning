@@ -544,9 +544,45 @@ ionic g page pages/view_cong_hientrang_point
 ionic g page pages/add_cong_hientrang_point
 ```
 
+## Add searchbar
+
+Bổ sung không phân biệt chữ hoa, chữ thường
+
+```ts
+search_filter(){
+    this.notifi=this.query;
+    this.cong_hientrang_point2=this.cong_hientrang_point.filter(item => item.ghichu_ten.toLowerCase().includes(this.query.toLowerCase()) || item.maso_cong.toLowerCase().includes(this.query.toLowerCase()));
+  }
+```
+
+```html
+<ion-toolbar>
+  <!-- <ion-searchbar debounce="500" [(ngModel)]="query"></ion-searchbar> -->
+  <ion-searchbar debounce="500" [(ngModel)]="query" (ionChange)=search_filter()></ion-searchbar>
+</ion-toolbar>
+....
+<ion-list>
+  <span *ngFor="let item of cong_hientrang_point2" [routerLink]="['/', 'list-cong-hientrang-point', item.id]">
+    <!-- <ion-item button *ngIf="ishow(item)"> -->
+    <ion-item button>
+      <ion-icon name="arrow-dropright" slot="start"></ion-icon>
+      {{item.ghichu_ten}}
+      <div class="item-note" slot="end">
+        {{item.maso_cong}}
+      </div>
+    </ion-item>
+</span>
+</ion-list>
+
+
+```
+
+
+
 ## Todo
 
 * Fix lỗi không hiện hình ảnh khi quay về
+* Search list
 * Gửi dữ liệu về Server
 
 
