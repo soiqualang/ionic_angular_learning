@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS "hinhanh" (
   "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
   "img" text NULL,
   "takedate" text NULL,
-  "id_congtrinh" integer NULL,
+  "id_congtrinh" text NULL,
   "tbl_name" text NULL
 );
 CREATE TABLE IF NOT EXISTS "cong_hientrang_point" (
