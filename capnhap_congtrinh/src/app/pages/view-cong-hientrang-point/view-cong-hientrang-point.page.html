@@ -51,8 +51,8 @@
       <ion-input [(ngModel)]="cong_hientrang_point.wkt" placeholder="Well-known text"></ion-input>
     </ion-item> -->
   </div>
-
-  <ion-card class="welcome-card" (click)="db.go2page('hinhanh-congtrinh/cong_hientrang_point/'+congtrinh_dapId)">
+  <!-- {{fid}} -->
+  <ion-card class="welcome-card" (click)="db.go2page('hinhanh-congtrinh/cong_hientrang_point/'+fid)">
     <ion-img *ngIf="imgarr_len != 0" [src]="first_img"></ion-img>
     <ion-img *ngIf="imgarr_len == 0" src="/assets/img/noimg.png"></ion-img>
     <ion-card-header>
