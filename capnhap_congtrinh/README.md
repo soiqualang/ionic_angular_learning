@@ -593,6 +593,10 @@ decimal_format(106.45333456,3); //106.453
 
 `ionic g service services/api`
 
+## Add login function
+
+`ionic g page login`
+
 
 
 

@@ -22,7 +22,8 @@ const routes: Routes = [
   { path: 'map-modal', loadChildren: './map-modal/map-modal.module#MapModalPageModule' },
   { path: 'list-cong-hientrang-point', loadChildren: './pages/list-cong-hientrang-point/list-cong-hientrang-point.module#ListCongHientrangPointPageModule' },
   { path: 'list-cong-hientrang-point/:id', loadChildren: './pages/view-cong-hientrang-point/view-cong-hientrang-point.module#ViewCongHientrangPointPageModule' },
-  { path: 'add-cong-hientrang-point', loadChildren: './pages/add-cong-hientrang-point/add-cong-hientrang-point.module#AddCongHientrangPointPageModule' }
+  { path: 'add-cong-hientrang-point', loadChildren: './pages/add-cong-hientrang-point/add-cong-hientrang-point.module#AddCongHientrangPointPageModule' },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' }
 ];
 
 @NgModule({
