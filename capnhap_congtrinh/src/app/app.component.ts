@@ -3,6 +3,9 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { LoginService } from 'src/app/services/login.service';
+
+declare var window;
 
 @Component({
   selector: 'app-root',
@@ -10,17 +13,18 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
+  public window = window;
+
   public appPages = [
     {
       title: 'Truy cập nhanh',
       url: '/home',
       icon: 'home'
-    }/* ,
-    {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
-    } */,
+    }
+  ];
+
+  public quanlyDap = [
     {
       title: 'Danh sách đập',
       url: '/list-congtrinh-thuyloi',
@@ -30,7 +34,10 @@ export class AppComponent {
       title: 'Thêm đập',
       url: '/add-congtrinh-thuyloi',
       icon: 'add-circle'
-    },
+    }
+  ];
+
+  public quanlyCong = [
     {
       title: 'Danh sách cống',
       url: '/list-cong-hientrang-point',
@@ -43,10 +50,21 @@ export class AppComponent {
     }
   ];
 
+  public appAuthPage=[
+    {
+      title: 'Đăng nhập',
+      url: '/login',
+      icon: 'log-in'
+    }
+  ];
+
+  /* public islogin=false; */  
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    public login:LoginService
   ) {
     this.initializeApp();
   }
@@ -55,6 +73,8 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      //window.islogin=false;
+      this.login.checklogin();
     });
   }
 }

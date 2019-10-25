@@ -595,9 +595,40 @@ decimal_format(106.45333456,3); //106.453
 
 ## Add login function
 
+`ionic g service services/login`
+
 `ionic g page login`
 
+### Canh ion-card vô giữa trang
 
+```html
+<ion-grid style="height: 100%">
+    <ion-row justify-content-center align-items-center style="height: 100%">
+      <ion-card id = "login-card">
+        <form >
+          <ion-list>
+
+            <ion-item>
+              <ion-label fixed>Email</ion-label>
+              <ion-input type="email"  name="email"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label fixed>Password</ion-label>
+              <ion-input type="password"  name="password"></ion-input>
+            </ion-item>
+
+
+            <div padding>
+              <button ion-button color="primary" block >Effettua il login</button>
+            </div>
+
+          </ion-list>
+        </form>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+```
 
 
 ## Todo

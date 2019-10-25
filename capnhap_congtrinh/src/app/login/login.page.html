@@ -1,9 +1,35 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>Thủy lợi Bến Tre</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+  <ion-grid style="height: 100%">
+    <ion-row justify-content-center align-items-center style="height: 100%">
+      <ion-card class="welcome-card">
+        <img src="/assets/img/logo_moblie2.png" alt="" />
+        <ion-card-header>
+          <!-- <ion-card-subtitle>VNSC</ion-card-subtitle> -->
+        </ion-card-header>
+        <ion-card-content>      
+          <ion-item>
+            <ion-icon name="arrow-forward" slot="start"></ion-icon>
+            <ion-input [(ngModel)]="frmlogin.email" placeholder="Email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="arrow-forward" slot="start"></ion-icon>
+            <ion-input type="password" [(ngModel)]="frmlogin.password" placeholder="Mật khẩu"></ion-input>
+          </ion-item>
+          <ion-button expand="block" (click)="do_login()">Đăng nhập</ion-button>
+          {{window.login_mess}}
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+<ion-footer class="ion-padding">
+  <ion-text color="dark">
+    2019 &copy; STAC - VNSC
+  </ion-text>
+</ion-footer>

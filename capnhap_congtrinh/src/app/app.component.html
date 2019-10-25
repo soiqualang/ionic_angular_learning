@@ -8,14 +8,79 @@
       </ion-header>
       <ion-content>
         <ion-list>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+          <!-- Danh sach cac chuc nang neu dang nhap ok -->
+          <div *ngIf="window.islogin">
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+              <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+                <ion-icon slot="start" [name]="p.icon"></ion-icon>
+                <ion-label>
+                  {{p.title}}
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+            <ion-item-divider>
               <ion-label>
-                {{p.title}}
+                Quản lý đập
               </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
+            </ion-item-divider>
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of quanlyDap">
+              <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+                <ion-icon slot="start" [name]="p.icon"></ion-icon>
+                <ion-label>
+                  {{p.title}}
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+
+            <ion-item-divider>
+              <ion-label>
+                Quản lý cống
+              </ion-label>
+            </ion-item-divider>
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of quanlyCong">
+              <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+                <ion-icon slot="start" [name]="p.icon"></ion-icon>
+                <ion-label>
+                  {{p.title}}
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+
+            <ion-item-divider>
+              <ion-label>
+                Chức năng khác
+              </ion-label>
+            </ion-item-divider>            
+
+            <ion-menu-toggle auto-hide="false">
+              <ion-item (click)="login.do_logout()">
+                <ion-icon slot="start" name="log-out"></ion-icon>
+                <ion-label>
+                  Đăng xuất
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+
+          </div>
+          
+
+          <!-- Menu dang nhap khi chua dang nhap -->          
+          <div *ngIf="!window.islogin">
+            <ion-item-divider>
+              <ion-label>
+                Chức năng khác
+              </ion-label>
+            </ion-item-divider>
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of appAuthPage">
+              <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+                <ion-icon slot="start" [name]="p.icon"></ion-icon>
+                <ion-label>
+                  {{p.title}}
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </div>
+
         </ion-list>
       </ion-content>
     </ion-menu>
