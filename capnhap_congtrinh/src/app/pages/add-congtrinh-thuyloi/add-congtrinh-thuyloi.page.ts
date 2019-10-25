@@ -22,7 +22,13 @@ import { PhotoService } from 'src/app/services/photo.service';
 })
 export class AddCongtrinhThuyloiPage implements OnInit {
 
-  congtrinh_dap = {};
+  congtrinh_dap = {
+    id:null,
+    ten_dap:null,
+    ma_loai:null,
+    x:null,
+    y:null
+  };
   tmp={};
   dataReturned:any;
 
@@ -79,7 +85,13 @@ export class AddCongtrinhThuyloiPage implements OnInit {
         duration: 1500
       });
       toast.present();
-      this.congtrinh_dap = {};
+      this.congtrinh_dap = {
+        id:null,
+        ten_dap:null,
+        ma_loai:null,
+        x:null,
+        y:null
+      };
       this.tmp={};
       this.imgarr_len=0;
       this.first_img=null;

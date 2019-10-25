@@ -22,7 +22,14 @@ import { PhotoService } from 'src/app/services/photo.service';
 })
 export class AddCongHientrangPointPage implements OnInit {
 
-  congtrinh_cong = {};
+  congtrinh_cong = {
+    id:null,
+    ghichu_ten:null,
+    maso_cong:null,
+    ghichu_kiemtra:null,
+    x:null,
+    y:null
+  };
   dataReturned:any;
 
   locationCoords: any;
@@ -90,7 +97,14 @@ export class AddCongHientrangPointPage implements OnInit {
         duration: 1500
       });
       toast.present();
-      this.congtrinh_cong = {};
+      this.congtrinh_cong = {
+        id:null,
+        ghichu_ten:null,
+        maso_cong:null,
+        ghichu_kiemtra:null,
+        x:null,
+        y:null
+      };
       this.imgarr_len=0;
       this.first_img=null;
       this.img_takedate=null;
