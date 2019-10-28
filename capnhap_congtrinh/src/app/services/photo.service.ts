@@ -92,8 +92,8 @@ export class PhotoService {
 
   takePicture_and_Save(sourceType: PictureSourceType) {
     var options: CameraOptions = {
-        /* quality: 100, */
-        quality: 1,
+        quality: 100,
+        /* quality: 1, */
         sourceType: sourceType,
         saveToPhotoAlbum: false,
         correctOrientation: true,

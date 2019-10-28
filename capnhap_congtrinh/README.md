@@ -631,6 +631,36 @@ decimal_format(106.45333456,3); //106.453
 ```
 
 
+## Build
+
+> Tạo bản debug, có thể cài không cần sign
+
+`ionic cordova build android --prod`
+
+Fix lỗi không http request được trên android 9
+
+> Updated the network_security_config.xml (resources/android/xml…) file with the following code
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+   <base-config cleartextTrafficPermitted="true">
+       <trust-anchors>
+           <certificates src="system" />
+       </trust-anchors>
+   </base-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain>api.mydomain.in</domain>
+    </domain-config>
+</network-security-config>
+```
+
+https://forum.ionicframework.com/t/ionic3-http-call-android-9-0-4/160872/22
+
+
+
+
+
 ## Todo
 
 * Fix lỗi không hiện hình ảnh khi quay về
